@@ -18,10 +18,6 @@ public partial class MainContainer : Node
 		if (gs.CurrentElement is StoryLine story)
 		{
 			GD.Print($"Game loaded. Current: {story.Id}: {story.Text}");
-
-			// 💬 Show dialogue
-			var dialogueUI = GetNode<DialogueUI>("UIContainer/DialogueUI");
-			dialogueUI.ShowStory(story);
 		}
 		else if (gs.CurrentElement is Duel duel)
 		{

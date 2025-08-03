@@ -12,6 +12,7 @@ public partial class DialogueUI : Control
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_textLabel = GetNode<Label>("PanelContainer/VBoxContainer/TextLabel");
 		_optionsContainer = GetNode<VBoxContainer>("PanelContainer/VBoxContainer/OptionsContainer");
+		Hide();
 	}
 
 	public void ShowStory(StoryLine story)
@@ -36,7 +37,5 @@ public partial class DialogueUI : Control
 			};
 			_optionsContainer.AddChild(button);
 		}
-
-		Show();
 	}
 }

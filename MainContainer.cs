@@ -5,10 +5,16 @@ public partial class MainContainer : Node
 {
 	public override void _Ready()
 	{
+		// get engine
 		var engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+
+		// load JSON
 		var gs = JsonLoader.LoadGame("res://JSON/story.json");
+
+		// push the loaded JSON into the engine
 		engine.InitGame(gs);
 
+		// testing: immediately show data
 		if (gs.CurrentElement is StoryLine story)
 		{
 			GD.Print($"Game loaded. Current: {story.Id}: {story.Text}");
@@ -24,6 +30,15 @@ public partial class MainContainer : Node
 		else
 		{
 			GD.Print("Game loaded. Current element of unknown type.");
+		}
+
+		// Call InitNPC on all NPCs
+		foreach (var npc in GetTree().GetNodesInGroup("NPCs"))
+		{
+			if (npc is NPC npcScript)
+			{
+				npcScript.InitNPC();
+			}
 		}
 	}
 }

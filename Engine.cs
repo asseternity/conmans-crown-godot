@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class Engine : Node
@@ -39,5 +40,27 @@ public partial class Engine : Node
 
 		GS.FullLog.Add(duel.TacticHint(duel.Enemy));
 		duel.RestoreAfter(GS.PlayerObject, playerAction, enemyAction);
+	}
+
+	public Element FindElementByID(string id_string)
+	{
+		foreach (var element in GS.AllElements)
+		{
+			if (element.Value is StoryLine s)
+			{
+				if (s.Id == id_string)
+				{
+					return s;
+				}
+			}
+			else if (element.Value is Duel d)
+			{
+				if (d.Id == id_string)
+				{
+					return d;
+				}
+			}
+		}
+		return new StoryLine("ID: Missing", "Text: Missing", new List<DialogueOption>());
 	}
 }

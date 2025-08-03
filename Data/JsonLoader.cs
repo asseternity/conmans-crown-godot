@@ -73,6 +73,6 @@ public static class JsonLoader
 			storyById[id].Options = optionsList;
 		}
 
-		return new GameState(elementsById.Values.First(), player);
+		return new GameState(elementsById.Values.First(), elementsById, player);
 	}
 }

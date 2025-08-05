@@ -37,4 +37,18 @@ public partial class MainContainer : Node
 			}
 		}
 	}
+
+	public void RouteElement(Element element)
+	{
+		if (element is StoryLine story)
+		{
+			var dialogueUI = GetNode<DialogueUI>("UIContainer/DialogueUI");
+			dialogueUI.ShowStory(story);
+		}
+		else if (element is Duel duel)
+		{
+			var duelUI = GetNode<DuelUI>("UIContainer/DuelUI");
+			duelUI.StartDuel(duel);
+		}
+	}
 }

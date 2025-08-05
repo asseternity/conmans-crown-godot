@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsmq2tx6qdqnh"]
+
+[ext_resource type="Script" uid="uid://c3pqrdg336tjr" path="res://Scripts/MainContainer.cs" id="1_6r8ts"]
+[ext_resource type="PackedScene" uid="uid://blauefaivlrub" path="res://Scenes/level_test.tscn" id="2_oelah"]
+[ext_resource type="PackedScene" uid="uid://b66w133vq1020" path="res://Scenes/dialogue_ui.tscn" id="3_ctqoa"]
+[ext_resource type="PackedScene" uid="uid://dledlefde6t05" path="res://Scenes/duel_ui.tscn" id="4_76x1s"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_6r8ts")
+
+[node name="LevelHolder" type="Node2D" parent="."]
+
+[node name="Level_Test" parent="LevelHolder" instance=ExtResource("2_oelah")]
+
+[node name="UIContainer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" parent="UIContainer" instance=ExtResource("3_ctqoa")]
+
+[node name="DuelUI" parent="UIContainer" instance=ExtResource("4_76x1s")]

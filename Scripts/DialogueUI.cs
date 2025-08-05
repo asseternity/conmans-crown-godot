@@ -12,6 +12,8 @@ public partial class DialogueUI : Control
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_textLabel = GetNode<Label>("PanelContainer/VBoxContainer/TextLabel");
 		_optionsContainer = GetNode<VBoxContainer>("PanelContainer/VBoxContainer/OptionsContainer");
+
+		// hide ui until ShowStory() is called
 		Hide();
 	}
 
@@ -28,12 +30,8 @@ public partial class DialogueUI : Control
 			button.Pressed += () =>
 			{
 				_engine.ChooseOption(option.NextElement);
-				if (option.NextElement is StoryLine nextElementStory)
-					ShowStory(nextElementStory);
-				else if (option.NextElement is Duel nextElementDuel)
-					Hide();
-				else
-					Hide();
+				var main = GetTree().Root.GetNode<MainContainer>("MainScene"); // load MainContainer.cs inside the MainScene root node
+				main.RouteElement(_engine.GS.CurrentElement); // this handles both story or duel
 			};
 			_optionsContainer.AddChild(button);
 		}

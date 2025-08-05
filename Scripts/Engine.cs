@@ -16,12 +16,12 @@ public partial class Engine : Node
 		GS.CurrentElement = next;
 	}
 
-	public void DuelRound(int playerAction)
+	public void DuelRound(double playerAction)
 	{
 		if (GS.CurrentElement is not Duel duel)
 			return;
 
-		int enemyAction = duel.ChooseEnemyAction();
+		double enemyAction = duel.ChooseEnemyAction();
 		GS.FullLog.Add(duel.DamagePhase(GS.PlayerObject, playerAction, enemyAction));
 		GS.FullLog.Add($"You spent {playerAction}, enemy spent {enemyAction}.");
 

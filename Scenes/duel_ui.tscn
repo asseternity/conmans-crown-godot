@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dledlefde6t05"]
+[gd_scene load_steps=5 format=3 uid="uid://dledlefde6t05"]
 
 [ext_resource type="Script" uid="uid://dt2pc7y4y1j7l" path="res://Scripts/DuelUI.cs" id="1_nje2f"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://Themes/FlatUI4/kenneyUI-red.tres" id="2_3n5kg"]
 [ext_resource type="Texture2D" uid="uid://cy57ljprwxrxr" path="res://Images/character-circus-clown-svgrepo-com.svg" id="2_7poq0"]
 [ext_resource type="Texture2D" uid="uid://svt5teoyyscp" path="res://Images/icon.svg" id="3_wmw6g"]
 
@@ -13,65 +14,120 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nje2f")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("2_3n5kg")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 39
 alignment = 1
 
-[node name="PlayerSide" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Header"]
+[node name="PlayerSide" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="PlayerSprite" type="TextureRect" parent="PanelContainer/VBoxContainer/Header/PlayerSide"]
+[node name="PlayerSprite" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
 layout_mode = 2
 texture = ExtResource("2_7poq0")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="PlayerName" type="Label" parent="PanelContainer/VBoxContainer/Header/PlayerSide"]
+[node name="PlayerName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
 layout_mode = 2
 text = "PlayerName"
 
-[node name="PlayerHP" type="ProgressBar" parent="PanelContainer/VBoxContainer/Header/PlayerSide"]
+[node name="PlayerHP" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
 layout_mode = 2
 
-[node name="EnemySide" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Header"]
+[node name="EnemySide" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header"]
 layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 2
 
-[node name="EnemySprite" type="TextureRect" parent="PanelContainer/VBoxContainer/Header/EnemySide"]
+[node name="EnemySprite" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
 layout_mode = 2
 texture = ExtResource("3_wmw6g")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="EnemyName" type="Label" parent="PanelContainer/VBoxContainer/Header/EnemySide"]
+[node name="EnemyName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
 layout_mode = 2
 text = "EnemyName"
 
-[node name="EnemyHP" type="ProgressBar" parent="PanelContainer/VBoxContainer/Header/EnemySide"]
+[node name="EnemyHP" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
 layout_mode = 2
 
-[node name="CombatLogLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "This is the combat log. It might get very long. Who knows? Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum."
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
-[node name="PowerLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="CombatLogLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+text = "This is the combat log. It might get very long. Who knows? Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum. Here is the continuation."
+autowrap_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PowerLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 text = "Current power:"
 
-[node name="PowerSlider" type="HSlider" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="PowerSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 
-[node name="AttackButton" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="AttackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer4"]
 layout_mode = 2
 text = "End your turn"

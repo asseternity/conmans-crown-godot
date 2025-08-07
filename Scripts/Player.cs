@@ -4,7 +4,7 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 	[Export]
-	public float MovementSpeed = 100f;
+	public float MovementSpeed = 500f;
 
 	public void GetInput()
 	{
@@ -15,6 +15,13 @@ public partial class Player : CharacterBody2D
 	public void _physics_process(double delta)
 	{
 		GetInput();
-		MoveAndSlide();
+
+		var dialogueUI = GetNode<DialogueUI>("/root/MainScene/UIContainer/DialogueUI");
+		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
+
+		if (!dialogueUI.Visible & !duelUI.Visible)
+		{
+			MoveAndSlide();
+		}
 	}
 }

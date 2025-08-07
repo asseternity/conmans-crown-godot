@@ -15,5 +15,5 @@ tile_set = ExtResource("1_10lpn")
 position = Vector2(64, 17)
 
 [node name="NPC" parent="." groups=["NPCs"] instance=ExtResource("3_d8tg7")]
-position = Vector2(598, 455)
+position = Vector2(48, -56)
 StoryID = "intro_01"

@@ -40,14 +40,24 @@ public partial class MainContainer : Node
 
 	public void RouteElement(Element element)
 	{
+		var dialogueUI = GetNode<DialogueUI>("UIContainer/DialogueUI");
+		var duelUI = GetNode<DuelUI>("UIContainer/DuelUI");
 		if (element is StoryLine story)
 		{
-			var dialogueUI = GetNode<DialogueUI>("UIContainer/DialogueUI");
-			dialogueUI.ShowStory(story);
+			if (story.Id != "ID: Missing")
+			{
+				duelUI.Hide();
+				dialogueUI.ShowStory(story);
+			}
+			else
+			{
+				dialogueUI.Hide();
+				duelUI.Hide();
+			}
 		}
 		else if (element is Duel duel)
 		{
-			var duelUI = GetNode<DuelUI>("UIContainer/DuelUI");
+			dialogueUI.Hide();
 			duelUI.StartDuel(duel);
 		}
 	}

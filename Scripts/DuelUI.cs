@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class DuelUI : Control
 {
+	private ScrollContainer _logScroll;
 	private Label _logLabel;
 	private Label _powerLabel;
 	private HSlider _powerSlider;
@@ -19,21 +21,38 @@ public partial class DuelUI : Control
 	public override void _Ready()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
-		_logLabel = GetNode<Label>("PanelContainer/VBoxContainer/CombatLogLabel");
-		_powerLabel = GetNode<Label>("PanelContainer/VBoxContainer/HBoxContainer/PowerLabel");
-		_powerSlider = GetNode<HSlider>("PanelContainer/VBoxContainer/HBoxContainer/PowerSlider");
-		_attackButton = GetNode<Button>("PanelContainer/VBoxContainer/AttackButton");
-		_playerNameLabel = GetNode<Label>(
-			"PanelContainer/VBoxContainer/Header/PlayerSide/PlayerName"
+		_logScroll = GetNode<ScrollContainer>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"
 		);
-		_enemyNameLabel = GetNode<Label>("PanelContainer/VBoxContainer/Header/EnemySide/EnemyName");
-		_playerHP = GetNode<ProgressBar>("PanelContainer/VBoxContainer/Header/PlayerSide/PlayerHP");
-		_enemyHP = GetNode<ProgressBar>("PanelContainer/VBoxContainer/Header/EnemySide/EnemyHP");
+		_logLabel = GetNode<Label>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer/CombatLogLabel"
+		);
+		_powerLabel = GetNode<Label>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PowerLabel"
+		);
+		_powerSlider = GetNode<HSlider>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PowerSlider"
+		);
+		_attackButton = GetNode<Button>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer4/AttackButton"
+		);
+		_playerNameLabel = GetNode<Label>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerName"
+		);
+		_enemyNameLabel = GetNode<Label>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyName"
+		);
+		_playerHP = GetNode<ProgressBar>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerHP"
+		);
+		_enemyHP = GetNode<ProgressBar>(
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP"
+		);
 		_playerSprite = GetNode<TextureRect>(
-			"PanelContainer/VBoxContainer/Header/PlayerSide/PlayerSprite"
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerSprite"
 		);
 		_enemySprite = GetNode<TextureRect>(
-			"PanelContainer/VBoxContainer/Header/EnemySide/EnemySprite"
+			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemySprite"
 		);
 
 		// HSlider settings
@@ -43,6 +62,7 @@ public partial class DuelUI : Control
 		// subscribe to events
 		_attackButton.Pressed += OnAttackButtonPressed;
 		_powerSlider.ValueChanged += OnPowerSliderChanged;
+		_powerSlider.Editable = true;
 
 		// Hide ui
 		Hide();
@@ -50,6 +70,11 @@ public partial class DuelUI : Control
 
 	public void StartDuel(Duel duel)
 	{
+		// clear gamestate log
+		string startingLog =
+			$"You brandish your weapon. {duel.Enemy.Name} stands ready. It's a duel!";
+		_engine.GS.FullLog = new List<string>([startingLog]);
+
 		// assign data
 		_currentDuel = duel;
 		_playerNameLabel.Text = _engine.GS.PlayerObject.Name;
@@ -64,48 +89,65 @@ public partial class DuelUI : Control
 
 		// update UI
 		UpdateLog();
-		UpdateMaxPower();
 		UpdateHealthBars();
+		_powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
 		_powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue); // Default start value
 		Show();
 	}
 
 	public void OnPowerSliderChanged(double value)
 	{
-		_powerLabel.Text = $"Power: {value:F1}";
+		// Disable "Attack" unless selected power is valid
+		double currentPower = _engine.GS.PlayerObject.Power;
+		bool valid = value <= currentPower;
+		_attackButton.Disabled = !valid;
+
+		// UI hint
+		_powerLabel.Text = $"Power: {value:F1} {(valid ? "" : "(Not enough!)")}";
 	}
 
 	private void OnAttackButtonPressed()
 	{
+		// disable the continue button
 		_attackButton.Disabled = true;
+
+		// take the power value and run the round
 		double powerUsed = Math.Round(_powerSlider.Value, 1); // Round to 1 decimal place
 		_engine.DuelRound(powerUsed);
+
+		// update UI
 		UpdateLog();
-		UpdateMaxPower();
 		UpdateHealthBars();
 
+		// update power slider hint
+		double currentPower = _engine.GS.PlayerObject.Power;
+		bool valid = _powerSlider.Value <= currentPower;
+		_attackButton.Disabled = !valid;
+		_powerLabel.Text = $"Power: {_powerSlider.Value:F1} {(valid ? "" : "(Not enough!)")}";
+
+		// if the battle is over, rebind buttons and disable the slider
 		if (_engine.GS.CurrentElement is not Duel)
 		{
-			Hide();
-			RouteAfterDuel();
+			_powerSlider.Editable = false;
+			_attackButton.Pressed -= OnAttackButtonPressed;
+			_attackButton.Pressed += RouteAfterDuel;
 		}
-		else
-		{
-			_attackButton.Disabled = false; // Re-enable only if duel continues
-		}
+
+		// re-enable the continue button in any case
+		_attackButton.Disabled = false;
 	}
 
 	public void UpdateLog()
 	{
 		_logLabel.Text = string.Join("\n", _engine.GS.FullLog);
+
+		// Delay scroll until after UI updates
+		CallDeferred(nameof(ScrollLogToBottom));
 	}
 
-	public void UpdateMaxPower()
+	private void ScrollLogToBottom()
 	{
-		double newMax = _engine.GS.PlayerObject.Power;
-		_powerSlider.MaxValue = newMax;
-		_powerSlider.Value = Math.Min(_powerSlider.Value, newMax);
-		OnPowerSliderChanged(_powerSlider.Value);
+		_logScroll.ScrollVertical = (int)_logScroll.GetVScrollBar().MaxValue;
 	}
 
 	public void UpdateHealthBars()
@@ -119,5 +161,6 @@ public partial class DuelUI : Control
 		Hide();
 		var main = GetTree().Root.GetNode<MainContainer>("MainScene"); // load MainContainer.cs inside the MainScene root node
 		main.RouteElement(_engine.GS.CurrentElement); // this handles both story or duel
+		_attackButton.Pressed -= RouteAfterDuel; // unsubscribe from route after duel
 	}
 }

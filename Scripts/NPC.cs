@@ -56,10 +56,13 @@ public partial class NPC : CharacterBody2D
 	private void ShowDialogue()
 	{
 		var dialogueUI = GetTree().Root.GetNode<DialogueUI>("MainScene/UIContainer/DialogueUI");
+		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
 		if (StartElement is StoryLine s)
 		{
-			dialogueUI.Show();
-			dialogueUI.ShowStory(s);
+			if (!dialogueUI.Visible & !duelUI.Visible)
+			{
+				dialogueUI.ShowStory(s);
+			}
 		}
 	}
 }

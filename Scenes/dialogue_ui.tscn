@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://b66w133vq1020"]
+[gd_scene load_steps=4 format=3 uid="uid://b66w133vq1020"]
 
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://Themes/FlatUI4/kenneyUI-red.tres" id="1_gsrxu"]
 [ext_resource type="Script" uid="uid://bsmn1qv8brpfm" path="res://Scripts/DialogueUI.cs" id="1_q8n66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsrxu"]
+bg_color = Color(0.79409, 0.45748, 0.77574, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.74902)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
 
 [node name="DialogueUI" type="Control"]
 layout_mode = 3
@@ -13,34 +28,40 @@ grow_vertical = 2
 theme = ExtResource("1_gsrxu")
 script = ExtResource("1_q8n66")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -396.0
+offset_top = -123.0
+offset_right = 396.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gsrxu")
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 alignment = 1
 
-[node name="TextLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(750, 200)
+[node name="TextLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
 text = "Dialogue text goes here."
 autowrap_mode = 1
 
-[node name="OptionsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="OptionsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 alignment = 1

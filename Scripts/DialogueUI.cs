@@ -10,11 +10,9 @@ public partial class DialogueUI : Control
 	public override void _Ready()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
-		_textLabel = GetNode<Label>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TextLabel"
-		);
+		_textLabel = GetNode<Label>("PanelContainer/MarginContainer/VBoxContainer/TextLabel");
 		_optionsContainer = GetNode<VBoxContainer>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsContainer"
+			"PanelContainer/MarginContainer/VBoxContainer/OptionsContainer"
 		);
 
 		// hide ui until ShowStory() is called

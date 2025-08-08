@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dledlefde6t05"]
+[gd_scene load_steps=8 format=3 uid="uid://dledlefde6t05"]
 
 [ext_resource type="Script" uid="uid://dt2pc7y4y1j7l" path="res://Scripts/DuelUI.cs" id="1_nje2f"]
 [ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://Themes/FlatUI4/kenneyUI-red.tres" id="2_3n5kg"]
 [ext_resource type="Texture2D" uid="uid://cy57ljprwxrxr" path="res://Images/character-circus-clown-svgrepo-com.svg" id="2_7poq0"]
 [ext_resource type="Texture2D" uid="uid://svt5teoyyscp" path="res://Images/icon.svg" id="3_wmw6g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n5kg"]
+bg_color = Color(0.292205, 0.0852613, 0.0956888, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqj5w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lai8p"]
+bg_color = Color(0.383319, 0.692227, 0.19156, 1)
 
 [node name="DuelUI" type="Control"]
 layout_mode = 3
@@ -14,123 +23,137 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nje2f")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -264.5
+offset_right = 332.0
+offset_bottom = 264.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
 theme = ExtResource("2_3n5kg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3n5kg")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 39
 alignment = 1
 
-[node name="PlayerSide" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header"]
+[node name="PlayerSide" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PlayerSprite" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
+[node name="PlayerSprite" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("2_7poq0")
-expand_mode = 4
+expand_mode = 1
 stretch_mode = 5
 
-[node name="PlayerName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
+[node name="PlayerName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
 layout_mode = 2
 text = "PlayerName"
 
-[node name="PlayerHP" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
+[node name="PlayerHP" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide"]
 layout_mode = 2
 
-[node name="EnemySide" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header"]
+[node name="EnemySide" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 2
 
-[node name="EnemySprite" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
+[node name="EnemySprite" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("3_wmw6g")
-expand_mode = 4
+expand_mode = 1
 stretch_mode = 5
 
-[node name="EnemyName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
+[node name="EnemyName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
 layout_mode = 2
 text = "EnemyName"
 
-[node name="EnemyHP" type="ProgressBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
+[node name="EnemyHP" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide"]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(0, 120)
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(650, 120)
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
+[node name="CombatLogLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"]
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
-
-[node name="CombatLogLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 text = "This is the combat log. It might get very long. Who knows? Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum. Here is the continuation."
 autowrap_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="PowerLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="PowerLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 text = "Current power:"
 
-[node name="PowerSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rqj5w")
+
+[node name="PowerAvailable" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(10, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_lai8p")
+
+[node name="PowerSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="AttackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer4"]
+[node name="AttackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer4"]
 layout_mode = 2
 text = "Continue"

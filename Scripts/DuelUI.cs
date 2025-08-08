@@ -8,6 +8,7 @@ public partial class DuelUI : Control
 	private Label _logLabel;
 	private Label _powerLabel;
 	private HSlider _powerSlider;
+	private Panel _powerAvailable;
 	private Button _attackButton;
 	private Label _playerNameLabel;
 	private Label _enemyNameLabel;
@@ -22,37 +23,40 @@ public partial class DuelUI : Control
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_logScroll = GetNode<ScrollContainer>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"
 		);
 		_logLabel = GetNode<Label>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/VBoxContainer/CombatLogLabel"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/CombatLogLabel"
 		);
 		_powerLabel = GetNode<Label>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PowerLabel"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PowerLabel"
 		);
 		_powerSlider = GetNode<HSlider>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PowerSlider"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer/PowerSlider"
+		);
+		_powerAvailable = GetNode<Panel>(
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer/PowerAvailable"
 		);
 		_attackButton = GetNode<Button>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer4/AttackButton"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer4/AttackButton"
 		);
 		_playerNameLabel = GetNode<Label>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerName"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerName"
 		);
 		_enemyNameLabel = GetNode<Label>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyName"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyName"
 		);
 		_playerHP = GetNode<ProgressBar>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerHP"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerHP"
 		);
 		_enemyHP = GetNode<ProgressBar>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP"
 		);
 		_playerSprite = GetNode<TextureRect>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerSprite"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerSprite"
 		);
 		_enemySprite = GetNode<TextureRect>(
-			"CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemySprite"
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemySprite"
 		);
 
 		// HSlider settings
@@ -92,6 +96,7 @@ public partial class DuelUI : Control
 		UpdateHealthBars();
 		_powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
 		_powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue); // Default start value
+		UpdatePowerAvailable();
 		Show();
 	}
 
@@ -101,6 +106,13 @@ public partial class DuelUI : Control
 		double currentPower = _engine.GS.PlayerObject.Power;
 		bool valid = value <= currentPower;
 		_attackButton.Disabled = !valid;
+
+		// Clamp value to currentPower if above it
+		if (value > currentPower)
+		{
+			_powerSlider.Value = currentPower; // snap back
+			value = currentPower;
+		}
 
 		// UI hint
 		_powerLabel.Text = $"Power: {value:F1} {(valid ? "" : "(Not enough!)")}";
@@ -133,16 +145,24 @@ public partial class DuelUI : Control
 			_attackButton.Pressed += RouteAfterDuel;
 		}
 
+		// update power bar
+		_powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
+		_powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue); // Default start value
+		UpdatePowerAvailable();
+
 		// re-enable the continue button in any case
 		_attackButton.Disabled = false;
 	}
 
-	public void UpdateLog()
+	public async void UpdateLog()
 	{
 		_logLabel.Text = string.Join("\n", _engine.GS.FullLog);
 
-		// Delay scroll until after UI updates
-		CallDeferred(nameof(ScrollLogToBottom));
+		// Wait for three frames so the UI can update first
+		await ToSignal(GetTree(), "process_frame");
+		await ToSignal(GetTree(), "process_frame");
+		await ToSignal(GetTree(), "process_frame");
+		ScrollLogToBottom();
 	}
 
 	private void ScrollLogToBottom()
@@ -154,6 +174,21 @@ public partial class DuelUI : Control
 	{
 		_playerHP.Value = _engine.GS.PlayerObject.Health;
 		_enemyHP.Value = _currentDuel.Enemy.Health;
+	}
+
+	private void UpdatePowerAvailable()
+	{
+		double currentPower = _engine.GS.PlayerObject.Power;
+		double maxPower = _engine.GS.PlayerObject.MaxPower;
+
+		// Panel width in pixels
+		float maxWidthPixels = 650f; // Max height for full power bar
+		float newWidth = (float)(currentPower / maxPower) * maxWidthPixels;
+
+		// Apply new minimum size
+		var size = _powerAvailable.CustomMinimumSize;
+		size.X = newWidth;
+		_powerAvailable.CustomMinimumSize = size;
 	}
 
 	private void RouteAfterDuel()

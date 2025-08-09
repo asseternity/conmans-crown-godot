@@ -16,4 +16,4 @@ position = Vector2(64, 17)
 
 [node name="NPC" parent="." groups=["NPCs"] instance=ExtResource("3_d8tg7")]
 position = Vector2(48, -56)
-StoryID = "intro_01"
+TimelinePath = "res://Dialogic/Timelines/test_timeline.dtl"

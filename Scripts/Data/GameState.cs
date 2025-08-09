@@ -4,21 +4,25 @@ using Godot;
 
 public partial class GameState
 {
-	public Element CurrentElement { get; set; }
-	public Dictionary<string, Element> AllElements { get; set; }
+	// the currently running Duel (null when not in a duel)
+	public Duel? CurrentDuel { get; set; }
+	public string PostDuelTimelinePath { get; set; }
+
+	// If you want to persist where Dialogic was, store timeline path + event index:
+	public string? CurrentTimelinePath { get; set; }
+	public int CurrentEventIndex { get; set; } = 0;
+
 	public Combatant PlayerObject { get; set; }
 	public List<string> Flags { get; set; }
 	public List<string> FullLog { get; set; }
 
-	public GameState(
-		Element currentElement,
-		Dictionary<string, Element> allElements,
-		Combatant playerObject
-	)
+	public GameState(Combatant player)
 	{
-		CurrentElement = currentElement;
-		AllElements = allElements;
-		PlayerObject = playerObject;
+		CurrentDuel = null;
+		PostDuelTimelinePath = null;
+		CurrentTimelinePath = null;
+		CurrentEventIndex = 0;
+		PlayerObject = player;
 		Flags = new List<string>();
 		FullLog = new List<string>();
 	}

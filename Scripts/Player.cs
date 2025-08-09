@@ -16,10 +16,18 @@ public partial class Player : CharacterBody2D
 	{
 		GetInput();
 
-		var dialogueUI = GetNode<DialogueUI>("/root/MainScene/UIContainer/DialogueUI");
+		// Check dialogic global node instead of DialogueUI only:
+		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
+		bool dialogActive = false;
+		if (dialogic != null)
+		{
+			var current = dialogic.Get("current_timeline");
+			dialogActive = current.VariantType != Variant.Type.Nil;
+		}
+
 		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
 
-		if (!dialogueUI.Visible & !duelUI.Visible)
+		if (!dialogActive && !duelUI.Visible)
 		{
 			MoveAndSlide();
 		}

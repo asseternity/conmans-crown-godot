@@ -4,8 +4,7 @@ using Godot;
 public partial class NPC : CharacterBody2D
 {
 	[Export]
-	public string StoryID = "";
-	public Element StartElement;
+	public string TimelinePath = "";
 	private Engine _engine;
 
 	private bool _playerInRange = false;
@@ -13,15 +12,7 @@ public partial class NPC : CharacterBody2D
 	public void InitNPC()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
-		StartElement = _engine.FindElementByID(StoryID);
-		if (StartElement is StoryLine s)
-		{
-			GD.Print($"NPC loaded with the following story: {s.Text}");
-		}
-		else
-		{
-			GD.Print($"Loaded with something else: {StartElement}");
-		}
+		GD.Print($"NPC ready. Timeline: {TimelinePath}");
 
 		// C# event subscription syntax
 		var area = GetNode<Area2D>("InteractionArea");
@@ -55,14 +46,16 @@ public partial class NPC : CharacterBody2D
 
 	private void ShowDialogue()
 	{
-		var dialogueUI = GetTree().Root.GetNode<DialogueUI>("MainScene/UIContainer/DialogueUI");
-		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
-		if (StartElement is StoryLine s)
+		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
+
+		// Optional: check if a timeline is currently running (Dialogic exposes current_timeline)
+		var current = dialogic.Get("current_timeline");
+		if (current.VariantType != Variant.Type.Nil)
+			return;
+
+		if (dialogic != null && !string.IsNullOrEmpty(TimelinePath))
 		{
-			if (!dialogueUI.Visible & !duelUI.Visible)
-			{
-				dialogueUI.ShowStory(s);
-			}
+			dialogic.Call("start", TimelinePath);
 		}
 	}
 }

@@ -1,19 +1,19 @@
 using System;
 using Godot;
 
-public class Duel : Element
+public class Duel
 {
 	public string Id { get; set; }
-	public StoryLine WinStory { get; set; }
-	public StoryLine LoseStory { get; set; }
+	public string WinTimelinePath { get; set; }
+	public string LoseTimelinePath { get; set; }
 	public Combatant Enemy { get; set; }
 	private static Random rng = new Random();
 
-	public Duel(string id, StoryLine winStory, StoryLine loseStory, Combatant enemy)
+	public Duel(string id, string winTimelinePath, string loseTimelinePath, Combatant enemy)
 	{
 		Id = id;
-		WinStory = winStory;
-		LoseStory = loseStory;
+		WinTimelinePath = winTimelinePath;
+		LoseTimelinePath = loseTimelinePath;
 		Enemy = enemy;
 	}
 

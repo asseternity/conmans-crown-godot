@@ -1,0 +1,4 @@
+test_character: Hello!
+test_character: It is I!
+test_character: Professor Test!
+[signal arg_type="dict" arg="{"enemy":"Guard, 4, 4, 3, 3, 3, 3, res://Images/character-circus-clown-svgrepo-com.svg","lose":"res://Dialogic/Timelines/lose_timeline.dtl","type":"duel","win":"res://Dialogic/Timelines/win_timeline.dtl"}"]

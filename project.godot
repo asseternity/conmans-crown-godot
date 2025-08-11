@@ -23,16 +23,41 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"test_character": "res://Dialogic/Characters/test_character.dch"
+"Etta": "res://dialogic/Reverse Clockwork/Etta.dch",
+"Nyx": "res://dialogic/Reverse Clockwork/Nyx.dch",
+"Sasha": "res://dialogic/Reverse Clockwork/Sasha.dch",
+"Sey": "res://dialogic/Reverse Clockwork/Sey.dch",
+"Terry": "res://dialogic/Reverse Clockwork/Terry.dch",
+"narrator": "res://dialogic/Reverse Clockwork/narrator.dch",
+"test_character": "res://dialogic/Characters/test_character.dch"
 }
 directories/dtl_directory={
-"lose_timeline": "res://Dialogic/Timelines/lose_timeline.dtl",
-"test_timeline": "res://Dialogic/Timelines/test_timeline.dtl",
-"win_timeline": "res://Dialogic/Timelines/win_timeline.dtl"
+"indie_horror_series": "res://dialogic/Reverse Clockwork/indie_horror_series/indie_horror_series.dtl",
+"lose_timeline": "res://dialogic/Timelines/lose_timeline.dtl",
+"new_gig": "res://dialogic/Reverse Clockwork/indie_horror_series/new_gig/new_gig.dtl",
+"test_timeline": "res://dialogic/Timelines/test_timeline.dtl",
+"win_timeline": "res://dialogic/Timelines/win_timeline.dtl"
 }
-variables={}
-layout/style_list=[]
-layout/default_style="Default"
+variables={
+"Dialogues": {
+"NewVariable": false
+},
+"Emotions": {
+"isEttaComforted": false,
+"isEttaHostile": true
+},
+"Memories": {},
+"RelationshipNyx": {},
+"RelationshipSey": {},
+"Sasha": {
+"GigIsAskedQ1": false,
+"GigIsAskedQ2": false,
+"GigIsAskedQ3": false,
+"GigIsAskedQ4": false
+}
+}
+layout/style_list=["res://dialogic/Styles/style_speaker.tres"]
+layout/default_style="res://dialogic/Styles/style_speaker.tres"
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -61,7 +86,7 @@ project/assembly_name="The Conman-s Crown - Godot"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/ArticySceneTool/plugin.cfg", "res://addons/dialogic/plugin.cfg")
 
 [global_group]
 

@@ -1,0 +1,18 @@
+{
+	"Emotions": {
+		"isEttaComforted": false,
+		"isEttaHostile": true
+	},
+	"RelationshipNyx": {},
+	"RelationshipSey": {},
+	"Memories": {},
+	"Dialogues": {
+		"NewVariable": false
+	},
+	"Sasha": {
+		"GigIsAskedQ1": false,
+		"GigIsAskedQ2": false,
+		"GigIsAskedQ3": false,
+		"GigIsAskedQ4": false
+	}
+}

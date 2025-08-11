@@ -1,0 +1,148 @@
+###############################################################################
+# Dialogue new_gig
+# Exported from articy:draft x
+# Exported 2025-08-11 - 12:04:21
+# 41 nodes with 35 lines of dialogue and 545 words of text
+###############################################################################
+#
+# 
+#
+###############################################################################
+"narrator": 
+label new_gig_start:
+jump new_gig_0x010000000000053B
+
+label new_gig_0x010000000000054F
+"Etta" (hung up): "Can it wait till tomorrow? I am sleeping"
+"0x0000000000000000": The phone rings again, and again, and again.  It seems like the best option is to let that asshole speak and then go to bed.
+"Sasha": "Oh, finally."
+jump new_gig_0x0100000000000566
+
+label new_gig_0x0100000000000555
+"Etta" (annoyed): "This better be good".
+"Sasha": "Are agents blowing up your phone with their call? No. Then shut up and listen".
+- "I still have dignity to not work with the likes of [i]you [/i][i][u]again". [/u][/i]
+	jump new_gig_0x0100000000000588
+- "I am still waiting for the apologies for the last time".
+	jump new_gig_0x010000000000058E
+jump new_gig_0x0100000000000588
+
+label new_gig_0x010000000000055B
+"Etta": "Oh, hi, my wandering friend. I was wondering when will you reappear again".
+jump new_gig_0x0100000000000566
+
+label new_gig_0x0100000000000588
+"Etta": "I still have dignity to not work with the likes of [i]you [/i][i][u]again". [/u][/i]
+"Sasha": "Dignity doesn't pay rent, and you're overdue. Yes, I know, I know the guy who owns your complex".
+jump new_gig_0x0100000000000573
+
+label new_gig_0x010000000000058E
+"Etta": "I am still waiting for the apologies for the last time".
+"Sasha": "Don't shoot the messenger, I hooked you up, you signed a shitty deal. This one is better though, I promise".
+jump new_gig_0x0100000000000573
+
+label new_gig_0x0100000000000566
+"Sasha": "Hahaha! Well, I just got off the meeting with mr D. Have you been to Los Santos? What? No? You sdhoul go sometime, that's where all the big fish are hanging out".
+jump new_gig_0x0100000000000573
+
+label new_gig_0x0100000000000573
+"Sasha": "So, this one you'll like... The director and producer, they want someone with [i]a vision. [/i]It's a shitty indie horror movie, parody of 2000's, and they want it to have a vintage look".
+"Sasha": "And before you interrupt me, not that fake vintage with a filter and  shitty grain, they want the light, the skill, the heartbreak. Bring your Tarkovsky knowledge and sadness, they loved your portfolio".
+"Sasha": "What do you need to know before you agree? You have till morning to decide, I need to buy the tickets, so let's not fret"
+jump new_gig_0x01000000000005C7
+
+label new_gig_0x01000000000006D0
+"Etta": "I am on my own, but I get the gist of it. "
+jump new_gig_0x0100000000000705
+
+label new_gig_0x01000000000006F7
+"Etta": "So... They know of the...?"
+"Sasha": "Yes, that's why they are hiring you. But you can do it, time's to move on, wouldn't you agree? "
+jump new_gig_0x0100000000000705
+
+label new_gig_0x0100000000000705
+set {Sasha.GigIsAskedQ2} = true
+jump new_gig_0x01000000000006BD
+
+label new_gig_0x0100000000000720
+"Etta": "Where is it located? "
+jump new_gig_0x0100000000000734
+
+label new_gig_0x0100000000000726
+"Etta": "I will hung up now... "
+jump new_gig_0x0100000000000734
+
+label new_gig_0x0100000000000734
+"Sasha": "Don't worry, I will get your tickets, and then there will be a person, they will deliver you safely by the boat. "
+"Sasha": "But its a cute lil icelandic village, if you need to know. "
+set {Sasha.GigIsAskedQ3} = true
+jump new_gig_0x01000000000006BD
+
+label new_gig_0x01000000000006A2
+"Etta": "How much are they paying? None of that exposure bullshit. "
+"Sasha": "Your usual + 15%, travel and food covered. "
+set {Sasha.GigIsAskedQ1} = true
+jump new_gig_0x01000000000006BD
+
+label new_gig_0x01000000000006C2
+"Etta": "Till morning? When do we start? "
+"Sasha": "Well, teeeechniccaly, they already started. But they did not like their previous camera guy, and now they need to fast track a new one. And you are from the GOATS, you know?... "
+- "I am on my own, but I get the gist of it. "
+	jump new_gig_0x01000000000006D0
+- "So... They know of the...?"
+	jump new_gig_0x01000000000006F7
+jump new_gig_0x01000000000006D0
+
+label new_gig_0x0100000000000712
+"Etta": "What should I bring with me? "
+"Sasha": "Basic equipment and whatev your uzh, it's rainy there now, but bring swimsuit, rock that bod. Sadly, I will not be there to see it, but just knowing will warm my heart. "
+- "Where is it located? "
+	jump new_gig_0x0100000000000720
+- "I will hung up now... "
+	jump new_gig_0x0100000000000726
+jump new_gig_0x0100000000000720
+
+label new_gig_0x01000000000005C7
+# HUB: Questions
+jump new_gig_0x0100000000000A61
+
+label new_gig_0x01000000000008F9
+if {Sasha.GigIsAskedQ1} == false or {Sasha.GigIsAskedQ2} == false or {Sasha.GigIsAskedQ3} == false:
+	jump new_gig_0x0100000000000A61
+else:
+	jump new_gig_0x0100000000000749
+
+label new_gig_0x0100000000000A61
+"Sasha": So?
+-  | [if {Sasha.GigIsAskedQ1} == false
+	jump new_gig_0x01000000000006A2
+-  | [if {Sasha.GigIsAskedQ2} == false
+	jump new_gig_0x01000000000006C2
+-  | [if {Sasha.GigIsAskedQ3} == false
+	jump new_gig_0x0100000000000712
+jump new_gig_0x01000000000006A2
+
+label new_gig_0x0100000000000749
+"Etta": "Do you know the rest of the team that I will be working with? "
+"Sasha": "Nah, it doesn't matter. Young actors, advertisement producers, a few worth to know people. I think you know one of the writers, Ashley... "
+"Etta": "Ashlee Ley? "
+"Sasha": "Something like that. "
+"Sasha": "So. I think that's a "yes". Send me your docs real quick, I will send you contracts, and will book tickets. See you soon. "
+#####goto new_gig_end
+[signal arg="end_of_the_flow"]
+[end_timeline]
+
+label new_gig_0x01000000000006BD
+# JUMP NODE:
+jump new_gig_0x01000000000008F9
+
+label new_gig_0x010000000000053B
+"Sasha": "Sooooo! I got a lil something for you, a gig."
+"Etta" (thoughts to herself): He walks in and out of my life like a stray cat, but sometimes gigs he delivers are useful. Calling at is annoying though... Ugh.
+- "Can it wait till tomorrow? I am sleeping"
+	jump new_gig_0x010000000000054F
+- "This better be good".
+	jump new_gig_0x0100000000000555
+- "Oh, hi, my wandering friend. I was wondering when will you reappear again".
+	jump new_gig_0x010000000000055B
+jump new_gig_0x010000000000054F

@@ -12,8 +12,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAAAAAIAAAACAAE
 tile_set = ExtResource("1_10lpn")
 
 [node name="Player" parent="." instance=ExtResource("2_ovy8i")]
-position = Vector2(64, 17)
+position = Vector2(85, 24)
 
 [node name="NPC" parent="." groups=["NPCs"] instance=ExtResource("3_d8tg7")]
 position = Vector2(48, -56)
-TimelinePath = "res://Dialogic/Timelines/test_timeline.dtl"
+TimelinePath = "res://dialogic/Reverse Clockwork/indie_horror_series/new_gig/new_gig.dtl"

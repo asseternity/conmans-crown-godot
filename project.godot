@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Conman's Crown - Godot"
-run/main_scene="uid://dsmq2tx6qdqnh"
+run/main_scene="uid://dfd5e5kw310b3"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://Images/icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://Images/icon.svg"
 
 GlobalEngine="*res://Scripts/Engine.cs"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+FadeOverlay="*res://Scenes/fade_overlay.tscn"
 
 [dialogic]
 
@@ -86,7 +87,7 @@ project/assembly_name="The Conman-s Crown - Godot"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ArticySceneTool/plugin.cfg", "res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [global_group]
 

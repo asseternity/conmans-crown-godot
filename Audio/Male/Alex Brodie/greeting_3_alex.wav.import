@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ivs101587koe"
+path="res://.godot/imported/greeting_3_alex.wav-a00a549e563ea5382787c1cb1ab8ea05.sample"
+
+[deps]
+
+source_file="res://Audio/Male/Alex Brodie/greeting_3_alex.wav"
+dest_files=["res://.godot/imported/greeting_3_alex.wav-a00a549e563ea5382787c1cb1ab8ea05.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

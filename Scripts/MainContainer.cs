@@ -18,7 +18,9 @@ public partial class MainContainer : Node
 			);
 
 		// initialize player (replace string with your actual player data)
-		var player = Combatant.FromString("Player,5,5,10,10,0,0,res://Images/icon.svg");
+		var player = Combatant.FromString(
+			"Player,5,5,10,10,0,0,res://downloaded_assets/10chars/spritesheets/7 idle - Portrait.png"
+		);
 		_engine.SetPlayer(player);
 
 		// Connect Dialogic events

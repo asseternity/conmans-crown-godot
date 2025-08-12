@@ -30,6 +30,7 @@ directories/dch_directory={
 "Sey": "res://dialogic/Reverse Clockwork/Sey.dch",
 "Terry": "res://dialogic/Reverse Clockwork/Terry.dch",
 "narrator": "res://dialogic/Reverse Clockwork/narrator.dch",
+"player": "res://dialogic/Characters/player.dch",
 "test_character": "res://dialogic/Characters/test_character.dch"
 }
 directories/dtl_directory={
@@ -72,14 +73,16 @@ animations/join_default_wait=true
 animations/leave_default_length=0.5
 animations/leave_default_wait=true
 animations/cross_fade_default_length=0.5
-choices/autofocus_first=true
+choices/autofocus_first=false
 choices/delay=0.2
 choices/reveal_delay=0
-choices/reveal_by_input=false
+choices/reveal_by_input=true
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
 glossary/default_case_sensitive=true
+portraits/default_portrait=""
+choices/hotkey_behaviour=1
 
 [dotnet]
 
@@ -139,5 +142,7 @@ dialogic_default_action={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/canvas_textures/default_texture_filter=1

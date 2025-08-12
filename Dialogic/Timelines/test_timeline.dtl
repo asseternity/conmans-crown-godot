@@ -1,4 +1,6 @@
 test_character: Hello!
+player: Hi...
 test_character: It is I!
 test_character: Professor Test!
-[signal arg_type="dict" arg="{"enemy":"Guard, 4, 4, 3, 3, 3, 3, res://Images/character-circus-clown-svgrepo-com.svg","lose":"res://Dialogic/Timelines/lose_timeline.dtl","type":"duel","win":"res://Dialogic/Timelines/win_timeline.dtl"}"]
+test_character: First of all, let us duel a little bit!
+[signal arg_type="dict" arg="{"enemy":"Professor Test, 4, 4, 3, 3, 3, 3, res://downloaded_assets/10chars/spritesheets/1 idle - portrait.png","lose":"res://Dialogic/Timelines/lose_timeline.dtl","type":"duel","win":"res://Dialogic/Timelines/win_timeline.dtl"}"]

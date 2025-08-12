@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bmtk0cesbp2mj"
+path="res://.godot/imported/greeting_7_ian.wav-87cd0d6f8411cdc4a5508cf3f6497d6d.sample"
+
+[deps]
+
+source_file="res://Audio/Male/Ian Lampert/greeting_7_ian.wav"
+dest_files=["res://.godot/imported/greeting_7_ian.wav-87cd0d6f8411cdc4a5508cf3f6497d6d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

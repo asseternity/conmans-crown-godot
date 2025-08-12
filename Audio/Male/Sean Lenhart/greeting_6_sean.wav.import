@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://sg8s4wtevx6u"
+path="res://.godot/imported/greeting_6_sean.wav-ca8d547e199a27e7da8eea029a7dae18.sample"
+
+[deps]
+
+source_file="res://Audio/Male/Sean Lenhart/greeting_6_sean.wav"
+dest_files=["res://.godot/imported/greeting_6_sean.wav-ca8d547e199a27e7da8eea029a7dae18.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

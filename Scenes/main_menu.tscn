@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bf10kaxisewkn" path="res://Images/pexels-mo-eid-1268975-12195867.jpg" id="1_28flt"]
-[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://Themes/FlatUI4/kenneyUI-red.tres" id="2_48xlc"]
+[ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="3_1ehe0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -34,20 +34,20 @@ theme_override_constants/separation = 20
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-theme = ExtResource("2_48xlc")
+theme = ExtResource("3_1ehe0")
 theme_override_font_sizes/font_size = 35
 text = "Start Game"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-theme = ExtResource("2_48xlc")
+theme = ExtResource("3_1ehe0")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-theme = ExtResource("2_48xlc")
+theme = ExtResource("3_1ehe0")
 theme_override_font_sizes/font_size = 35
 text = "Quit"

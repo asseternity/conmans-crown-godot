@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfd5e5kw310b3"]
+[gd_scene load_steps=5 format=3 uid="uid://dfd5e5kw310b3"]
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bf10kaxisewkn" path="res://Images/pexels-mo-eid-1268975-12195867.jpg" id="1_28flt"]
 [ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="3_1ehe0"]
+[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="4_ce3w2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -51,3 +52,6 @@ layout_mode = 2
 theme = ExtResource("3_1ehe0")
 theme_override_font_sizes/font_size = 35
 text = "Quit"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ce3w2")

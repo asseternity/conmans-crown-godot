@@ -14,6 +14,8 @@ public partial class DuelUI : Control
 	private Label _enemyNameLabel;
 	private ProgressBar _playerHP;
 	private ProgressBar _enemyHP;
+	private Label _playerHPText;
+	private Label _enemyHPText;
 	private TextureRect _playerSprite;
 	private TextureRect _enemySprite;
 	private Duel _currentDuel;
@@ -51,6 +53,12 @@ public partial class DuelUI : Control
 		);
 		_enemyHP = GetNode<ProgressBar>(
 			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP"
+		);
+		_playerHPText = GetNode<Label>(
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerHP/PlayerHPText"
+		);
+		_enemyHPText = GetNode<Label>(
+			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP/EnemyHPText"
 		);
 		_playerSprite = GetNode<TextureRect>(
 			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerSprite"
@@ -167,6 +175,11 @@ public partial class DuelUI : Control
 	{
 		_playerHP.Value = _engine.GS.PlayerObject.Health;
 		_enemyHP.Value = _currentDuel.Enemy.Health;
+
+		_playerHPText.Text =
+			$"{_engine.GS.PlayerObject.Health.ToString()}/{_engine.GS.PlayerObject.MaxHealth.ToString()}";
+		_enemyHPText.Text =
+			$"{_currentDuel.Enemy.Health.ToString()}/{_currentDuel.Enemy.MaxHealth.ToString()}";
 	}
 
 	private void UpdatePowerAvailable()

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtdx24m5pl7pm"
+path="res://.godot/imported/African3.wav-5558e374e6a7df60aa8172c1f86fd6ab.sample"
+
+[deps]
+
+source_file="res://Audio/sound effects/African3.wav"
+dest_files=["res://.godot/imported/African3.wav-5558e374e6a7df60aa8172c1f86fd6ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

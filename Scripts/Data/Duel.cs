@@ -40,7 +40,7 @@ public class Duel
 			randomNumber = NextDoubleInRange(rng, 0, 101);
 			return (randomNumber < 50)
 				? Enemy.Power
-				: Math.Min(Enemy.Power, NextDoubleInRange(rng, 1, 4));
+				: Math.Min(Enemy.Power, Math.Round(NextDoubleInRange(rng, 1, 4), 1));
 		}
 		else if (Enemy.Power < Enemy.MaxPower * 0.3)
 		{
@@ -48,7 +48,7 @@ public class Duel
 			if (randomNumber < 70)
 				return 0;
 			return (Enemy.Power > 0)
-				? Math.Min(Enemy.Power, NextDoubleInRange(rng, 1, Enemy.Power + 1))
+				? Math.Min(Enemy.Power, Math.Round(NextDoubleInRange(rng, 1, 4), 1))
 				: 0;
 		}
 		else if (Enemy.Health == 1)
@@ -61,7 +61,7 @@ public class Duel
 			if (randomNumber < 50)
 				return 0;
 			else if (randomNumber < 85)
-				return Math.Min(Enemy.Power, NextDoubleInRange(rng, 1, 4));
+				return Math.Min(Enemy.Power, Math.Round(NextDoubleInRange(rng, 1, 4), 1));
 			else
 				return Enemy.Power;
 		}
@@ -126,7 +126,9 @@ public class Duel
 			double amount = Math.Max(1, 4 - playerAction);
 			double missingPower = player.MaxPower - player.Power;
 			if (missingPower > 0)
-				player.RestorePower(NextDoubleInRange(rng, 1, Math.Min(amount, missingPower) + 1));
+				player.RestorePower(
+					Math.Round(NextDoubleInRange(rng, 1, Math.Min(amount, missingPower) + 1), 1)
+				);
 		}
 
 		if (enemyAction < 3)
@@ -134,7 +136,9 @@ public class Duel
 			double amount = Math.Max(1, 4 - enemyAction);
 			double missingPower = Enemy.MaxPower - Enemy.Power;
 			if (missingPower > 0)
-				Enemy.RestorePower(NextDoubleInRange(rng, 1, Math.Min(amount, missingPower) + 1));
+				Enemy.RestorePower(
+					Math.Round(NextDoubleInRange(rng, 1, Math.Min(amount, missingPower) + 1), 1)
+				);
 		}
 	}
 }

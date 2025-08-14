@@ -1,0 +1,11 @@
+player: Damn, that was a tiring day.
+player: Made me forget my own gender.
+player: Ah, that's right. I am...
+- non-binary!
+	set {Dialogues.playerGender} = "nb"
+- a girl!
+	set {Dialogues.playerGender} = "female"
+- a boy!
+	set {Dialogues.playerGender} = "male"
+player: So that's nice.
+player: Now - time to get on my PC and hack the government!

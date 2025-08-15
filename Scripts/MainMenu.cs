@@ -30,7 +30,7 @@ public partial class MainMenu : Control
 		PlayClickSound();
 		var fade = (FadeOverlay)GetNode("/root/FadeOverlay");
 		await fade.FadeOut();
-		GetTree().ChangeSceneToFile("res://Scenes/main_container.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/map_container.tscn");
 		await fade.FadeIn();
 	}
 

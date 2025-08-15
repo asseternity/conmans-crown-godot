@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://dscwrd0xcai4c"]
+[gd_scene load_steps=6 format=4 uid="uid://dscwrd0xcai4c"]
 
+[ext_resource type="Script" uid="uid://bsswfnka2hipx" path="res://Scripts/LevelScripts/LevelApartment.cs" id="1_rgefe"]
 [ext_resource type="Texture2D" uid="uid://b3qmf2y0e0i4v" path="res://Images/sMockup.png" id="1_tg10c"]
 [ext_resource type="TileSet" uid="uid://ifwephkrvwk5" path="res://TileSets/level_apartment.tres" id="2_rgefe"]
 [ext_resource type="PackedScene" uid="uid://csnkp77ksl05p" path="res://Scenes/Player.tscn" id="2_tg10c"]
 [ext_resource type="PackedScene" uid="uid://cxmpys81qvmhn" path="res://Scenes/NPC.tscn" id="3_rgefe"]
 
-[node name="Node2D" type="Node2D"]
+[node name="ApartmentLevel" type="Node2D"]
+script = ExtResource("1_rgefe")
 
 [node name="BackgroundControl" type="Control" parent="."]
 layout_mode = 3

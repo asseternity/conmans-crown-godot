@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds6faydq5h3de"]
+
+[ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="1_gek4i"]
+[ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUi.cs" id="1_xjnnq"]
+[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="3_x63ue"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xjnnq")
+
+[node name="MapButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 20.0
+offset_right = 115.0
+offset_bottom = 62.0
+theme = ExtResource("1_gek4i")
+theme_override_font_sizes/font_size = 30
+text = "Map"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x63ue")

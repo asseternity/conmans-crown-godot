@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccfqhb6yxsioj"]
+
+[ext_resource type="Texture2D" uid="uid://dxu32shrqhq23" path="res://Images/twilight_hill.png" id="1_3cc57"]
+[ext_resource type="Script" uid="uid://cqteqx6fgqv5b" path="res://Scripts/MapScreen.cs" id="1_56x5n"]
+[ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="2_1b8dq"]
+[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="4_pnf0b"]
+
+[node name="MapContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_56x5n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OfficeButtonShadow" type="Button" parent="TextureRect"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+z_index = 3
+offset_left = 709.0
+offset_top = 407.0
+offset_right = 759.0
+offset_bottom = 432.0
+theme = ExtResource("2_1b8dq")
+text = "Office"
+
+[node name="OfficeButton" type="Button" parent="TextureRect/OfficeButtonShadow"]
+top_level = true
+z_index = 5
+offset_left = 711.0
+offset_top = 405.0
+offset_right = 761.0
+offset_bottom = 430.0
+theme = ExtResource("2_1b8dq")
+text = "Office"
+
+[node name="HomeButtonShadow" type="Button" parent="TextureRect"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+z_index = 2
+layout_mode = 0
+offset_left = 942.0
+offset_top = 252.0
+offset_right = 987.0
+offset_bottom = 277.0
+theme = ExtResource("2_1b8dq")
+text = "Home"
+
+[node name="HomeButton" type="Button" parent="TextureRect/HomeButtonShadow"]
+top_level = true
+z_index = 5
+layout_mode = 0
+offset_left = 945.0
+offset_top = 251.0
+offset_right = 990.0
+offset_bottom = 276.0
+theme = ExtResource("2_1b8dq")
+text = "Home"
+
+[node name="BeachButtonShadow" type="Button" parent="TextureRect"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+z_index = 2
+offset_left = 641.0
+offset_top = 554.0
+offset_right = 692.0
+offset_bottom = 579.0
+theme = ExtResource("2_1b8dq")
+text = "Beach"
+
+[node name="BeachButton" type="Button" parent="TextureRect/BeachButtonShadow"]
+top_level = true
+z_index = 5
+offset_left = 643.0
+offset_top = 552.0
+offset_right = 694.0
+offset_bottom = 577.0
+theme = ExtResource("2_1b8dq")
+text = "Beach"
+
+[node name="TwilightHill" type="Sprite2D" parent="."]
+position = Vector2(545, 153)
+rotation = -1.5708
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_3cc57")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pnf0b")

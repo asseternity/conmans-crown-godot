@@ -4,7 +4,6 @@ using Godot.Collections;
 
 public partial class MainContainer : Node
 {
-	public string IntroTimelinePath = "res://dialogic/Timelines/intro.dtl";
 	private Engine _engine;
 	private Node? _dialogic;
 
@@ -37,10 +36,6 @@ public partial class MainContainer : Node
 			if (npc is NPC npcScript)
 				npcScript.InitNPC();
 		}
-
-		// Start intro dialogue
-		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
-		dialogic.Call("start", IntroTimelinePath);
 	}
 
 	// Handler for Dialogic.signal_event

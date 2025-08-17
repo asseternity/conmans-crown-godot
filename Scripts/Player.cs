@@ -54,17 +54,19 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Can't move if dialogic or duelUI is open
+		// Can't move if dialogic or duelUI or pauseUI is open
 		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
 		bool dialogActive =
 			dialogic != null && dialogic.Get("current_timeline").VariantType != Variant.Type.Nil;
 		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
+		var pauseUI = GetNode<PauseMenu>("/root/MainScene/UIContainer/PauseMenu");
+		bool menuOpen = duelUI.Visible || pauseUI.Visible;
 
 		// Movement (no diagonals)
 		var dir = GetBlockedInput();
 		Velocity = dir * MovementSpeed;
 
-		if (!dialogActive && !duelUI.Visible)
+		if (!dialogActive && !menuOpen)
 			MoveAndSlide();
 
 		// Animations

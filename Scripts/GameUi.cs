@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class GameUi : Control
+public partial class GameUI : Control
 {
 	private AudioStreamPlayer _clickPlayer;
 	private Button _mapButton;

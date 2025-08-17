@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ds6faydq5h3de"]
 
 [ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="1_gek4i"]
-[ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUi.cs" id="1_xjnnq"]
+[ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUI.cs" id="1_xjnnq"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="3_x63ue"]
 
 [node name="GameUI" type="Control"]

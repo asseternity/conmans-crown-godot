@@ -1,8 +1,10 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class PauseMenu : Control
 {
+	private ColorRect _dimmer;
 	private Button _resumeButton;
 	private Button _optionsButton;
 	private Button _quitButton;
@@ -11,6 +13,7 @@ public partial class PauseMenu : Control
 
 	public override void _Ready()
 	{
+		_dimmer = GetNode<ColorRect>("Dimmer");
 		_resumeButton = GetNode<Button>("Panel/VBoxContainer/ResumeButton");
 		_optionsButton = GetNode<Button>("Panel/VBoxContainer/SettingsButton");
 		_quitButton = GetNode<Button>("Panel/VBoxContainer/QuitButton");
@@ -43,6 +46,7 @@ public partial class PauseMenu : Control
 
 		if (pauseMenuShown)
 		{
+			_dimmer.Color = new Color(0, 0, 0, 0.0f);
 			gameUI.Show();
 			PlayClickSound();
 			Hide();
@@ -50,6 +54,7 @@ public partial class PauseMenu : Control
 		}
 		else
 		{
+			_dimmer.Color = new Color(0, 0, 0, 0.5f);
 			gameUI.Hide();
 			PlayClickSound();
 			Show();
@@ -70,7 +75,4 @@ public partial class PauseMenu : Control
 			return;
 		GetTree().Quit();
 	}
-
-	// needs to hide game UI on pause
-	// needs to block movement on pause
 }

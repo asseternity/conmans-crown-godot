@@ -27,4 +27,16 @@ public partial class FadeOverlay : CanvasLayer
 		await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
 		_overlay.Visible = false; // hide when fully clear
 	}
+
+	public void DimScreen()
+	{
+		_overlay.Visible = true;
+		_overlay.Modulate = new Color(0, 0, 0, 0.5f);
+	}
+
+	public void UnDimScreen()
+	{
+		_overlay.Modulate = new Color(0, 0, 0, 0.0f);
+		_overlay.Visible = false;
+	}
 }

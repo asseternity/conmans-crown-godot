@@ -32,6 +32,7 @@ theme = ExtResource("2_gjn1n")
 theme_override_styles/panel = SubResource("StyleBoxFlat_gjn1n")
 
 [node name="PauseButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 10.6
 offset_top = 10.6
 offset_right = 818.6

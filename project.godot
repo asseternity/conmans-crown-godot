@@ -24,40 +24,19 @@ FadeOverlay="*res://Scenes/fade_overlay.tscn"
 [dialogic]
 
 directories/dch_directory={
-"Etta": "res://dialogic/Reverse Clockwork/Etta.dch",
-"Nyx": "res://dialogic/Reverse Clockwork/Nyx.dch",
-"Sasha": "res://dialogic/Reverse Clockwork/Sasha.dch",
-"Sey": "res://dialogic/Reverse Clockwork/Sey.dch",
-"Terry": "res://dialogic/Reverse Clockwork/Terry.dch",
-"narrator": "res://dialogic/Reverse Clockwork/narrator.dch",
 "player": "res://dialogic/Characters/player.dch",
 "test_character": "res://dialogic/Characters/test_character.dch"
 }
 directories/dtl_directory={
-"indie_horror_series": "res://dialogic/Reverse Clockwork/indie_horror_series/indie_horror_series.dtl",
 "intro": "res://dialogic/Timelines/intro.dtl",
 "lose_timeline": "res://dialogic/Timelines/lose_timeline.dtl",
-"new_gig": "res://dialogic/Reverse Clockwork/indie_horror_series/new_gig/new_gig.dtl",
 "test_timeline": "res://dialogic/Timelines/test_timeline.dtl",
 "win_timeline": "res://dialogic/Timelines/win_timeline.dtl"
 }
 variables={
 "Dialogues": {
-"NewVariable": false,
-"playerGender": ""
-},
-"Emotions": {
-"isEttaComforted": false,
-"isEttaHostile": true
-},
-"Memories": {},
-"RelationshipNyx": {},
-"RelationshipSey": {},
-"Sasha": {
-"GigIsAskedQ1": false,
-"GigIsAskedQ2": false,
-"GigIsAskedQ3": false,
-"GigIsAskedQ4": false
+"playerGender": "",
+"playerName": "Whiskers"
 }
 }
 layout/style_list=["res://dialogic/Styles/style_speaker.tres"]

@@ -8,4 +8,7 @@ player: Ah, that's right. I am...
 - a boy!
 	set {Dialogues.playerGender} = "male"
 player: So that's nice.
+player: Now... what is my name again?
+[text_input var="Dialogues.playerName"]
+player: Ah, yes, I am {Dialogues.playerName} the cat!
 player: Now - time to get on my PC and hack the government!

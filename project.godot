@@ -36,7 +36,7 @@ directories/dtl_directory={
 variables={
 "Dialogues": {
 "playerGender": "",
-"playerName": "Whiskers"
+"playerName": "???"
 }
 }
 layout/style_list=["res://dialogic/Styles/style_speaker.tres"]

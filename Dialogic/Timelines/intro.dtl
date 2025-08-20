@@ -9,6 +9,6 @@ player: Ah, that's right. I am...
 	set {Dialogues.playerGender} = "male"
 player: So that's nice.
 player: Now... what is my name again?
-[text_input var="Dialogues.playerName"]
+[text_input text="What is your name?" var="Dialogues.playerName" placeholder="Whiskers"]
 player: Ah, yes, I am {Dialogues.playerName} the cat!
 player: Now - time to get on my PC and hack the government!

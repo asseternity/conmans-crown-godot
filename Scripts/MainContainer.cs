@@ -67,6 +67,16 @@ public partial class MainContainer : Node
 				}
 			}
 		}
+		else if (arg.VariantType == Variant.Type.String)
+		{
+			string str = arg.ToString();
+			if (str == "playerNameSet")
+			{
+				Combatant newPlayerObject = _engine.GS.PlayerObject;
+				newPlayerObject.Name = GetDialogicString("Dialogues.playerName");
+				_engine.GS.PlayerObject = newPlayerObject;
+			}
+		}
 	}
 
 	// Called when any Dialogic timeline finishes (timeline_ended)

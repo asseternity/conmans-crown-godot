@@ -33,7 +33,7 @@ public partial class Engine : Node
 
 		double enemyAction = duel.ChooseEnemyAction();
 		GS.FullLog.Add(duel.DamagePhase(GS.PlayerObject, playerAction, enemyAction));
-		GS.FullLog.Add($"You spent {playerAction}, enemy spent {enemyAction}.");
+		GS.FullLog.Add($"You spent {playerAction}, enemy spent {enemyAction:F1}.");
 
 		if (!GS.PlayerObject.IsAlive())
 		{

@@ -24,48 +24,28 @@ public partial class DuelUI : Control
 	public override void _Ready()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
-		_logScroll = GetNode<ScrollContainer>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer"
-		);
-		_logLabel = GetNode<Label>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ScrollContainer/CombatLogLabel"
-		);
+		_logScroll = GetNode<ScrollContainer>("LogPanel/ScrollContainer");
+		_logLabel = GetNode<Label>("LogPanel/ScrollContainer/CombatLogLabel");
 		_powerLabel = GetNode<Label>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PowerLabel"
+			"ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PowerLabel"
 		);
 		_powerSlider = GetNode<HSlider>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer/PowerSlider"
+			"ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PanelContainer/PowerSlider"
 		);
 		_powerAvailable = GetNode<Panel>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer/PowerAvailable"
+			"ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PanelContainer/PowerAvailable"
 		);
 		_attackButton = GetNode<Button>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer4/AttackButton"
+			"ActionPanel/VBoxContainer/MarginContainerButton/AttackButton"
 		);
-		_playerNameLabel = GetNode<Label>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerName"
-		);
-		_enemyNameLabel = GetNode<Label>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyName"
-		);
-		_playerHP = GetNode<ProgressBar>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerHP"
-		);
-		_enemyHP = GetNode<ProgressBar>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP"
-		);
-		_playerHPText = GetNode<Label>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerHP/PlayerHPText"
-		);
-		_enemyHPText = GetNode<Label>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemyHP/EnemyHPText"
-		);
-		_playerSprite = GetNode<TextureRect>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/PlayerSide/PlayerSprite"
-		);
-		_enemySprite = GetNode<TextureRect>(
-			"PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Header/EnemySide/EnemySprite"
-		);
+		_playerNameLabel = GetNode<Label>("PlayerPanel/PlayerSide/PlayerName");
+		_enemyNameLabel = GetNode<Label>("EnemyPanel/EnemySide/EnemyName");
+		_playerHP = GetNode<ProgressBar>("PlayerPanel/PlayerSide/PlayerHP");
+		_enemyHP = GetNode<ProgressBar>("EnemyPanel/EnemySide/EnemyHP");
+		_playerHPText = GetNode<Label>("PlayerPanel/PlayerSide/PlayerHP/PlayerHPText");
+		_enemyHPText = GetNode<Label>("EnemyPanel/EnemySide/EnemyHP/EnemyHPText");
+		_playerSprite = GetNode<TextureRect>("PlayerPanel/PlayerSide/PlayerSprite");
+		_enemySprite = GetNode<TextureRect>("EnemyPanel/EnemySide/EnemySprite");
 
 		// HSlider settings
 		_powerSlider.Step = 0.1;

@@ -38,6 +38,10 @@ tile_set = ExtResource("2_rgefe")
 [node name="Player" parent="." instance=ExtResource("2_tg10c")]
 position = Vector2(10, 102)
 
+[node name="NPC2" parent="." groups=["NPCs"] instance=ExtResource("3_rgefe")]
+position = Vector2(81, 299)
+TimelinePath = "res://dialogic/Timelines/test_timeline.dtl"
+
 [node name="NPC" parent="." groups=["NPCs"] instance=ExtResource("3_rgefe")]
 position = Vector2(-247, 466)
 TimelinePath = "res://dialogic/Timelines/test_timeline.dtl"

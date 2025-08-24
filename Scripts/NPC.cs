@@ -9,6 +9,11 @@ public partial class NPC : CharacterBody2D
 
 	private bool _playerInRange = false;
 
+	public override void _Ready()
+	{
+		InitNPC();
+	}
+
 	public void InitNPC()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
@@ -38,9 +43,16 @@ public partial class NPC : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		if (_playerInRange && Input.IsActionJustPressed("interact"))
+		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
+		if (duelUI != null)
 		{
-			ShowDialogue();
+			if (!duelUI.Visible)
+			{
+				if (_playerInRange && Input.IsActionJustPressed("interact"))
+				{
+					ShowDialogue();
+				}
+			}
 		}
 	}
 

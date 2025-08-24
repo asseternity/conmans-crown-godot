@@ -12,7 +12,9 @@
 
 [sub_resource type="Resource" id="Resource_qe1y2"]
 script = ExtResource("1_uy73r")
-overrides = {}
+overrides = {
+"canvas_layer": "0.0"
+}
 
 [sub_resource type="Resource" id="Resource_h2asf"]
 script = ExtResource("1_uy73r")
@@ -27,7 +29,11 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_x1ful"]
 script = ExtResource("1_uy73r")
 scene = ExtResource("2_ajjw5")
-overrides = {}
+overrides = {
+"box_modulate_custom_color": "Color(0.472471, 0.165926, 0.38865, 1)",
+"box_modulate_global_color": "false",
+"portrait_bg_modulate": "Color(0, 0, 0, 0.592157)"
+}
 
 [sub_resource type="Resource" id="Resource_62ui0"]
 script = ExtResource("1_uy73r")
@@ -65,4 +71,4 @@ layer_info = {
 }
 base_overrides = {}
 layers = Array[ExtResource("1_uy73r")]([])
-metadata/_latest_layer = ""
+metadata/_latest_layer = "12"

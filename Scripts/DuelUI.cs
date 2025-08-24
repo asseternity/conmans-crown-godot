@@ -26,18 +26,10 @@ public partial class DuelUI : Control
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_logScroll = GetNode<ScrollContainer>("LogPanel/ScrollContainer");
 		_logLabel = GetNode<Label>("LogPanel/ScrollContainer/CombatLogLabel");
-		_powerLabel = GetNode<Label>(
-			"ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PowerLabel"
-		);
-		_powerSlider = GetNode<HSlider>(
-			"ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PanelContainer/PowerSlider"
-		);
-		_powerAvailable = GetNode<Panel>(
-			"ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PanelContainer/PowerAvailable"
-		);
-		_attackButton = GetNode<Button>(
-			"ActionPanel/VBoxContainer/MarginContainerButton/AttackButton"
-		);
+		_powerLabel = GetNode<Label>("ActionPanel/PowerLabel");
+		_powerSlider = GetNode<HSlider>("ActionPanel/PowerSlider");
+		_powerAvailable = GetNode<Panel>("ActionPanel/PowerSlider/PowerAvailable");
+		_attackButton = GetNode<Button>("ActionPanel/AttackButton");
 		_playerNameLabel = GetNode<Label>("PlayerPanel/PlayerSide/PlayerName");
 		_enemyNameLabel = GetNode<Label>("EnemyPanel/EnemySide/EnemyName");
 		_playerHP = GetNode<ProgressBar>("PlayerPanel/PlayerSide/PlayerHP");
@@ -168,7 +160,7 @@ public partial class DuelUI : Control
 		double maxPower = _engine.GS.PlayerObject.MaxPower;
 
 		// Panel width in pixels
-		float maxWidthPixels = 650f; // Max height for full power bar
+		float maxWidthPixels = 633f; // Max width for full power bar
 		float newWidth = (float)(currentPower / maxPower) * maxWidthPixels;
 
 		// Apply new minimum size

@@ -16,10 +16,10 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqj5w"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(0.262745, 0.705882, 0.345098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lai8p"]
-bg_color = Color(0.383319, 0.692227, 0.19156, 1)
+bg_color = Color(0.427575, 0.433761, 0.424534, 1)
 
 [node name="DuelUI" type="Control"]
 layout_mode = 3
@@ -183,9 +183,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -325.0
-offset_top = -98.5
+offset_top = -78.5
 offset_right = 325.0
-offset_bottom = 98.5
+offset_bottom = 78.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_3n5kg")
@@ -198,84 +198,99 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = ExtResource("2_3n5kg")
 text = "This is the combat log. It might get very long. Who knows? Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum. Here is the continuation."
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ActionPanel" type="Panel" parent="."]
+z_index = -30
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -383.5
-offset_top = -157.0
-offset_right = 383.5
-offset_bottom = -15.0
+offset_left = -349.0
+offset_top = -153.0
+offset_right = 350.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3n5kg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ActionPanel"]
+[node name="PowerLabel" type="Label" parent="ActionPanel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -316.0
-offset_top = -74.5
+offset_top = -104.0
 offset_right = 316.0
-offset_bottom = 74.5
+offset_bottom = -83.0
 grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_3n5kg")
-
-[node name="MarginContainerSlider" type="MarginContainer" parent="ActionPanel/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_3n5kg")
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="HBoxContainer" type="VBoxContainer" parent="ActionPanel/VBoxContainer/MarginContainerSlider"]
-layout_mode = 2
-theme = ExtResource("2_3n5kg")
-theme_override_constants/separation = 15
-
-[node name="PowerLabel" type="Label" parent="ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer"]
-layout_mode = 2
+grow_vertical = 0
 theme = ExtResource("2_3n5kg")
 text = "Current power:"
 
-[node name="PanelContainer" type="PanelContainer" parent="ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer"]
-layout_mode = 2
+[node name="PowerSlider" type="HSlider" parent="ActionPanel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = -73.0
+offset_right = 316.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PowerAvailable" type="Panel" parent="ActionPanel/PowerSlider"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -6.0
+offset_right = 85.0
+offset_bottom = 6.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
 theme = ExtResource("2_3n5kg")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rqj5w")
 
-[node name="PowerAvailable" type="Panel" parent="ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(10, 20)
-layout_mode = 2
+[node name="PowerUnavailable" type="Panel" parent="ActionPanel/PowerSlider"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -6.0
+offset_right = 633.0
+offset_bottom = 6.0
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+mouse_filter = 1
 theme = ExtResource("2_3n5kg")
 theme_override_styles/panel = SubResource("StyleBoxFlat_lai8p")
 
-[node name="PowerSlider" type="HSlider" parent="ActionPanel/VBoxContainer/MarginContainerSlider/HBoxContainer/PanelContainer"]
-layout_mode = 2
-theme = ExtResource("2_3n5kg")
-
-[node name="MarginContainerButton" type="MarginContainer" parent="ActionPanel/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_3n5kg")
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="AttackButton" type="Button" parent="ActionPanel/VBoxContainer/MarginContainerButton"]
-layout_mode = 2
+[node name="AttackButton" type="Button" parent="ActionPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = -43.0
+offset_right = 316.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("2_3n5kg")
 text = "Continue"

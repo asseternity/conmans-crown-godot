@@ -1,16 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp8wwk3bi3hhx"]
+[gd_scene load_steps=4 format=3 uid="uid://cp8wwk3bi3hhx"]
 
 [ext_resource type="Script" uid="uid://crsgrx6fisvgu" path="res://Scripts/PauseMenu.cs" id="1_1och7"]
-[ext_resource type="Theme" uid="uid://cjcj6wk13d1rw" path="res://Themes/theme.tres" id="1_k0w1u"]
-[ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="2_1och7"]
+[ext_resource type="Theme" uid="uid://b3mlbx0me5it8" path="res://Themes/new_theme.tres" id="2_1och7"]
 [ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/sound effects/African1.wav" id="4_bpi0q"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1och7"]
-bg_color = Color(0.8, 0.28, 0.453333, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
 
 [node name="PauseMenu" type="Control"]
 top_level = true
@@ -45,8 +37,7 @@ offset_right = 142.0
 offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_k0w1u")
-theme_override_styles/panel = SubResource("StyleBoxFlat_1och7")
+theme = ExtResource("2_1och7")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -79,6 +70,7 @@ offset_right = 71.0
 offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_1och7")
 theme_override_constants/separation = 25
 
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]

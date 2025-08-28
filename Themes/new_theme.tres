@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=12 format=3 uid="uid://b3mlbx0me5it8"]
+
+[ext_resource type="Resource" uid="uid://bgj5nw3fdyb2o" path="res://dialogic/Styles/style_speaker.tres" id="1_2tloi"]
+[ext_resource type="Script" uid="uid://bm85rdwjsho4c" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_66pm1"]
+[ext_resource type="Script" uid="uid://cbcwl3wvgcpjo" path="res://addons/dialogic/Resources/dialogic_style.gd" id="3_d6k6b"]
+
+[sub_resource type="Resource" id="Resource_2tloi"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_66pm1"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_d6k6b"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_om0jh"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_5csac"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_5b230"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_ttibx"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_2k6je"]
+script = ExtResource("2_66pm1")
+overrides = {}
+
+[resource]
+script = ExtResource("3_d6k6b")
+name = "new_theme"
+inherits = ExtResource("1_2tloi")
+layer_list = Array[String](["10", "11", "12", "13", "14", "15", "16"])
+layer_info = {
+"": SubResource("Resource_2tloi"),
+"10": SubResource("Resource_66pm1"),
+"11": SubResource("Resource_d6k6b"),
+"12": SubResource("Resource_om0jh"),
+"13": SubResource("Resource_5csac"),
+"14": SubResource("Resource_5b230"),
+"15": SubResource("Resource_ttibx"),
+"16": SubResource("Resource_2k6je")
+}
+base_overrides = {}
+layers = Array[ExtResource("2_66pm1")]([])

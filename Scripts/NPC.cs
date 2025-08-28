@@ -5,6 +5,9 @@ public partial class NPC : CharacterBody2D
 {
 	[Export]
 	public string TimelinePath = "";
+
+	[Export]
+	public string SpritePath = "";
 	private Engine _engine;
 
 	private bool _playerInRange = false;
@@ -18,6 +21,30 @@ public partial class NPC : CharacterBody2D
 		var area = GetNode<Area2D>("InteractionArea");
 		area.BodyEntered += OnBodyEntered;
 		area.BodyExited += OnBodyExited;
+
+		// 🔹 Set the sprite if a path was given
+		if (!string.IsNullOrEmpty(SpritePath))
+		{
+			var texture = GD.Load<Texture2D>(SpritePath);
+			if (texture != null)
+			{
+				// Assuming your NPC scene has a child node named "Sprite2D"
+				var sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+				if (sprite != null)
+				{
+					sprite.Texture = texture;
+					GD.Print($"NPC sprite set from {SpritePath}");
+				}
+				else
+				{
+					GD.PrintErr("Sprite2D node not found on NPC!");
+				}
+			}
+			else
+			{
+				GD.PrintErr($"Failed to load texture at {SpritePath}");
+			}
+		}
 	}
 
 	private void OnBodyEntered(Node body)
@@ -55,7 +82,7 @@ public partial class NPC : CharacterBody2D
 	{
 		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
 
-		// Optional: check if a timeline is currently running (Dialogic exposes current_timeline)
+		// Check if a timeline is currently running (Dialogic exposes current_timeline)
 		var current = dialogic.Get("current_timeline");
 		if (current.VariantType != Variant.Type.Nil)
 			return;

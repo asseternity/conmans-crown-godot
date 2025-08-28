@@ -41,6 +41,7 @@ position = Vector2(10, 102)
 [node name="NPC2" parent="." groups=["NPCs"] instance=ExtResource("3_rgefe")]
 position = Vector2(81, 299)
 TimelinePath = "res://dialogic/Timelines/test_timeline.dtl"
+SpritePath = "res://Images/computer-svgrepo-com.svg"
 
 [node name="NPC" parent="." groups=["NPCs"] instance=ExtResource("3_rgefe")]
 position = Vector2(-247, 466)

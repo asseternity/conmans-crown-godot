@@ -39,8 +39,8 @@ variables={
 "playerName": "???"
 }
 }
-layout/style_list=["res://dialogic/Styles/style_speaker.tres"]
-layout/default_style="res://dialogic/Styles/style_speaker.tres"
+layout/style_list=["res://dialogic/Styles/style_speaker.tres", ""]
+layout/default_style=""
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true

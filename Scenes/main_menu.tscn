@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bf10kaxisewkn" path="res://Images/pexels-mo-eid-1268975-12195867.jpg" id="1_28flt"]
-[ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="3_1ehe0"]
+[ext_resource type="Theme" uid="uid://b3mlbx0me5it8" path="res://Themes/new_theme.tres" id="1_ce3w2"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="4_ce3w2"]
 
 [node name="Control" type="Control"]
@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ce3w2")
 script = ExtResource("1_1ehe0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -21,35 +22,38 @@ offset_top = -526.0
 offset_right = 2127.0
 offset_bottom = 2174.0
 scale = Vector2(0.56, 0.56)
+theme = ExtResource("1_ce3w2")
 texture = ExtResource("1_28flt")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_right = 1158.0
 offset_bottom = 660.0
+theme = ExtResource("1_ce3w2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+theme = ExtResource("1_ce3w2")
 theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-theme = ExtResource("3_1ehe0")
+theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 35
 text = "Start Game"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-theme = ExtResource("3_1ehe0")
+theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-theme = ExtResource("3_1ehe0")
+theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 35
 text = "Quit"
 

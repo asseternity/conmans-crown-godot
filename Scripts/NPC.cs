@@ -32,9 +32,8 @@ public partial class NPC : CharacterBody2D
 				var sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 				if (sprite != null)
 				{
-					float currentWidth = GetWidth(sprite);
-					sprite.Texture = texture;
-					ResizeWidth(sprite, currentWidth);
+					float targetWidth = 32f; // always make NPCs 32px wide
+					ApplyTextureAndResize(sprite, texture, targetWidth);
 				}
 				else
 				{
@@ -94,20 +93,20 @@ public partial class NPC : CharacterBody2D
 		}
 	}
 
-	private float GetWidth(Sprite2D sprite2D)
+	private void ApplyTextureAndResize(Sprite2D sprite, Texture2D texture, float targetWidth)
 	{
-		// Base size in pixels from the texture
-		Vector2 textureSize = sprite2D.Texture.GetSize();
-		// The final width on screen (includes scale)
-		return textureSize.X * sprite2D.Scale.X;
-	}
+		sprite.RegionEnabled = false;
+		sprite.Hframes = 1;
+		sprite.Vframes = 1;
+		sprite.Frame = 0;
 
-	private void ResizeWidth(Sprite2D sprite2D, float targetWidth)
-	{
-		float aspect = sprite2D.Texture.GetSize().Y / sprite2D.Texture.GetSize().X;
-		sprite2D.Scale = new Vector2(
-			targetWidth / sprite2D.Texture.GetSize().X,
-			(targetWidth * aspect) / sprite2D.Texture.GetSize().Y
-		);
+		sprite.Texture = texture;
+
+		var texSize = texture?.GetSize() ?? Vector2.Zero;
+		if (texSize.X <= 0)
+			return;
+
+		float scaleFactor = targetWidth / texSize.X;
+		sprite.Scale = new Vector2(scaleFactor, scaleFactor);
 	}
 }

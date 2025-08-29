@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxmpys81qvmhn"]
+[gd_scene load_steps=5 format=3 uid="uid://cxmpys81qvmhn"]
 
 [ext_resource type="Script" uid="uid://brr6w32uqoms0" path="res://Scripts/NPC.cs" id="1_tdvfm"]
 [ext_resource type="Texture2D" uid="uid://ch5umuyci5qjo" path="res://downloaded_assets/10chars/spritesheets/1 idle.png" id="2_fo5tq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fo5tq"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5tq"]
+
 [node name="NPC" type="CharacterBody2D"]
 script = ExtResource("1_tdvfm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2.55, 2.55)
+scale = Vector2(1.365, 1.365)
 texture = ExtResource("2_fo5tq")
 hframes = 3
 vframes = 2
@@ -18,9 +20,8 @@ vframes = 2
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-scale = Vector2(7.775, 7.775)
+scale = Vector2(4.865, 4.865)
 shape = SubResource("CircleShape2D_fo5tq")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(2.55, 2.55)
-polygon = PackedVector2Array(-6, -6, -6, -0.3, -7.4, 8, 7.4, 8, 6, -0.3, 6, -6)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fo5tq")

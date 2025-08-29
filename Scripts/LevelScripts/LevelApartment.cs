@@ -12,9 +12,9 @@ public partial class LevelApartment : Node2D
 		if (introPlayed == false)
 		{
 			// Start intro dialogue
-			var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
-			dialogic.Call("start", IntroTimelinePath);
-			introPlayed = true;
+			// var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
+			// dialogic.Call("start", IntroTimelinePath);
+			// introPlayed = true;
 		}
 	}
 }

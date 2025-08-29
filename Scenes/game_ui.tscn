@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ds6faydq5h3de"]
 
 [ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUI.cs" id="1_xjnnq"]
-[ext_resource type="Theme" uid="uid://b3mlbx0me5it8" path="res://Themes/new_theme.tres" id="2_gjn1n"]
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_gjn1n"]
 [ext_resource type="Texture2D" uid="uid://dlibei012gun1" path="res://Images/settings-svgrepo-com.svg" id="2_x63ue"]
 [ext_resource type="Texture2D" uid="uid://by3wfplwonu5s" path="res://Images/map-svgrepo-com.svg" id="3_gjn1n"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="3_x63ue"]

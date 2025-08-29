@@ -32,8 +32,9 @@ public partial class NPC : CharacterBody2D
 				var sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 				if (sprite != null)
 				{
+					float currentWidth = GetWidth(sprite);
 					sprite.Texture = texture;
-					GD.Print($"NPC sprite set from {SpritePath}");
+					ResizeWidth(sprite, currentWidth);
 				}
 				else
 				{
@@ -91,5 +92,22 @@ public partial class NPC : CharacterBody2D
 		{
 			dialogic.Call("start", TimelinePath);
 		}
+	}
+
+	private float GetWidth(Sprite2D sprite2D)
+	{
+		// Base size in pixels from the texture
+		Vector2 textureSize = sprite2D.Texture.GetSize();
+		// The final width on screen (includes scale)
+		return textureSize.X * sprite2D.Scale.X;
+	}
+
+	private void ResizeWidth(Sprite2D sprite2D, float targetWidth)
+	{
+		float aspect = sprite2D.Texture.GetSize().Y / sprite2D.Texture.GetSize().X;
+		sprite2D.Scale = new Vector2(
+			targetWidth / sprite2D.Texture.GetSize().X,
+			(targetWidth * aspect) / sprite2D.Texture.GetSize().Y
+		);
 	}
 }

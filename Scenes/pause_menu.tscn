@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp8wwk3bi3hhx"]
 
 [ext_resource type="Script" uid="uid://crsgrx6fisvgu" path="res://Scripts/PauseMenu.cs" id="1_1och7"]
-[ext_resource type="Theme" uid="uid://b3mlbx0me5it8" path="res://Themes/new_theme.tres" id="2_1och7"]
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_1och7"]
 [ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/sound effects/African1.wav" id="4_bpi0q"]
 
 [node name="PauseMenu" type="Control"]

@@ -113,6 +113,13 @@ public partial class Engine : Node
 
 		holder.AddChild(packed.Instantiate());
 
+		// Init NPCs
+		foreach (var npc in GetTree().GetNodesInGroup("NPCs"))
+		{
+			if (npc is NPC npcScript)
+				npcScript.InitNPC();
+		}
+
 		if (fade != null)
 			await fade.FadeIn();
 	}

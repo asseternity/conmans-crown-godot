@@ -10,16 +10,17 @@ public partial class PopupUI : Control
 	// Keep track of which tutorials have been shown
 	private HashSet<string> _shownTutorials = new HashSet<string>();
 
+	// State for multi-slide tutorials
+	private List<string> _currentSlides = new List<string>();
+	private int _currentSlideIndex = 0;
+
 	public override async void _Ready()
 	{
 		Hide();
 		_popupText = GetNode<Label>("PopupPanel/PopupText");
 		_okButton = GetNode<Button>("PopupPanel/OKButton");
-		_okButton.Pressed += () =>
-		{
-			Hide();
-			_popupText.Text = "";
-		};
+		_okButton.Text = "Continue";
+		_okButton.Pressed += OnOkPressed;
 
 		// Wait a few frames to ensure Engine + GS are fully initialized
 		for (int i = 0; i < 5; i++)
@@ -37,18 +38,53 @@ public partial class PopupUI : Control
 		}
 	}
 
-	public void ShowPopup(string id, string popupText)
+	public void ShowPopup(string id, List<string> slides)
 	{
 		if (_shownTutorials.Contains(id))
 			return;
 
-		_popupText.Text = popupText;
+		if (slides == null || slides.Count == 0)
+			return;
+
+		_currentSlides = slides;
+		_currentSlideIndex = 0;
+
+		_popupText.Text = _currentSlides[_currentSlideIndex];
 		Show();
+
 		_shownTutorials.Add(id);
 
 		// also save this state to GameState
 		var engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		engine.GS.Flags.Add($"tutorial_{id}");
+	}
+
+	private void OnOkPressed()
+	{
+		if (_currentSlides == null || _currentSlides.Count == 0)
+		{
+			Hide();
+			return;
+		}
+
+		_currentSlideIndex++;
+		if (_currentSlideIndex < _currentSlides.Count)
+		{
+			// Show next slide
+			_popupText.Text = _currentSlides[_currentSlideIndex];
+
+			// Update button text depending on whether this is the last slide
+			if (_currentSlideIndex + 1 < _currentSlides.Count)
+				_okButton.Text = "Continue";
+			else
+				_okButton.Text = "Done";
+		}
+		else
+		{
+			// Finished all slides
+			_currentSlides.Clear();
+			Hide();
+		}
 	}
 
 	/// Check if a tutorial has already been shown.

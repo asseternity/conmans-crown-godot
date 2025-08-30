@@ -4,177 +4,183 @@ using Godot;
 
 public partial class DuelUI : Control
 {
-	private Label _logLabel;
-	private Label _powerLabel;
-	private HSlider _powerSlider;
-	private Panel _powerAvailable;
-	private Button _attackButton;
-	private Label _playerNameLabel;
-	private Label _enemyNameLabel;
-	private ProgressBar _playerHP;
-	private ProgressBar _enemyHP;
-	private Label _playerHPText;
-	private Label _enemyHPText;
-	private TextureRect _playerSprite;
-	private TextureRect _enemySprite;
-	private Duel _currentDuel;
-	private Engine _engine;
+    private Label _logLabel;
+    private Label _powerLabel;
+    private HSlider _powerSlider;
+    private Panel _powerAvailable;
+    private Button _attackButton;
+    private Label _playerNameLabel;
+    private Label _enemyNameLabel;
+    private ProgressBar _playerHP;
+    private ProgressBar _enemyHP;
+    private Label _playerHPText;
+    private Label _enemyHPText;
+    private TextureRect _playerSprite;
+    private TextureRect _enemySprite;
+    private Duel _currentDuel;
+    private Engine _engine;
 
-	public override void _Ready()
-	{
-		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
-		_logLabel = GetNode<Label>("LogPanel/CombatLogLabel");
-		_powerLabel = GetNode<Label>("ActionPanel/PowerLabel");
-		_powerSlider = GetNode<HSlider>("ActionPanel/PowerSlider");
-		_powerAvailable = GetNode<Panel>("ActionPanel/PowerSlider/PowerAvailable");
-		_attackButton = GetNode<Button>("ActionPanel/AttackButton");
-		_playerNameLabel = GetNode<Label>("PlayerPanel/PlayerSide/PlayerName");
-		_enemyNameLabel = GetNode<Label>("EnemyPanel/EnemySide/EnemyName");
-		_playerHP = GetNode<ProgressBar>("PlayerPanel/PlayerSide/PlayerHP");
-		_enemyHP = GetNode<ProgressBar>("EnemyPanel/EnemySide/EnemyHP");
-		_playerHPText = GetNode<Label>("PlayerPanel/PlayerSide/PlayerHP/PlayerHPText");
-		_enemyHPText = GetNode<Label>("EnemyPanel/EnemySide/EnemyHP/EnemyHPText");
-		_playerSprite = GetNode<TextureRect>("PlayerPanel/PlayerSide/PlayerSprite");
-		_enemySprite = GetNode<TextureRect>("EnemyPanel/EnemySide/EnemySprite");
+    public override void _Ready()
+    {
+        _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+        _logLabel = GetNode<Label>("LogPanel/CombatLogLabel");
+        _powerLabel = GetNode<Label>("ActionPanel/PowerLabel");
+        _powerSlider = GetNode<HSlider>("ActionPanel/PowerSlider");
+        _powerAvailable = GetNode<Panel>("ActionPanel/PowerSlider/PowerAvailable");
+        _attackButton = GetNode<Button>("ActionPanel/AttackButton");
+        _playerNameLabel = GetNode<Label>("PlayerPanel/PlayerSide/PlayerName");
+        _enemyNameLabel = GetNode<Label>("EnemyPanel/EnemySide/EnemyName");
+        _playerHP = GetNode<ProgressBar>("PlayerPanel/PlayerSide/PlayerHP");
+        _enemyHP = GetNode<ProgressBar>("EnemyPanel/EnemySide/EnemyHP");
+        _playerHPText = GetNode<Label>("PlayerPanel/PlayerSide/PlayerHP/PlayerHPText");
+        _enemyHPText = GetNode<Label>("EnemyPanel/EnemySide/EnemyHP/EnemyHPText");
+        _playerSprite = GetNode<TextureRect>("PlayerPanel/PlayerSide/PlayerSprite");
+        _enemySprite = GetNode<TextureRect>("EnemyPanel/EnemySide/EnemySprite");
 
-		// HSlider settings
-		_powerSlider.Step = 0.1;
-		_powerSlider.MinValue = 0.0;
+        // HSlider settings
+        _powerSlider.Step = 0.1;
+        _powerSlider.MinValue = 0.0;
 
-		// subscribe to events
-		_attackButton.Pressed += OnAttackButtonPressed;
-		_powerSlider.ValueChanged += OnPowerSliderChanged;
-		_powerSlider.Editable = true;
+        // subscribe to events
+        _attackButton.Pressed += OnAttackButtonPressed;
+        _powerSlider.ValueChanged += OnPowerSliderChanged;
+        _powerSlider.Editable = true;
 
-		// Hide ui
-		Hide();
-	}
+        // Hide ui
+        Hide();
+    }
 
-	public void StartDuel(Duel duel)
-	{
-		// clear gamestate log (Fixed C# initializer)
-		string startingLog =
-			$"You brandish your weapon. {duel.Enemy.Name} stands ready. It's a duel!";
-		_engine.GS.RoundLog = new List<string> { startingLog };
+    public void StartDuel(Duel duel)
+    {
+        var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
+        if (!popup.HasShown("duel_intro"))
+        {
+            popup.ShowPopup("duel_intro", "This is a dueling tutorial!");
+        }
 
-		// assign data
-		_currentDuel = duel;
-		_engine.GS.CurrentDuel = duel; // ensure GameState points to duel
+        // clear gamestate log (Fixed C# initializer)
+        string startingLog =
+            $"You brandish your weapon. {duel.Enemy.Name} stands ready. It's a duel!";
+        _engine.GS.RoundLog = new List<string> { startingLog };
 
-		_playerNameLabel.Text = _engine.GS.PlayerObject.Name;
-		_enemyNameLabel.Text = duel.Enemy.Name;
+        // assign data
+        _currentDuel = duel;
+        _engine.GS.CurrentDuel = duel; // ensure GameState points to duel
 
-		_playerHP.MaxValue = _engine.GS.PlayerObject.MaxHealth;
-		_enemyHP.MaxValue = duel.Enemy.MaxHealth;
+        _playerNameLabel.Text = _engine.GS.PlayerObject.Name;
+        _enemyNameLabel.Text = duel.Enemy.Name;
 
-		_playerSprite.Texture = GD.Load<Texture2D>(_engine.GS.PlayerObject.DuelSpritePath);
-		_enemySprite.Texture = GD.Load<Texture2D>(duel.Enemy.DuelSpritePath);
+        _playerHP.MaxValue = _engine.GS.PlayerObject.MaxHealth;
+        _enemyHP.MaxValue = duel.Enemy.MaxHealth;
 
-		_powerAvailable.Visible = true;
-		_powerSlider.Visible = true;
-		_powerLabel.Visible = true;
+        _playerSprite.Texture = GD.Load<Texture2D>(_engine.GS.PlayerObject.DuelSpritePath);
+        _enemySprite.Texture = GD.Load<Texture2D>(duel.Enemy.DuelSpritePath);
 
-		UpdateLog();
-		UpdateHealthBars();
-		_powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
-		_powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue);
-		UpdatePowerAvailable();
-		Show();
-	}
+        _powerAvailable.Visible = true;
+        _powerSlider.Visible = true;
+        _powerLabel.Visible = true;
 
-	public void OnPowerSliderChanged(double value)
-	{
-		// Disable "Attack" unless selected power is valid
-		double currentPower = _engine.GS.PlayerObject.Power;
-		bool valid = value <= currentPower;
-		_attackButton.Disabled = !valid;
+        UpdateLog();
+        UpdateHealthBars();
+        _powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
+        _powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue);
+        UpdatePowerAvailable();
+        Show();
+    }
 
-		// Clamp value to currentPower if above it
-		if (value > currentPower)
-		{
-			_powerSlider.Value = currentPower; // snap back
-			value = currentPower;
-		}
+    public void OnPowerSliderChanged(double value)
+    {
+        // Disable "Attack" unless selected power is valid
+        double currentPower = _engine.GS.PlayerObject.Power;
+        bool valid = value <= currentPower;
+        _attackButton.Disabled = !valid;
 
-		// UI hint
-		_powerLabel.Text = $"Power: {value:F1} {(valid ? "" : "(Not enough!)")}";
-	}
+        // Clamp value to currentPower if above it
+        if (value > currentPower)
+        {
+            _powerSlider.Value = currentPower; // snap back
+            value = currentPower;
+        }
 
-	private void OnAttackButtonPressed()
-	{
-		_attackButton.Disabled = true;
-		double powerUsed = Math.Round(_powerSlider.Value, 1);
-		_engine.DuelRound(powerUsed);
+        // UI hint
+        _powerLabel.Text = $"Power: {value:F1} {(valid ? "" : "(Not enough!)")}";
+    }
 
-		UpdateLog();
-		UpdateHealthBars();
+    private void OnAttackButtonPressed()
+    {
+        _attackButton.Disabled = true;
+        double powerUsed = Math.Round(_powerSlider.Value, 1);
+        _engine.DuelRound(powerUsed);
 
-		double currentPower = _engine.GS.PlayerObject.Power;
-		bool valid = _powerSlider.Value <= currentPower;
-		_attackButton.Disabled = !valid;
-		_powerLabel.Text = $"Power: {_powerSlider.Value:F1} {(valid ? "" : "(Not enough!)")}";
+        UpdateLog();
+        UpdateHealthBars();
 
-		// if the battle is over, rebind buttons and disable the slider
-		if (_engine.GS.CurrentDuel == null) // duel ended -> Engine cleared it
-		{
-			_powerAvailable.Visible = false;
-			_powerSlider.Visible = false;
-			_powerLabel.Visible = false;
-			_attackButton.Pressed -= OnAttackButtonPressed;
-			_attackButton.Pressed += RouteAfterDuel;
-		}
+        double currentPower = _engine.GS.PlayerObject.Power;
+        bool valid = _powerSlider.Value <= currentPower;
+        _attackButton.Disabled = !valid;
+        _powerLabel.Text = $"Power: {_powerSlider.Value:F1} {(valid ? "" : "(Not enough!)")}";
 
-		_powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
-		_powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue);
-		UpdatePowerAvailable();
+        // if the battle is over, rebind buttons and disable the slider
+        if (_engine.GS.CurrentDuel == null) // duel ended -> Engine cleared it
+        {
+            _powerAvailable.Visible = false;
+            _powerSlider.Visible = false;
+            _powerLabel.Visible = false;
+            _attackButton.Pressed -= OnAttackButtonPressed;
+            _attackButton.Pressed += RouteAfterDuel;
+        }
 
-		_attackButton.Disabled = false;
-	}
+        _powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
+        _powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue);
+        UpdatePowerAvailable();
 
-	public async void UpdateLog()
-	{
-		_logLabel.Text = string.Join("\n", _engine.GS.RoundLog);
+        _attackButton.Disabled = false;
+    }
 
-		// Wait for three frames so the UI can update first
-		await ToSignal(GetTree(), "process_frame");
-		await ToSignal(GetTree(), "process_frame");
-		await ToSignal(GetTree(), "process_frame");
-	}
+    public async void UpdateLog()
+    {
+        _logLabel.Text = string.Join("\n", _engine.GS.RoundLog);
 
-	public void UpdateHealthBars()
-	{
-		_playerHP.Value = _engine.GS.PlayerObject.Health;
-		_enemyHP.Value = _currentDuel.Enemy.Health;
+        // Wait for three frames so the UI can update first
+        await ToSignal(GetTree(), "process_frame");
+        await ToSignal(GetTree(), "process_frame");
+        await ToSignal(GetTree(), "process_frame");
+    }
 
-		_playerHPText.Text =
-			$"{_engine.GS.PlayerObject.Health.ToString()}/{_engine.GS.PlayerObject.MaxHealth.ToString()}";
-		_enemyHPText.Text =
-			$"{_currentDuel.Enemy.Health.ToString()}/{_currentDuel.Enemy.MaxHealth.ToString()}";
-	}
+    public void UpdateHealthBars()
+    {
+        _playerHP.Value = _engine.GS.PlayerObject.Health;
+        _enemyHP.Value = _currentDuel.Enemy.Health;
 
-	private void UpdatePowerAvailable()
-	{
-		double currentPower = _engine.GS.PlayerObject.Power;
-		double maxPower = _engine.GS.PlayerObject.MaxPower;
+        _playerHPText.Text =
+            $"{_engine.GS.PlayerObject.Health.ToString()}/{_engine.GS.PlayerObject.MaxHealth.ToString()}";
+        _enemyHPText.Text =
+            $"{_currentDuel.Enemy.Health.ToString()}/{_currentDuel.Enemy.MaxHealth.ToString()}";
+    }
 
-		// Panel width in pixels
-		float maxWidthPixels = 633f; // Max width for full power bar
-		float newWidth = (float)(currentPower / maxPower) * maxWidthPixels;
+    private void UpdatePowerAvailable()
+    {
+        double currentPower = _engine.GS.PlayerObject.Power;
+        double maxPower = _engine.GS.PlayerObject.MaxPower;
 
-		// Apply new minimum size
-		var size = _powerAvailable.CustomMinimumSize;
-		size.X = newWidth;
-		_powerAvailable.CustomMinimumSize = size;
-	}
+        // Panel width in pixels
+        float maxWidthPixels = 633f; // Max width for full power bar
+        float newWidth = (float)(currentPower / maxPower) * maxWidthPixels;
 
-	private void RouteAfterDuel()
-	{
-		Hide();
-		var main = GetTree().Root.GetNode<MainContainer>("MainScene");
-		_attackButton.Pressed -= RouteAfterDuel;
+        // Apply new minimum size
+        var size = _powerAvailable.CustomMinimumSize;
+        size.X = newWidth;
+        _powerAvailable.CustomMinimumSize = size;
+    }
 
-		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
-		if (dialogic != null)
-			dialogic.Call("start", _engine.GS.PostDuelTimelinePath);
-	}
+    private void RouteAfterDuel()
+    {
+        Hide();
+        var main = GetTree().Root.GetNode<MainContainer>("MainScene");
+        _attackButton.Pressed -= RouteAfterDuel;
+
+        var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
+        if (dialogic != null)
+            dialogic.Call("start", _engine.GS.PostDuelTimelinePath);
+    }
 }

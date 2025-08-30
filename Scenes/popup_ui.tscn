@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://druoqfme7ylyk"]
+
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_64ho8"]
+[ext_resource type="Script" uid="uid://btlkhk24efllp" path="res://Scripts/PopupUI.cs" id="2_j3ubk"]
+
+[node name="PopupUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_64ho8")
+script = ExtResource("2_j3ubk")
+
+[node name="PopupPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = -112.0
+offset_right = 222.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_64ho8")
+
+[node name="PopupText" type="Label" parent="PopupPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.5
+offset_top = -96.5
+offset_right = 199.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_64ho8")
+text = "This is some kind of a tutorial message or something!"
+autowrap_mode = 2
+
+[node name="OKButton" type="Button" parent="PopupPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = 46.5
+offset_right = 49.0
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_64ho8")
+theme_override_font_sizes/font_size = 25
+text = "OK"

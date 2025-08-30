@@ -9,9 +9,9 @@ public partial class MainMenu : Control
 
 	public override void _Ready()
 	{
-		_playButton = GetNode<Button>("CenterContainer/VBoxContainer/PlayButton");
-		_optionsButton = GetNode<Button>("CenterContainer/VBoxContainer/OptionsButton");
-		_quitButton = GetNode<Button>("CenterContainer/VBoxContainer/QuitButton");
+		_playButton = GetNode<Button>("VBoxContainer/PlayButton");
+		_optionsButton = GetNode<Button>("VBoxContainer/OptionsButton");
+		_quitButton = GetNode<Button>("VBoxContainer/QuitButton");
 		_clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
 
 		_playButton.Pressed += OnPlayPressed;

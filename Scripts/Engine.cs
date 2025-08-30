@@ -28,30 +28,32 @@ public partial class Engine : Node
 
 	public void DuelRound(double playerAction)
 	{
+		GS.RoundLog = new List<string>();
+
 		if (GS.CurrentDuel is not Duel duel)
 			return;
 
 		double enemyAction = duel.ChooseEnemyAction();
-		GS.FullLog.Add(duel.DamagePhase(GS.PlayerObject, playerAction, enemyAction));
-		GS.FullLog.Add($"You spent {playerAction}, enemy spent {enemyAction:F1}.");
+		GS.RoundLog.Add(duel.DamagePhase(GS.PlayerObject, playerAction, enemyAction));
+		GS.RoundLog.Add($"You spent {playerAction}, enemy spent {enemyAction:F1}.");
 
 		if (!GS.PlayerObject.IsAlive())
 		{
-			GS.FullLog.Add("You lost the fight.");
+			GS.RoundLog.Add("You lost the fight.");
 			GS.PostDuelTimelinePath = GS.CurrentDuel.LoseTimelinePath;
 			GS.CurrentDuel = null;
 			return;
 		}
 		else if (!duel.Enemy.IsAlive())
 		{
-			GS.FullLog.Add("You won the fight.");
+			GS.RoundLog.Add("You won the fight.");
 			GS.PostDuelTimelinePath = GS.CurrentDuel.WinTimelinePath;
 			GS.CurrentDuel = null;
 			return;
 		}
 
 		GS.PostDuelTimelinePath = null;
-		GS.FullLog.Add(duel.TacticHint(duel.Enemy));
+		GS.RoundLog.Add(duel.TacticHint(duel.Enemy));
 		duel.RestoreAfter(GS.PlayerObject, playerAction, enemyAction);
 	}
 

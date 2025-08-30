@@ -14,7 +14,7 @@ public partial class GameState
 
 	public Combatant PlayerObject { get; set; }
 	public List<string> Flags { get; set; }
-	public List<string> FullLog { get; set; }
+	public List<string> RoundLog { get; set; }
 
 	public GameState(Combatant player)
 	{
@@ -24,6 +24,6 @@ public partial class GameState
 		CurrentEventIndex = 0;
 		PlayerObject = player;
 		Flags = new List<string>();
-		FullLog = new List<string>();
+		RoundLog = new List<string>();
 	}
 }

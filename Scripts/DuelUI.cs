@@ -114,6 +114,7 @@ public partial class DuelUI : Control
 
 	private void OnAttackButtonPressed()
 	{
+		ShakeUI();
 		_attackButton.Disabled = true;
 		double powerUsed = Math.Round(_powerSlider.Value, 1);
 		_engine.DuelRound(powerUsed);
@@ -201,5 +202,14 @@ public partial class DuelUI : Control
 		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
 		if (dialogic != null)
 			dialogic.Call("start", _engine.GS.PostDuelTimelinePath);
+	}
+
+	private async void ShakeUI()
+	{
+		Tween tween = GetTree().CreateTween();
+		Vector2 originalUIPosition = Position;
+		tween.TweenProperty(this, "position:y", originalUIPosition.Y - 10, 0.05);
+		tween.TweenProperty(this, "position:y", originalUIPosition.Y + 10, 0.1);
+		tween.TweenProperty(this, "position:y", originalUIPosition.Y, 0.05);
 	}
 }

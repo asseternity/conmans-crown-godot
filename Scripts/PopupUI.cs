@@ -6,6 +6,8 @@ public partial class PopupUI : Control
 {
 	private Label _popupText;
 	private Button _okButton;
+	private AudioStreamPlayer _clickSound;
+	private Vector2 buttonScale;
 
 	// Keep track of which tutorials have been shown
 	private HashSet<string> _shownTutorials = new HashSet<string>();
@@ -16,11 +18,17 @@ public partial class PopupUI : Control
 
 	public override async void _Ready()
 	{
+		_clickSound = GetNode<AudioStreamPlayer>("ClickSound");
+
 		Hide();
 		_popupText = GetNode<Label>("PopupPanel/PopupText");
 		_okButton = GetNode<Button>("PopupPanel/OKButton");
+		buttonScale = _okButton.Scale;
+		_okButton.PivotOffset = _okButton.Size / 2;
 		_okButton.Text = "Continue";
 		_okButton.Pressed += OnOkPressed;
+		_okButton.MouseEntered += () => onButtonHoverEnter(_okButton);
+		_okButton.MouseExited += () => onButtonHoverExit(_okButton);
 
 		// Wait a few frames to ensure Engine + GS are fully initialized
 		for (int i = 0; i < 5; i++)
@@ -62,6 +70,7 @@ public partial class PopupUI : Control
 
 	private void OnOkPressed()
 	{
+		_clickSound.Play();
 		if (_currentSlides == null || _currentSlides.Count == 0)
 		{
 			Hide();
@@ -86,6 +95,24 @@ public partial class PopupUI : Control
 			_currentSlides.Clear();
 			Hide();
 		}
+	}
+
+	private void onButtonHoverEnter(Button btn)
+	{
+		Tween tween = GetTree().CreateTween();
+		tween
+			.TweenProperty(btn, "scale", btn.Scale * 1.10f, 0.05f)
+			.SetTrans(Tween.TransitionType.Quad)
+			.SetEase(Tween.EaseType.Out);
+	}
+
+	private void onButtonHoverExit(Button btn)
+	{
+		Tween tween = GetTree().CreateTween();
+		tween
+			.TweenProperty(btn, "scale", buttonScale, 0.05f)
+			.SetTrans(Tween.TransitionType.Quad)
+			.SetEase(Tween.EaseType.In);
 	}
 
 	/// Check if a tutorial has already been shown.

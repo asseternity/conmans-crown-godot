@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crsgrx6fisvgu" path="res://Scripts/PauseMenu.cs" id="1_1och7"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_1och7"]
-[ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/sound effects/African1.wav" id="4_bpi0q"]
+[ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/ui sound effects/African1.wav" id="4_bpi0q"]
 
 [node name="PauseMenu" type="Control"]
 top_level = true

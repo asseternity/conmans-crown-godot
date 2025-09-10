@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://druoqfme7ylyk"]
+[gd_scene load_steps=4 format=3 uid="uid://druoqfme7ylyk"]
 
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_64ho8"]
 [ext_resource type="Script" uid="uid://btlkhk24efllp" path="res://Scripts/PopupUI.cs" id="2_j3ubk"]
+[ext_resource type="AudioStream" uid="uid://c38n51c7vqxer" path="res://Audio/ui sound effects/Modern10.wav" id="3_8neuv"]
 
 [node name="PopupUI" type="Control"]
 layout_mode = 3
@@ -63,3 +64,6 @@ grow_vertical = 0
 theme = ExtResource("1_64ho8")
 theme_override_font_sizes/font_size = 25
 text = "OK"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8neuv")

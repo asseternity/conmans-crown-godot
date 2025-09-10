@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dledlefde6t05"]
+[gd_scene load_steps=9 format=3 uid="uid://dledlefde6t05"]
 
 [ext_resource type="Script" uid="uid://dt2pc7y4y1j7l" path="res://Scripts/DuelUI.cs" id="1_nje2f"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_rqj5w"]
 [ext_resource type="Texture2D" uid="uid://cy57ljprwxrxr" path="res://Images/character-circus-clown-svgrepo-com.svg" id="2_7poq0"]
 [ext_resource type="Texture2D" uid="uid://svt5teoyyscp" path="res://Images/icon.svg" id="3_wmw6g"]
+[ext_resource type="AudioStream" uid="uid://ct42o3khnhc04" path="res://Audio/Minifantasy_Dungeon_SFX/26_sword_hit_1.wav" id="5_rqj5w"]
+[ext_resource type="AudioStream" uid="uid://c38n51c7vqxer" path="res://Audio/ui sound effects/Modern10.wav" id="6_lai8p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqj5w"]
 bg_color = Color(0.262745, 0.705882, 0.345098, 1)
@@ -283,3 +285,9 @@ grow_vertical = 0
 theme = ExtResource("1_rqj5w")
 theme_override_font_sizes/font_size = 22
 text = "Continue"
+
+[node name="SlashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rqj5w")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lai8p")

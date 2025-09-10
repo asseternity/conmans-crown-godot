@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://bf10kaxisewkn" path="res://Images/pexels-mo-eid-1268975-12195867.jpg" id="1_28flt"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_ce3w2"]
-[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="4_ce3w2"]
+[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_ce3w2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

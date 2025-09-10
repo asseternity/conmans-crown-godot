@@ -17,11 +17,15 @@ public partial class DuelUI : Control
 	private Label _enemyHPText;
 	private TextureRect _playerSprite;
 	private TextureRect _enemySprite;
+	private AudioStreamPlayer _slashSound;
+	private AudioStreamPlayer _clickSound;
 	private Duel _currentDuel;
 	private Engine _engine;
+	private Tween tween;
 
 	public override void _Ready()
 	{
+		tween = GetTree().CreateTween();
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_logLabel = GetNode<Label>("LogPanel/CombatLogLabel");
 		_powerLabel = GetNode<Label>("ActionPanel/PowerLabel");
@@ -36,6 +40,8 @@ public partial class DuelUI : Control
 		_enemyHPText = GetNode<Label>("EnemyPanel/EnemySide/EnemyHP/EnemyHPText");
 		_playerSprite = GetNode<TextureRect>("PlayerPanel/PlayerSide/PlayerSprite");
 		_enemySprite = GetNode<TextureRect>("EnemyPanel/EnemySide/EnemySprite");
+		_slashSound = GetNode<AudioStreamPlayer>("SlashSound");
+		_clickSound = GetNode<AudioStreamPlayer>("ClickSound");
 
 		// HSlider settings
 		_powerSlider.Step = 0.1;
@@ -96,6 +102,7 @@ public partial class DuelUI : Control
 
 	public void OnPowerSliderChanged(double value)
 	{
+		_clickSound.Play();
 		// Disable "Attack" unless selected power is valid
 		double currentPower = _engine.GS.PlayerObject.Power;
 		bool valid = value <= currentPower;
@@ -204,12 +211,13 @@ public partial class DuelUI : Control
 			dialogic.Call("start", _engine.GS.PostDuelTimelinePath);
 	}
 
-	private async void ShakeUI()
+	private void ShakeUI()
 	{
-		Tween tween = GetTree().CreateTween();
+		_clickSound.Play();
 		Vector2 originalUIPosition = Position;
 		tween.TweenProperty(this, "position:y", originalUIPosition.Y - 10, 0.05);
 		tween.TweenProperty(this, "position:y", originalUIPosition.Y + 10, 0.1);
 		tween.TweenProperty(this, "position:y", originalUIPosition.Y, 0.05);
+		_slashSound.Play();
 	}
 }

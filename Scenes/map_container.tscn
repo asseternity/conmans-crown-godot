@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dxu32shrqhq23" path="res://Images/twilight_hill.png" id="1_3cc57"]
 [ext_resource type="Script" uid="uid://cqteqx6fgqv5b" path="res://Scripts/MapScreen.cs" id="1_56x5n"]
 [ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="2_1b8dq"]
-[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/sound effects/Modern8.wav" id="4_pnf0b"]
+[ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_pnf0b"]
 
 [node name="MapContainer" type="Control"]
 layout_mode = 3

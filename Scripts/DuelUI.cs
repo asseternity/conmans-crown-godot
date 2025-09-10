@@ -55,13 +55,13 @@ public partial class DuelUI : Control
 		var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
 		if (!popup.HasShown("duel_intro_1"))
 		{
-			List<string> tutorial_0 = new List<string>
+			List<string> tutorial_1 = new List<string>
 			{
 				"You’ve entered a duel — a tense dance of choices. Every move balances bold strikes against patient recovery. Win by outlasting your foe’s strength and wits.",
 				"Your Power fuels attacks. Use the slider to choose how much to spend. Spend lightly (<3) and you’ll recover some Power next turn. Go all-in, and you risk running dry.",
 				"Hit Attack when you’ve chosen your Power. High numbers swing hard, but leave you exhausted. Small strikes are safer — and help Power return."
 			};
-			popup.ShowPopup("duel_intro_1", tutorial_0);
+			popup.ShowPopup("duel_intro_1", tutorial_1);
 		}
 
 		// clear gamestate log (Fixed C# initializer)
@@ -145,14 +145,14 @@ public partial class DuelUI : Control
 		var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
 		if (!popup.HasShown("duel_intro_2"))
 		{
-			List<string> tutorial_1 = new List<string>
+			List<string> tutorial_2 = new List<string>
 			{
 				"Damage isn’t about who hit harder — it’s about who spent less. The loser’s Power spent decides the wound.",
 				"Your HP bar tracks your life. If it hits zero, the duel is lost. Keep an eye on both your own bar and your foe’s!",
 				"The Combat Log tells the story of each clash. Watch it to learn your enemy’s habits and adjust your tactics.",
 				"Alright, enough chatter. You’ve got the tools — now go mess him up!"
 			};
-			popup.ShowPopup("duel_intro_1", tutorial_1);
+			popup.ShowPopup("duel_intro_2", tutorial_2);
 		}
 	}
 

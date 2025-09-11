@@ -16,7 +16,7 @@ public partial class MapScreen : Control
 	public string OfficeScenePath { get; set; } = "res://Scenes/level_test.tscn";
 
 	[Export]
-	public string BeachScenePath { get; set; } = "res://Scenes/level_test_2.tscn";
+	public string BeachScenePath { get; set; } = "res://Scenes/level_test_3.tscn";
 
 	private Engine _engine;
 	private Button _homeButton;

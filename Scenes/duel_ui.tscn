@@ -49,7 +49,7 @@ offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rqj5w")
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 alignment = 2
 
 [node name="EnemySprite" type="TextureRect" parent="EnemyPanel/EnemySide"]
@@ -64,12 +64,12 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_rqj5w")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "LongEnemyName"
 
 [node name="EnemyHP" type="ProgressBar" parent="EnemyPanel/EnemySide"]
 clip_contents = true
-custom_minimum_size = Vector2(100, 20)
+custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_rqj5w")
@@ -113,7 +113,7 @@ offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rqj5w")
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="PlayerSprite" type="TextureRect" parent="PlayerPanel/PlayerSide"]
 custom_minimum_size = Vector2(60, 60)
@@ -127,12 +127,12 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_rqj5w")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Player"
 
 [node name="PlayerHP" type="ProgressBar" parent="PlayerPanel/PlayerSide"]
 clip_contents = true
-custom_minimum_size = Vector2(100, 20)
+custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_rqj5w")

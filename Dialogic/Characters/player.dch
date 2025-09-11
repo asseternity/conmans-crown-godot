@@ -28,7 +28,7 @@
 &"portraits": {
 "Player": {
 "export_overrides": {
-"image": "\"res://downloaded_assets/10chars/spritesheets/7 idle - Portrait.png\""
+"image": "\"res://downloaded_assets/Free Portraits (by Batareya)/4.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),

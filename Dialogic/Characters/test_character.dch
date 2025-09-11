@@ -28,7 +28,7 @@
 &"portraits": {
 "Professor Test 1": {
 "export_overrides": {
-"image": "\"res://downloaded_assets/10chars/spritesheets/1 idle - portrait.png\""
+"image": "\"res://downloaded_assets/Free Portraits (by Batareya)/1.png\""
 },
 "ignore_char_scale": false,
 "mirror": false,

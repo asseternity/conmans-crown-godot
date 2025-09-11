@@ -33,11 +33,16 @@ offset_top = 18.0
 offset_right = 844.0
 offset_bottom = 826.0
 scale = Vector2(0.055, 0.055)
-theme = ExtResource("2_gjn1n")
 theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
 theme_override_colors/icon_hover_color = Color(0.537255, 0.407843, 0.121569, 1)
+theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
+theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
 icon = ExtResource("3_1t2s1")
 flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="MapButton" type="Button" parent="."]
 layout_mode = 1
@@ -46,12 +51,16 @@ offset_top = 18.0
 offset_right = 900.0
 offset_bottom = 826.0
 scale = Vector2(0.053, 0.053)
-theme = ExtResource("2_gjn1n")
 theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
 theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
+theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
 icon = ExtResource("3_gjn1n")
 flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_x63ue")

@@ -21,11 +21,9 @@ public partial class DuelUI : Control
 	private AudioStreamPlayer _clickSound;
 	private Duel _currentDuel;
 	private Engine _engine;
-	private Tween tween;
 
 	public override void _Ready()
 	{
-		tween = GetTree().CreateTween();
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_logLabel = GetNode<Label>("LogPanel/CombatLogLabel");
 		_powerLabel = GetNode<Label>("ActionPanel/PowerLabel");
@@ -213,6 +211,7 @@ public partial class DuelUI : Control
 
 	private void ShakeUI()
 	{
+		Tween tween = GetTree().CreateTween();
 		_clickSound.Play();
 		Vector2 originalUIPosition = Position;
 		tween.TweenProperty(this, "position:y", originalUIPosition.Y - 10, 0.05);

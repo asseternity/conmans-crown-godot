@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bs0qmbqnejykc"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bs0qmbqnejykc"]
 
 [ext_resource type="FontFile" uid="uid://cf2ffof2j1pxp" path="res://Fonts/Borisna.ttf" id="1_51034"]
 [ext_resource type="FontFile" uid="uid://pg1is1ne60rk" path="res://Fonts/breamcatcher rg.otf" id="2_51034"]
@@ -43,7 +43,7 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
-shadow_color = Color(0.898039, 0.796078, 0.490196, 0.380392)
+shadow_color = Color(0.152941, 0.121569, 0.0313726, 0.568627)
 shadow_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om0jh"]
@@ -56,6 +56,17 @@ shadow_color = Color(0.898039, 0.796078, 0.490196, 0.396078)
 shadow_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjy1l"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.447059, 0.411765, 0.262745, 1)
+border_blend = true
+corner_radius_top_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5csac"]
 bg_color = Color(0.137255, 0.137255, 0.137255, 1)
 border_width_left = 5
 border_width_top = 5
@@ -79,3 +90,4 @@ Button/styles/pressed = SubResource("StyleBoxFlat_om0jh")
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("2_51034")
 Panel/styles/panel = SubResource("StyleBoxFlat_qjy1l")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_5csac")

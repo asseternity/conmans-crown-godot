@@ -7,17 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://c5l6mpftotmsp" path="res://Custom Layers/TextboxWithPortrait/custom_textbox_with_portrait_.tscn" id="4_v8r7y"]
 [ext_resource type="PackedScene" uid="uid://dsbwnp5hegnu3" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/glossary_popup_layer.tscn" id="5_remll"]
 [ext_resource type="PackedScene" uid="uid://byq631o22kn6y" path="res://Custom Layers/CenteredChoices/custom_centered_choices.tscn" id="6_v8r7y"]
-[ext_resource type="PackedScene" uid="uid://cvgf4c6gg0tsy" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.tscn" id="7_xlxfr"]
+[ext_resource type="PackedScene" path="res://Custom Layers/SimpleTextInputBox/custom_simple_text_input_box.tscn" id="7_v8r7y"]
 [ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="8_jbo6a"]
 
 [sub_resource type="Resource" id="Resource_v8r7y"]
 script = ExtResource("1_odlfn")
-overrides = {
-"global_bg_color": "Color(0.195077, 0.097229, 0.230469, 0.9)",
-"global_font": "\"res://Fonts/CabinetGrotesk-Variable.ttf\"",
-"global_font_color": "Color(0.780876, 0.625366, 0.851563, 1)",
-"global_font_size": "22.0"
-}
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_76lbi"]
 script = ExtResource("1_odlfn")
@@ -32,10 +27,7 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_frxc5"]
 script = ExtResource("1_odlfn")
 scene = ExtResource("4_v8r7y")
-overrides = {
-"box_modulate_custom_color": "Color(0.470076, 0.165926, 0.472471, 1)",
-"box_modulate_global_color": "false"
-}
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_xlxfr"]
 script = ExtResource("1_odlfn")
@@ -45,14 +37,11 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_jbo6a"]
 script = ExtResource("1_odlfn")
 scene = ExtResource("6_v8r7y")
-overrides = {
-"boxes_v_separation": "20.0",
-"font_size_custom": "20.0"
-}
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_k6fy1"]
 script = ExtResource("1_odlfn")
-scene = ExtResource("7_xlxfr")
+scene = ExtResource("7_v8r7y")
 overrides = {}
 
 [sub_resource type="Resource" id="Resource_q8nb1"]
@@ -76,4 +65,4 @@ layer_info = {
 }
 base_overrides = {}
 layers = Array[ExtResource("1_odlfn")]([])
-metadata/_latest_layer = "14"
+metadata/_latest_layer = "15"

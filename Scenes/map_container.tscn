@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://dxu32shrqhq23" path="res://Images/twilight_hill.png" id="1_3cc57"]
 [ext_resource type="Script" uid="uid://cqteqx6fgqv5b" path="res://Scripts/MapScreen.cs" id="1_56x5n"]
-[ext_resource type="Theme" uid="uid://b3klx57slj0l3" path="res://Themes/soft_retro/soft_retro/soft_retro.tres" id="2_1b8dq"]
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_pnf0b"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_pnf0b"]
 
 [node name="MapContainer" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_pnf0b")
 script = ExtResource("1_56x5n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -18,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_pnf0b")
 
 [node name="OfficeButtonShadow" type="Button" parent="TextureRect"]
 modulate = Color(0, 0, 0, 1)
@@ -28,7 +30,7 @@ offset_left = 709.0
 offset_top = 407.0
 offset_right = 759.0
 offset_bottom = 432.0
-theme = ExtResource("2_1b8dq")
+theme = ExtResource("1_pnf0b")
 text = "Office"
 
 [node name="OfficeButton" type="Button" parent="TextureRect/OfficeButtonShadow"]
@@ -39,7 +41,7 @@ offset_left = 711.0
 offset_top = 405.0
 offset_right = 761.0
 offset_bottom = 430.0
-theme = ExtResource("2_1b8dq")
+theme = ExtResource("1_pnf0b")
 text = "Office"
 
 [node name="HomeButtonShadow" type="Button" parent="TextureRect"]
@@ -51,7 +53,7 @@ offset_left = 942.0
 offset_top = 252.0
 offset_right = 987.0
 offset_bottom = 277.0
-theme = ExtResource("2_1b8dq")
+theme = ExtResource("1_pnf0b")
 text = "Home"
 
 [node name="HomeButton" type="Button" parent="TextureRect/HomeButtonShadow"]
@@ -62,7 +64,7 @@ offset_left = 945.0
 offset_top = 251.0
 offset_right = 990.0
 offset_bottom = 276.0
-theme = ExtResource("2_1b8dq")
+theme = ExtResource("1_pnf0b")
 text = "Home"
 
 [node name="BeachButtonShadow" type="Button" parent="TextureRect"]
@@ -74,7 +76,7 @@ offset_left = 641.0
 offset_top = 554.0
 offset_right = 692.0
 offset_bottom = 579.0
-theme = ExtResource("2_1b8dq")
+theme = ExtResource("1_pnf0b")
 text = "Beach"
 
 [node name="BeachButton" type="Button" parent="TextureRect/BeachButtonShadow"]
@@ -85,7 +87,7 @@ offset_left = 643.0
 offset_top = 552.0
 offset_right = 694.0
 offset_bottom = 577.0
-theme = ExtResource("2_1b8dq")
+theme = ExtResource("1_pnf0b")
 text = "Beach"
 
 [node name="TwilightHill" type="Sprite2D" parent="."]

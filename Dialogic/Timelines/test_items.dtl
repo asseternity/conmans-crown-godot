@@ -1,0 +1,12 @@
+test_character: Hey there.
+player: Hi...
+test_character: Have you brought... the stuff?
+[signal arg="item:10"]
+player: Let me see...
+if {Items.10} == true:
+	test_character: I do have it.
+	test_character: Nice, thanks.
+else:
+	player: No...
+	test_character: Well, go and find it!
+	player: Okay, okay!

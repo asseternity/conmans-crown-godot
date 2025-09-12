@@ -83,6 +83,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="QuestsButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 197.0
 offset_top = 21.0
 offset_right = 1027.0

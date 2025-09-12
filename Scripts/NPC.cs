@@ -12,7 +12,7 @@ public partial class NPC : CharacterBody2D
 
 	private bool _playerInRange = false;
 
-	public void InitNPC()
+	public override void _Ready()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 

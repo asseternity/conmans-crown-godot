@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds6faydq5h3de"]
+[gd_scene load_steps=7 format=3 uid="uid://ds6faydq5h3de"]
 
 [ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUI.cs" id="1_xjnnq"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_gjn1n"]
 [ext_resource type="Texture2D" uid="uid://bqneojsgcldg8" path="res://Images/settings1-svgrepo-com.svg" id="3_1t2s1"]
 [ext_resource type="Texture2D" uid="uid://by3wfplwonu5s" path="res://Images/map-svgrepo-com.svg" id="3_gjn1n"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="3_x63ue"]
+[ext_resource type="Texture2D" uid="uid://bvsqh0vcmxcm5" path="res://Images/bag-svgrepo-com.svg" id="5_1t2s1"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -22,15 +23,15 @@ script = ExtResource("1_xjnnq")
 layout_mode = 0
 offset_left = 9.0
 offset_top = 7.0
-offset_right = 171.0
+offset_right = 222.0
 offset_bottom = 71.0
 theme = ExtResource("2_gjn1n")
 
 [node name="PauseButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 36.0
+offset_left = 40.0
 offset_top = 18.0
-offset_right = 844.0
+offset_right = 848.0
 offset_bottom = 826.0
 scale = Vector2(0.055, 0.055)
 theme_type_variation = &"FlatButton"
@@ -46,9 +47,9 @@ expand_icon = true
 
 [node name="MapButton" type="Button" parent="."]
 layout_mode = 1
-offset_left = 92.0
+offset_left = 98.0
 offset_top = 18.0
-offset_right = 900.0
+offset_right = 906.0
 offset_bottom = 826.0
 scale = Vector2(0.053, 0.053)
 theme_type_variation = &"FlatButton"
@@ -58,6 +59,23 @@ theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
 theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
 theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
 icon = ExtResource("3_gjn1n")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="InventoryButton" type="Button" parent="."]
+offset_left = 145.0
+offset_top = 14.0
+offset_right = 1126.0
+offset_bottom = 954.0
+scale = Vector2(0.053, 0.053)
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
+theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
+theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
+theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
+icon = ExtResource("5_1t2s1")
 flat = true
 icon_alignment = 1
 expand_icon = true

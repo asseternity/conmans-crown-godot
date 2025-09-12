@@ -1,0 +1,483 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4flcwhoq24mx"]
+
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_os1l6"]
+[ext_resource type="Script" uid="uid://dgm2uwf36pia8" path="res://Scripts/InventoryUI.cs" id="2_vr5og"]
+[ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/ui sound effects/African1.wav" id="3_vr5og"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_os1l6")
+script = ExtResource("2_vr5og")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(650, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -130.0
+offset_right = 295.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer5"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer6"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer7"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer8"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/MarginContainer9"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer5"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer6"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer7"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer8"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2/MarginContainer9"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer5"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer6"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer7"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer8"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer3/MarginContainer9"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer5"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer6"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer7"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer8"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="Panel/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlot" type="ColorRect" parent="Panel/Panel/VBoxContainer/HBoxContainer4/MarginContainer9"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = -31.0
+offset_right = 24.0
+offset_bottom = 9.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "X"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vr5og")

@@ -43,6 +43,7 @@ public partial class PauseMenu : Control
 	public void TogglePauseMenu()
 	{
 		var gameUI = GetNode<GameUI>("/root/MainScene/UIContainer/GameUI");
+		var inventoryUI = GetNode<InventoryUI>("/root/MainScene/UIContainer/InventoryUI");
 
 		if (pauseMenuShown)
 		{
@@ -56,6 +57,7 @@ public partial class PauseMenu : Control
 		{
 			_dimmer.Color = new Color(0, 0, 0, 0.5f);
 			gameUI.Hide();
+			inventoryUI.Hide();
 			PlayClickSound();
 			Show();
 			pauseMenuShown = true;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsmq2tx6qdqnh"]
+[gd_scene load_steps=8 format=3 uid="uid://dsmq2tx6qdqnh"]
 
 [ext_resource type="Script" uid="uid://c3pqrdg336tjr" path="res://Scripts/MainContainer.cs" id="1_6r8ts"]
 [ext_resource type="PackedScene" uid="uid://dscwrd0xcai4c" path="res://Scenes/level_apartment.tscn" id="2_1yfqn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8wwk3bi3hhx" path="res://Scenes/pause_menu.tscn" id="4_1yfqn"]
 [ext_resource type="PackedScene" uid="uid://dledlefde6t05" path="res://Scenes/duel_ui.tscn" id="4_76x1s"]
 [ext_resource type="PackedScene" uid="uid://druoqfme7ylyk" path="res://Scenes/popup_ui.tscn" id="6_cawxt"]
+[ext_resource type="PackedScene" uid="uid://d4flcwhoq24mx" path="res://Scenes/inventory_ui.tscn" id="7_hdykr"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_6r8ts")
@@ -23,3 +24,5 @@ script = ExtResource("1_6r8ts")
 [node name="GameUI" parent="UIContainer" instance=ExtResource("3_ctqoa")]
 
 [node name="PopupUI" parent="UIContainer" instance=ExtResource("6_cawxt")]
+
+[node name="InventoryUI" parent="UIContainer" instance=ExtResource("7_hdykr")]

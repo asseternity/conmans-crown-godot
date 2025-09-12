@@ -6,14 +6,17 @@ public partial class GameUI : Control
 	private AudioStreamPlayer _clickPlayer;
 	private Button _mapButton;
 	private Button _settingsButton;
+	private Button _inventoryButton;
 
 	public override void _Ready()
 	{
 		_clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
 		_mapButton = GetNode<Button>("MapButton");
 		_settingsButton = GetNode<Button>("PauseButton");
+		_inventoryButton = GetNode<Button>("InventoryButton");
 		_mapButton.Pressed += OnMapPressed;
 		_settingsButton.Pressed += OnSettingsPressed;
+		_inventoryButton.Pressed += OnInventoryPressed;
 	}
 
 	private void PlayClickSound()
@@ -30,7 +33,15 @@ public partial class GameUI : Control
 
 	private void OnSettingsPressed()
 	{
+		PlayClickSound();
 		var pauseUI = GetNode<PauseMenu>("/root/MainScene/UIContainer/PauseMenu");
 		pauseUI.TogglePauseMenu();
+	}
+
+	private void OnInventoryPressed()
+	{
+		PlayClickSound();
+		var inventoryUI = GetNode<InventoryUI>("/root/MainScene/UIContainer/InventoryUI");
+		inventoryUI.Show();
 	}
 }

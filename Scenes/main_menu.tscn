@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_ce3w2"]
-[ext_resource type="Texture2D" uid="uid://cyhj2kqyr86ic" path="res://Images/pexels-pramodtiwari-13669302.jpg" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://dck7rs0b2ndt5" path="res://Images/eaWmqrtRQBOtPvelhwE_8w.webp" id="3_ce3w2"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_ce3w2"]
 
 [node name="Control" type="Control"]
@@ -17,11 +17,11 @@ script = ExtResource("1_1ehe0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -111.0
-offset_top = -432.0
-offset_right = 3129.0
-offset_bottom = 3618.0
-scale = Vector2(0.41, 0.41)
+offset_left = -15.0
+offset_top = -588.0
+offset_right = 3225.0
+offset_bottom = 3462.0
+scale = Vector2(0.36, 0.36)
 theme = ExtResource("1_ce3w2")
 texture = ExtResource("3_ce3w2")
 
@@ -31,9 +31,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 67.0
-offset_top = -91.0
+offset_top = -28.0
 offset_right = 467.0
-offset_bottom = 129.0
+offset_bottom = 192.0
 grow_vertical = 2
 theme = ExtResource("1_ce3w2")
 theme_override_constants/separation = 20
@@ -61,14 +61,15 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-offset_left = 79.0
-offset_top = 125.0
-offset_right = 468.0
-offset_bottom = 209.0
+offset_left = 53.0
+offset_top = 131.0
+offset_right = 472.0
+offset_bottom = 252.0
 theme = ExtResource("1_ce3w2")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 60
-text = "The Conman's Crown"
+theme_override_font_sizes/font_size = 100
+text = "Burger prince"
+horizontal_alignment = 1
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ce3w2")

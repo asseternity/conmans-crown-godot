@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4flcwhoq24mx"]
+[gd_scene load_steps=5 format=3 uid="uid://d4flcwhoq24mx"]
 
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_os1l6"]
 [ext_resource type="Script" uid="uid://dgm2uwf36pia8" path="res://Scripts/InventoryUI.cs" id="2_vr5og"]
 [ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/ui sound effects/African1.wav" id="3_vr5og"]
+[ext_resource type="AudioStream" uid="uid://duaw4q0ms1h86" path="res://Audio/Minifantasy_Dungeon_SFX/04_sack_open_1.wav" id="4_brbew"]
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
@@ -528,3 +529,6 @@ text = "X"
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vr5og")
+
+[node name="PickUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_brbew")

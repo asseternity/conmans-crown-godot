@@ -6,56 +6,16 @@ public partial class InventoryUI : Control
 {
 	private Button _closeButton;
 	private AudioStreamPlayer _clickPlayer;
+	private AudioStreamPlayer _pickUpSound;
 	public List<Item> inventoryItems = new List<Item>();
 
 	public override void _Ready()
 	{
+		_clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
+		_pickUpSound = GetNode<AudioStreamPlayer>("PickUpSound");
 		_closeButton = GetNode<Button>("Panel/CloseButton");
 		_closeButton.Pressed += OnCloseButtonClicked;
-		_clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
 		Hide();
-
-		// testing
-		Item item0 = new Item(
-			0,
-			"TestItem",
-			"This item is for testing.",
-			"res://Images/icon.svg",
-			""
-		);
-		Item item1 = new Item(
-			1,
-			"TestItem",
-			"This item is for testing.",
-			"res://Images/icon.svg",
-			""
-		);
-		Item item2 = new Item(
-			2,
-			"TestItem",
-			"This item is for testing.",
-			"res://Images/icon.svg",
-			""
-		);
-		Item item3 = new Item(
-			3,
-			"TestItem",
-			"This item is for testing.",
-			"res://Images/icon.svg",
-			""
-		);
-		Item item4 = new Item(
-			4,
-			"TestItem",
-			"This item is for testing.",
-			"res://Images/icon.svg",
-			""
-		);
-		inventoryItems.Add(item0);
-		inventoryItems.Add(item1);
-		inventoryItems.Add(item2);
-		inventoryItems.Add(item3);
-		inventoryItems.Add(item4);
 		FillInventory();
 	}
 
@@ -63,6 +23,15 @@ public partial class InventoryUI : Control
 	{
 		_clickPlayer.Play();
 		Hide();
+	}
+
+	public void AddItem(Item item)
+	{
+		_pickUpSound.Play();
+		inventoryItems.Add(item);
+		FillInventory();
+		Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+		_engine.GS.Inventory = inventoryItems;
 	}
 
 	private void FillInventory()

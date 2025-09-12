@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://c5g4rshth8ujc"]
+[gd_scene load_steps=21 format=4 uid="uid://c5g4rshth8ujc"]
 
 [ext_resource type="Texture2D" uid="uid://d14g0rbqmhgac" path="res://Images/Free-Sky-with-Clouds-Background-Pixel-Art5.jpg" id="1_ej2d0"]
 [ext_resource type="Texture2D" uid="uid://bnserbyjn4dix" path="res://downloaded_assets/neo_zero_tiles_and_buildings_01.png" id="2_k48dx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ii71st2hijm" path="res://downloaded_assets/neo_zero_props_02_free.png" id="5_7lsp5"]
 [ext_resource type="Texture2D" uid="uid://cw5uywut62g54" path="res://downloaded_assets/neo_zero_props_and_items_01.png" id="6_at8rw"]
 [ext_resource type="Texture2D" uid="uid://br76buyr34uhl" path="res://downloaded_assets/neo_zero_tileset_02.png" id="7_ytmct"]
+[ext_resource type="PackedScene" uid="uid://06lewse3cqhs" path="res://Scenes/item.tscn" id="9_rfacr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k48dx"]
 texture = ExtResource("2_k48dx")
@@ -1178,7 +1179,7 @@ sources/3 = SubResource("TileSetAtlasSource_k3u5r")
 sources/4 = SubResource("TileSetAtlasSource_bjyd2")
 sources/5 = SubResource("TileSetAtlasSource_lw0nr")
 
-[node name="LevelTest2" type="Node2D"]
+[node name="LevelTest3" type="Node2D"]
 
 [node name="BackgroundControl" type="Control" parent="."]
 layout_mode = 3
@@ -1215,3 +1216,27 @@ tile_set = SubResource("TileSet_ikril")
 
 [node name="Player" parent="." instance=ExtResource("3_gvsrr")]
 position = Vector2(85, 24)
+
+[node name="Item2D2" parent="." instance=ExtResource("9_rfacr")]
+position = Vector2(70, 182)
+Id = 10
+ItemName = "Cool Thing"
+Description = "This thing is cool"
+IconPath = "res://Images/character-circus-clown-svgrepo-com.svg"
+Effect = "123"
+
+[node name="Item2D" parent="." instance=ExtResource("9_rfacr")]
+position = Vector2(135, 171)
+Id = 10
+ItemName = "Cool Thing"
+Description = "This thing is cool"
+IconPath = "res://Images/character-circus-clown-svgrepo-com.svg"
+Effect = "123"
+
+[node name="Item2D3" parent="." instance=ExtResource("9_rfacr")]
+position = Vector2(3, 175)
+Id = 10
+ItemName = "Cool Thing"
+Description = "This thing is cool"
+IconPath = "res://Images/character-circus-clown-svgrepo-com.svg"
+Effect = "123"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dsmq2tx6qdqnh"]
 
 [ext_resource type="Script" uid="uid://c3pqrdg336tjr" path="res://Scripts/MainContainer.cs" id="1_6r8ts"]
-[ext_resource type="PackedScene" uid="uid://dscwrd0xcai4c" path="res://Scenes/level_apartment.tscn" id="2_1yfqn"]
+[ext_resource type="PackedScene" uid="uid://c5g4rshth8ujc" path="res://Scenes/level_test_3.tscn" id="2_iv4mq"]
 [ext_resource type="PackedScene" uid="uid://ds6faydq5h3de" path="res://Scenes/game_ui.tscn" id="3_ctqoa"]
 [ext_resource type="PackedScene" uid="uid://cp8wwk3bi3hhx" path="res://Scenes/pause_menu.tscn" id="4_1yfqn"]
 [ext_resource type="PackedScene" uid="uid://dledlefde6t05" path="res://Scenes/duel_ui.tscn" id="4_76x1s"]
@@ -14,7 +14,7 @@ script = ExtResource("1_6r8ts")
 
 [node name="LevelHolder" type="Node2D" parent="."]
 
-[node name="ApartmentLevel" parent="LevelHolder" instance=ExtResource("2_1yfqn")]
+[node name="LevelTest3" parent="LevelHolder" instance=ExtResource("2_iv4mq")]
 
 [node name="UIContainer" type="CanvasLayer" parent="."]
 

@@ -15,7 +15,6 @@ public partial class NPC : CharacterBody2D
 	public void InitNPC()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
-		GD.Print($"NPC ready. Timeline: {TimelinePath}");
 
 		// C# event subscription syntax
 		var area = GetNode<Area2D>("InteractionArea");

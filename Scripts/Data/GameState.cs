@@ -15,6 +15,8 @@ public partial class GameState
 	public Combatant PlayerObject { get; set; }
 	public List<string> Flags { get; set; }
 	public List<string> RoundLog { get; set; }
+	public List<Item> Inventory { get; set; }
+	public List<Quest> ActiveQuests { get; set; }
 
 	public GameState(Combatant player)
 	{

@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://16c05mf44mk0"]
+
+[ext_resource type="Script" uid="uid://bgsvm8y3dfa6o" path="res://Scripts/QuestUI.cs" id="1_vg0qh"]
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_mv1j6"]
+[ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/ui sound effects/African1.wav" id="3_18kpa"]
+
+[node name="QuestUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vg0qh")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mv1j6")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.5
+offset_top = 9.0
+offset_right = 38.5
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Quests"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -126.0
+offset_right = 275.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(550, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "- No active quests"
+
+[node name="CloseButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -41.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 42.0
+grow_horizontal = 0
+theme = ExtResource("2_mv1j6")
+theme_override_font_sizes/font_size = 30
+text = "X"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_18kpa")

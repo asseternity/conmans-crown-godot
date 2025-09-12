@@ -8,7 +8,8 @@ public partial class QuestUI : Control
     public ScrollContainer _scrollContainer;
     public VBoxContainer _vBoxContainer;
     private AudioStreamPlayer _clickPlayer;
-    private List<Quest> currentQuests = new List<Quest>();
+    public List<Quest> currentQuests = new List<Quest>();
+    public List<Quest> allQuests = new List<Quest>();
 
     public override void _Ready()
     {
@@ -18,25 +19,29 @@ public partial class QuestUI : Control
         _vBoxContainer = GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer");
         _clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
         Hide();
+        UpdateQuestUI();
+        CreateQuests();
+    }
 
-        // testing
+    private void CreateQuests()
+    {
+        // --- quest 1 ---
         var quest1Stages = new List<QuestStage>
         {
             new QuestStage(0, "Find the magic sword"),
             new QuestStage(1, "Return to the village elder")
         };
+        var quest1 = new Quest(1, "Hero’s Journey", quest1Stages);
+        allQuests.Add(quest1);
+
+        // --- quest 2 ---
         var quest2Stages = new List<QuestStage>
         {
             new QuestStage(0, "Collect 5 herbs"),
             new QuestStage(1, "Brew the healing potion")
         };
-
-        var quest1 = new Quest(1, "Hero’s Journey", quest1Stages);
         var quest2 = new Quest(2, "Herbal Remedy", quest2Stages);
-
-        currentQuests.Add(quest1);
-        currentQuests.Add(quest2);
-        UpdateQuestUI();
+        allQuests.Add(quest2);
     }
 
     private void OnCloseButtonClicked()
@@ -62,9 +67,58 @@ public partial class QuestUI : Control
 
         foreach (var quest in currentQuests)
         {
-            string displayText = $"• {quest.Name} - {quest.Stage.Description}";
+            string displayText =
+                $"• {quest.Name} - {quest.QuestStages[quest.CurrentStageID].Description}";
             var label = new Label { Text = displayText };
             _vBoxContainer.AddChild(label);
         }
+    }
+
+    public void ProgressQuest(Quest quest)
+    {
+        // [_] hook up progress quest when picking up items / completing duels
+
+        // if the quest is already active => progress one stage or complete it if the stage is final
+        for (int i = 0; i < currentQuests.Count; i++)
+        {
+            if (currentQuests[i].ID == quest.ID)
+            {
+                if (currentQuests[i].CurrentStageID == currentQuests[i].QuestStages.Count - 1)
+                {
+                    currentQuests[i].FullyFinished = true;
+                    // [_] some UI feedback
+                }
+                else
+                {
+                    currentQuests[i].CurrentStageID++;
+                    // [_] some UI feedback
+                }
+                UpdateQuestUI();
+                return;
+            }
+        }
+        // if the quest is not active yet => move it to active quests
+        for (int j = 0; j < allQuests.Count; j++)
+        {
+            if (allQuests[j].ID == quest.ID)
+            {
+                currentQuests.Add(allQuests[j]);
+                UpdateQuestUI();
+                // [_] some UI feedback
+                return;
+            }
+        }
+    }
+
+    public Quest FindQuest(int questID)
+    {
+        for (int i = 0; i < allQuests.Count; i++)
+        {
+            if (allQuests[i].ID == questID)
+            {
+                return allQuests[i];
+            }
+        }
+        return null;
     }
 }

@@ -6,8 +6,8 @@ public class Quest
 {
     public int ID { get; set; }
     public string Name { get; set; }
-    List<QuestStage> QuestStages = new List<QuestStage>();
-    public QuestStage Stage { get; set; }
+    public List<QuestStage> QuestStages = new List<QuestStage>();
+    public int CurrentStageID { get; set; }
     public bool FullyFinished { get; set; }
 
     public Quest(int id, string name, List<QuestStage> questStages)
@@ -15,7 +15,7 @@ public class Quest
         ID = id;
         Name = name;
         QuestStages = questStages;
-        Stage = questStages[0];
+        CurrentStageID = 0;
         FullyFinished = false;
     }
 }

@@ -99,7 +99,6 @@ public partial class InventoryUI : Control
 				icon.AnchorBottom = 1;
 				icon.TooltipText = $"{currentItem.Name}. {currentItem.Description}";
 				slot.AddChild(icon);
-				// [_] save inventory to gameState
 			}
 		}
 	}

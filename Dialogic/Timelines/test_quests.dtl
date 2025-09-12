@@ -1,0 +1,5 @@
+test_character: Hi.
+player: Yo.
+test_character: Here is a quest.
+[signal arg="quest:1"]
+player: Fine.

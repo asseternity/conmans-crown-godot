@@ -88,6 +88,17 @@ public partial class MainContainer : Node
 					}
 				}
 			}
+			else if (str.StartsWith("quest"))
+			{
+				GD.Print($"[Engine] Signal type: string, quest");
+				string questID = str.Substring(6);
+				var questUI = GetNode<QuestUI>("/root/MainScene/UIContainer/QuestUI");
+				Quest foundQuest = questUI.FindQuest(questID.ToInt());
+				if (foundQuest != null)
+				{
+					questUI.ProgressQuest(foundQuest);
+				}
+			}
 		}
 	}
 

@@ -31,6 +31,7 @@ directories/dtl_directory={
 "intro": "res://dialogic/Timelines/intro.dtl",
 "lose_timeline": "res://dialogic/Timelines/lose_timeline.dtl",
 "test_items": "res://dialogic/Timelines/test_items.dtl",
+"test_quests": "res://dialogic/Timelines/test_quests.dtl",
 "test_timeline": "res://dialogic/Timelines/test_timeline.dtl",
 "win_timeline": "res://dialogic/Timelines/win_timeline.dtl"
 }

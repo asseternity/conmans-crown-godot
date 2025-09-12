@@ -1244,5 +1244,5 @@ Effect = "123"
 
 [node name="NPC" parent="." instance=ExtResource("10_7lsp5")]
 position = Vector2(308, 127)
-TimelinePath = "res://dialogic/Timelines/test_items.dtl"
+TimelinePath = "res://dialogic/Timelines/test_quests.dtl"
 SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfd5e5kw310b3"]
+[gd_scene load_steps=7 format=3 uid="uid://dfd5e5kw310b3"]
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_ce3w2"]
-[ext_resource type="Texture2D" uid="uid://dck7rs0b2ndt5" path="res://Images/eaWmqrtRQBOtPvelhwE_8w.webp" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://mnxlwlmag0u1" path="res://downloaded_assets/CityLayers/back.png" id="3_opfnp"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://breq2e4hdjvx6" path="res://downloaded_assets/CityLayers/middle.png" id="4_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://c0hp7gt6l6kaf" path="res://downloaded_assets/CityLayers/foreground.png" id="5_yhxw7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,58 +17,111 @@ grow_vertical = 2
 theme = ExtResource("1_ce3w2")
 script = ExtResource("1_1ehe0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -15.0
-offset_top = -588.0
-offset_right = 3225.0
-offset_bottom = 3462.0
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -6.0
+offset_top = -413.0
+offset_right = 3294.0
+offset_bottom = 4615.0
 scale = Vector2(0.36, 0.36)
 theme = ExtResource("1_ce3w2")
-texture = ExtResource("3_ce3w2")
+texture = ExtResource("3_opfnp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 0.999986
+offset_top = -345.0
+offset_right = 3241.0
+offset_bottom = 2872.0
+scale = Vector2(0.36, 0.36)
+theme = ExtResource("1_ce3w2")
+texture = ExtResource("4_cp0ys")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.71661e-05
+offset_top = 126.0
+offset_right = 3240.0
+offset_bottom = 1684.0
+scale = Vector2(0.36, 0.36)
+theme = ExtResource("1_ce3w2")
+texture = ExtResource("5_yhxw7")
+
+[node name="Dimmer" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.517647)
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 67.0
-offset_top = -28.0
-offset_right = 467.0
-offset_bottom = 192.0
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.515, 0.515)
+pivot_offset = Vector2(250, 200)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 170.0
+grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ce3w2")
 theme_override_constants/separation = 20
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 35
 text = "Start Game"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 35
 text = "Quit"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
-offset_left = 53.0
-offset_top = 131.0
-offset_right = 472.0
-offset_bottom = 252.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.5
+offset_top = -175.5
+offset_right = 209.5
+offset_bottom = -54.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_ce3w2")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 100
 text = "Burger prince"
 horizontal_alignment = 1

@@ -31,7 +31,7 @@ public partial class NPC : CharacterBody2D
 				var sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 				if (sprite != null)
 				{
-					float targetWidth = 32f; // always make NPCs 32px wide
+					float targetWidth = 16f; // always make NPCs 32px wide
 					ApplyTextureAndResize(sprite, texture, targetWidth);
 				}
 				else

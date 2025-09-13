@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxmpys81qvmhn" path="res://Scenes/NPC.tscn" id="3_x4433"]
 
 [node name="LevelTest2" type="Node2D"]
+y_sort_enabled = true
 
 [node name="BackgroundControl" type="Control" parent="."]
 layout_mode = 3

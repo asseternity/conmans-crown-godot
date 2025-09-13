@@ -76,7 +76,7 @@ public partial class QuestUI : Control
 
     public void ProgressQuest(Quest quest)
     {
-        // [_] hook up progress quest when picking up items / completing duels
+        // [_] hook up progress quest when picking up items
 
         // if the quest is already active => progress one stage or complete it if the stage is final
         for (int i = 0; i < currentQuests.Count; i++)

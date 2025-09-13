@@ -1181,6 +1181,7 @@ sources/4 = SubResource("TileSetAtlasSource_bjyd2")
 sources/5 = SubResource("TileSetAtlasSource_lw0nr")
 
 [node name="LevelTest3" type="Node2D"]
+y_sort_enabled = true
 
 [node name="BackgroundControl" type="Control" parent="."]
 layout_mode = 3

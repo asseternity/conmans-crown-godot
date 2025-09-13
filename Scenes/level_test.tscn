@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cxmpys81qvmhn" path="res://Scenes/NPC.tscn" id="3_d8tg7"]
 
 [node name="Level_Test" type="Node2D"]
+y_sort_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1

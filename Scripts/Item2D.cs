@@ -106,6 +106,11 @@ public partial class Item2D : CharacterBody2D
                     popup.ShowWarning($"You are too tired to be {activityName} today.");
                 }
             }
+            else if (ItemName.StartsWith("door"))
+            {
+                string levelPath = ItemName.Substring(5);
+                EnterDoor(levelPath);
+            }
             else
             {
                 PickUp();
@@ -154,8 +159,13 @@ public partial class Item2D : CharacterBody2D
         await fade.FadeOut();
         Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
         _engine.GS.ActivityDoneToday = true;
-        // [_] do the activity
         await fade.FadeIn();
+    }
+
+    public async void EnterDoor(string levelPath)
+    {
+        Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+        await _engine.LoadLevelInMain(levelPath);
     }
 
     private void ApplyTextureAndResize(Sprite2D sprite, Texture2D texture, float targetWidth)

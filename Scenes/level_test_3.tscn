@@ -1257,6 +1257,12 @@ TimelinePath = "res://dialogic/Timelines/test_quests.dtl"
 SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
 daysAvailable = "2,4,5"
 
+[node name="Door1" parent="." instance=ExtResource("9_rfacr")]
+position = Vector2(55, -13)
+Id = 10
+ItemName = "door:res://Scenes/level_apartment.tscn"
+IconPath = "res://downloaded_assets/door.png"
+
 [node name="Activity1" parent="." instance=ExtResource("9_rfacr")]
 position = Vector2(-304, 114)
 Id = 10

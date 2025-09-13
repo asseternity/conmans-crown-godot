@@ -25,6 +25,7 @@ public partial class Item2D : CharacterBody2D
     private CollisionShape2D _interactionArea;
     private Sprite2D _indicator = null!;
     private bool _playerInRange = false;
+    private string _currentActivityName = "";
 
     public override void _Ready()
     {
@@ -78,6 +79,7 @@ public partial class Item2D : CharacterBody2D
         {
             _indicator.Visible = false;
             _playerInRange = false;
+            _currentActivityName = "";
         }
     }
 
@@ -85,14 +87,28 @@ public partial class Item2D : CharacterBody2D
     {
         if (_playerInRange && Input.IsActionJustPressed("interact"))
         {
-            if (ItemName != "bed")
-            {
-                PickUp();
-            }
-            else
+            if (ItemName == "bed")
             {
                 var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
                 popup.ShowQuestion("Sleep for a day?", this.Sleep);
+            }
+            else if (ItemName.StartsWith("activity"))
+            {
+                Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+                var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
+                string activityName = ItemName.Substring(9);
+                if (!_engine.GS.ActivityDoneToday)
+                {
+                    popup.ShowQuestion($"Start {activityName}?", this.StartActivity);
+                }
+                else
+                {
+                    popup.ShowWarning($"You are too tired to be {activityName} today.");
+                }
+            }
+            else
+            {
+                PickUp();
             }
         }
     }
@@ -113,6 +129,7 @@ public partial class Item2D : CharacterBody2D
         var gameUI = GetNode<GameUI>("/root/MainScene/UIContainer/GameUI");
         gameUI._calendarTextLabel.Text =
             $"{_engine.GS.Seasons[_engine.GS.CurrentSeasonIndex]}, {_engine.GS.CurrentDay.ToString()}";
+        _currentActivityName = "";
 
         // wait a bit before scouring the Nodes
         for (int i = 0; i < 5; i++)
@@ -128,6 +145,16 @@ public partial class Item2D : CharacterBody2D
                 npc.ReloadAvailability();
             }
         }
+        await fade.FadeIn();
+    }
+
+    public async void StartActivity()
+    {
+        var fade = (FadeOverlay)GetNode("/root/FadeOverlay");
+        await fade.FadeOut();
+        Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+        _engine.GS.ActivityDoneToday = true;
+        // [_] do the activity
         await fade.FadeIn();
     }
 

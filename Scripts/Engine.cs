@@ -138,6 +138,8 @@ public partial class Engine : Node
 				GS.CurrentSeasonIndex = 0;
 		}
 
+		GS.ActivityDoneToday = false;
+
 		GD.Print($"[Engine] New Date: {GS.CurrentDay} {GS.Seasons[GS.CurrentSeasonIndex]}");
 	}
 }

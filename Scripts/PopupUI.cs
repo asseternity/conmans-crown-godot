@@ -55,7 +55,7 @@ public partial class PopupUI : Control
 		}
 	}
 
-	public void ShowPopup(string id, List<string> slides)
+	public void ShowTutorial(string id, List<string> slides)
 	{
 		if (_shownTutorials.Contains(id))
 			return;
@@ -79,6 +79,18 @@ public partial class PopupUI : Control
 		// also save this state to GameState
 		var engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		engine.GS.Flags.Add($"tutorial_{id}");
+	}
+
+	public void ShowWarning(string warningText)
+	{
+		_confirmButton.Visible = false;
+		_cancelButton.Visible = false;
+		_okButton.Visible = true;
+
+		_popupText.Text = warningText;
+		_okButton.Text = "OK";
+		_currentSlides = null;
+		Show();
 	}
 
 	public void ShowQuestion(string questionText, Action callback)

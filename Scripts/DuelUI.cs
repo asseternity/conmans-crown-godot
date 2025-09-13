@@ -65,7 +65,7 @@ public partial class DuelUI : Control
 				"Your Power fuels attacks. Use the slider to choose how much to spend. Spend lightly (<3) and you’ll recover some Power next turn. Go all-in, and you risk running dry.",
 				"Hit Attack when you’ve chosen your Power. High numbers swing hard, but leave you exhausted. Small strikes are safer — and help Power return."
 			};
-			popup.ShowPopup("duel_intro_1", tutorial_1);
+			popup.ShowTutorial("duel_intro_1", tutorial_1);
 		}
 
 		// clear gamestate log (Fixed C# initializer)
@@ -158,7 +158,7 @@ public partial class DuelUI : Control
 				"The Combat Log tells the story of each clash. Watch it to learn your enemy’s habits and adjust your tactics.",
 				"Alright, enough chatter. You’ve got the tools — now go mess him up!"
 			};
-			popup.ShowPopup("duel_intro_2", tutorial_2);
+			popup.ShowTutorial("duel_intro_2", tutorial_2);
 		}
 	}
 

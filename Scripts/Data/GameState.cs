@@ -20,6 +20,7 @@ public partial class GameState
 	public int CurrentDay { get; set; }
 	public List<string> Seasons = new List<string> { "Spring", "Summer", "Fall", "Winter", };
 	public int CurrentSeasonIndex { get; set; }
+	public bool ActivityDoneToday { get; set; }
 
 	public GameState(Combatant player)
 	{
@@ -32,5 +33,6 @@ public partial class GameState
 		RoundLog = new List<string>();
 		CurrentDay = 1;
 		CurrentSeasonIndex = 1;
+		ActivityDoneToday = false;
 	}
 }

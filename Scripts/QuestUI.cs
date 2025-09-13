@@ -96,12 +96,10 @@ public partial class QuestUI : Control
                 if (currentQuests[i].CurrentStageID == currentQuests[i].QuestStages.Count - 1)
                 {
                     currentQuests[i].FullyFinished = true;
-                    // [_] some UI feedback
                 }
                 else
                 {
                     currentQuests[i].CurrentStageID++;
-                    // [_] some UI feedback
                 }
                 UpdateQuestUI();
                 return;
@@ -121,7 +119,6 @@ public partial class QuestUI : Control
                 }
                 currentQuests.Add(allQuests[j]);
                 UpdateQuestUI();
-                // [_] some UI feedback
                 return;
             }
         }

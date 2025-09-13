@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class Item2D : CharacterBody2D
@@ -112,6 +113,21 @@ public partial class Item2D : CharacterBody2D
         var gameUI = GetNode<GameUI>("/root/MainScene/UIContainer/GameUI");
         gameUI._calendarTextLabel.Text =
             $"{_engine.GS.Seasons[_engine.GS.CurrentSeasonIndex]}, {_engine.GS.CurrentDay.ToString()}";
+
+        // wait a bit before scouring the Nodes
+        for (int i = 0; i < 5; i++)
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        var main = GetTree().Root.GetNode<MainContainer>("MainScene");
+        List<Node> npcNodes = main.FindChildrenByName("NPC");
+
+        // reload NPCs
+        foreach (Node npcNode in npcNodes)
+        {
+            if (npcNode is NPC npc) // check if the node has the NPC script attached
+            {
+                npc.ReloadAvailability();
+            }
+        }
         await fade.FadeIn();
     }
 

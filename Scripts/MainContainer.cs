@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -150,5 +151,29 @@ public partial class MainContainer : Node
 
 		// Dialogic 2 exposes `set_variable(name, value)`
 		varStore.Call("set_variable", path, value);
+	}
+
+	public List<Node> FindChildrenByName(string name)
+	{
+		List<Node> matching = new List<Node>();
+		FindChildrenByNameRecursive(this, name, matching);
+		return matching;
+	}
+
+	private void FindChildrenByNameRecursive(Node parent, string name, List<Node> list)
+	{
+		if (parent == null)
+			return;
+
+		foreach (Node child in parent.GetChildren())
+		{
+			if (child == null)
+				continue;
+
+			if (child.Name == name)
+				list.Add(child);
+
+			FindChildrenByNameRecursive(child, name, list);
+		}
 	}
 }

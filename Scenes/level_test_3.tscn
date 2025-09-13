@@ -1253,3 +1253,4 @@ Effect = "123"
 position = Vector2(308, 127)
 TimelinePath = "res://dialogic/Timelines/test_quests.dtl"
 SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
+daysAvailable = "2,4,5"

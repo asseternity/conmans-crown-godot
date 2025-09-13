@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cxmpys81qvmhn" path="res://Scenes/NPC.tscn" id="3_d8tg7"]
 
 [node name="Level_Test" type="Node2D"]
-y_sort_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -18,4 +17,6 @@ position = Vector2(85, 24)
 
 [node name="NPC" parent="." groups=["NPCs"] instance=ExtResource("3_d8tg7")]
 position = Vector2(48, -56)
-TimelinePath = "res://dialogic/Reverse Clockwork/indie_horror_series/new_gig/new_gig.dtl"
+TimelinePath = "res://dialogic/Timelines/test_items.dtl"
+SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
+daysAvailable = "2,3,4"

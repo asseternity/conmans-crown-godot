@@ -62,7 +62,8 @@ public partial class InventoryUI : Control
 		);
 
 		// find every "InventorySlot" node
-		List<Node> inventorySlots = FindChildrenByName("InventorySlot");
+		var main = GetTree().Root.GetNode<MainContainer>("MainScene");
+		List<Node> inventorySlots = main.FindChildrenByName("InventorySlot");
 
 		// change the type of InventorySlot to image
 		// change image of InventorySlot to the Item's icon
@@ -124,29 +125,5 @@ public partial class InventoryUI : Control
 			}
 		}
 		return null;
-	}
-
-	public List<Node> FindChildrenByName(string name)
-	{
-		List<Node> matching = new List<Node>();
-		FindChildrenByNameRecursive(this, name, matching);
-		return matching;
-	}
-
-	private void FindChildrenByNameRecursive(Node parent, string name, List<Node> list)
-	{
-		if (parent == null)
-			return;
-
-		foreach (Node child in parent.GetChildren())
-		{
-			if (child == null)
-				continue;
-
-			if (child.Name == name)
-				list.Add(child);
-
-			FindChildrenByNameRecursive(child, name, list);
-		}
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class NPC : CharacterBody2D
@@ -8,12 +9,15 @@ public partial class NPC : CharacterBody2D
 
 	[Export]
 	public string SpritePath = "";
+
+	[Export]
+	public string daysAvailable;
 	private Engine _engine;
 
 	private bool _playerInRange = false;
 	private Sprite2D _indicator = null!;
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		_engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 
@@ -43,6 +47,10 @@ public partial class NPC : CharacterBody2D
 					_indicator.Position = new Vector2(0, -20); // above the item
 					_indicator.Visible = false;
 					AddChild(_indicator);
+					// Wait a few frames to ensure Engine + GS are fully initialized
+					for (int i = 0; i < 5; i++)
+						await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+					ReloadAvailability();
 				}
 				else
 				{
@@ -53,6 +61,30 @@ public partial class NPC : CharacterBody2D
 			{
 				GD.PrintErr($"Failed to load texture at {SpritePath}");
 			}
+		}
+	}
+
+	public void ReloadAvailability()
+	{
+		string[] days = daysAvailable.Split(',');
+		Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+
+		int currentDay = _engine.GS.CurrentDay;
+		bool foundMatch = false;
+		for (int i = 0; i < days.Length; i++)
+		{
+			if (currentDay == days[i].ToInt())
+			{
+				foundMatch = true;
+			}
+		}
+		if (!foundMatch)
+		{
+			SetActive(false);
+		}
+		else
+		{
+			SetActive(true);
 		}
 	}
 
@@ -119,5 +151,26 @@ public partial class NPC : CharacterBody2D
 
 		float scaleFactor = targetWidth / texSize.X;
 		sprite.Scale = new Vector2(scaleFactor, scaleFactor);
+	}
+
+	public void SetActive(bool active)
+	{
+		Visible = active; // hide sprite
+		SetPhysicsProcess(active);
+		SetProcess(active);
+
+		// Disable collision shapes
+		var collision = GetNode<CollisionShape2D>("CollisionShape2D");
+		if (collision != null)
+			collision.Disabled = !active;
+
+		// Disable interaction area
+		var area = GetNode<Area2D>("InteractionArea");
+		if (area != null)
+			area.Monitoring = active;
+
+		// Hide indicator
+		if (_indicator != null)
+			_indicator.Visible = active;
 	}
 }

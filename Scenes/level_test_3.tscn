@@ -1258,7 +1258,7 @@ SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
 daysAvailable = "2,4,5"
 
 [node name="Activity1" parent="." instance=ExtResource("9_rfacr")]
-position = Vector2(-306, 117)
+position = Vector2(-304, 114)
 Id = 10
 ItemName = "activity:dancing"
 IconPath = "res://downloaded_assets/door.png"

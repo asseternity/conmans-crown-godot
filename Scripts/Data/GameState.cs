@@ -12,6 +12,9 @@ public partial class GameState
 	public string? CurrentTimelinePath { get; set; }
 	public int CurrentEventIndex { get; set; } = 0;
 
+	// To persist player's world position, store loaded level path
+	public string CurrentLevelPath { get; set; }
+
 	public Combatant PlayerObject { get; set; }
 	public List<string> Flags { get; set; }
 	public List<string> RoundLog { get; set; }
@@ -27,6 +30,7 @@ public partial class GameState
 		CurrentDuel = null;
 		PostDuelTimelinePath = null;
 		CurrentTimelinePath = null;
+		CurrentLevelPath = null;
 		CurrentEventIndex = 0;
 		PlayerObject = player;
 		Flags = new List<string>();

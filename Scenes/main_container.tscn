@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsmq2tx6qdqnh"]
+[gd_scene load_steps=10 format=3 uid="uid://dsmq2tx6qdqnh"]
 
 [ext_resource type="Script" uid="uid://c3pqrdg336tjr" path="res://Scripts/MainContainer.cs" id="1_6r8ts"]
 [ext_resource type="PackedScene" uid="uid://c5g4rshth8ujc" path="res://Scenes/level_test_3.tscn" id="2_iv4mq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://druoqfme7ylyk" path="res://Scenes/popup_ui.tscn" id="6_cawxt"]
 [ext_resource type="PackedScene" uid="uid://d4flcwhoq24mx" path="res://Scenes/inventory_ui.tscn" id="7_hdykr"]
 [ext_resource type="PackedScene" uid="uid://16c05mf44mk0" path="res://Scenes/quest_ui.tscn" id="8_iv4mq"]
+[ext_resource type="PackedScene" uid="uid://cwvf6hb0vngn5" path="res://Scenes/stats_ui.tscn" id="9_0lier"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_6r8ts")
@@ -29,3 +30,5 @@ script = ExtResource("1_6r8ts")
 [node name="InventoryUI" parent="UIContainer" instance=ExtResource("7_hdykr")]
 
 [node name="QuestUI" parent="UIContainer" instance=ExtResource("8_iv4mq")]
+
+[node name="StatsUI" parent="UIContainer" instance=ExtResource("9_0lier")]

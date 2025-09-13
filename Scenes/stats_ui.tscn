@@ -1,0 +1,242 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwvf6hb0vngn5"]
+
+[ext_resource type="Script" uid="uid://nn72sbhg3mrf" path="res://Scripts/StatsUI.cs" id="1_yqqf3"]
+[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_yvg2w"]
+[ext_resource type="FontFile" uid="uid://cf2ffof2j1pxp" path="res://Fonts/Borisna.ttf" id="3_wvi1r"]
+[ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/ui sound effects/African1.wav" id="4_yvg2w"]
+
+[node name="StatsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqqf3")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_yvg2w")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.0
+offset_top = 10.0
+offset_right = 23.0
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "STATS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -132.0
+offset_right = 250.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="NegativeSlider" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider"]
+custom_minimum_size = Vector2(250, 30)
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 1: 50%"
+vertical_alignment = 2
+
+[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_right = -5.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 2: 50%"
+vertical_alignment = 2
+
+[node name="NegativeSlider2" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider2"]
+custom_minimum_size = Vector2(250, 30)
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider2"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 1: 50%"
+vertical_alignment = 2
+
+[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_right = -5.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 2: 50%"
+vertical_alignment = 2
+
+[node name="NegativeSlider3" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider3"]
+custom_minimum_size = Vector2(250, 30)
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider3"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 1: 50%"
+vertical_alignment = 2
+
+[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider3"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_right = -5.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 2: 50%"
+vertical_alignment = 2
+
+[node name="NegativeSlider4" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider4"]
+custom_minimum_size = Vector2(250, 30)
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider4"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 1: 50%"
+vertical_alignment = 2
+
+[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider4"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_right = -5.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 2: 50%"
+vertical_alignment = 2
+
+[node name="NegativeSlider5" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider5"]
+custom_minimum_size = Vector2(250, 30)
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider5"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 1: 50%"
+vertical_alignment = 2
+
+[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider5"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_right = -5.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Stat 2: 50%"
+vertical_alignment = 2
+
+[node name="CloseButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = -6.0
+offset_right = 10.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme = ExtResource("2_yvg2w")
+theme_override_font_sizes/font_size = 30
+text = "X"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yvg2w")

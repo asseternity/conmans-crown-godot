@@ -9,6 +9,7 @@ public partial class GameUI : Control
 	private Button _settingsButton;
 	private Button _inventoryButton;
 	private Button _questsButton;
+	private Button _statsButton;
 	private Label _taskCompletedLabel;
 	public Label _calendarTextLabel;
 
@@ -20,12 +21,14 @@ public partial class GameUI : Control
 		_settingsButton = GetNode<Button>("PauseButton");
 		_inventoryButton = GetNode<Button>("InventoryButton");
 		_questsButton = GetNode<Button>("QuestsButton");
+		_statsButton = GetNode<Button>("StatsButton");
 		_taskCompletedLabel = GetNode<Label>("Panel/TaskCompletedLabel");
 		_calendarTextLabel = GetNode<Label>("Calendar/Panel/CalendarText");
 		_mapButton.Pressed += OnMapPressed;
 		_settingsButton.Pressed += OnSettingsPressed;
 		_inventoryButton.Pressed += OnInventoryPressed;
 		_questsButton.Pressed += OnQuestsPressed;
+		_statsButton.Pressed += OnStatsPressed;
 
 		// hide quest notification by default
 		_taskCompletedLabel.Visible = false;
@@ -68,6 +71,13 @@ public partial class GameUI : Control
 		PlayClickSound();
 		var questUI = GetNode<QuestUI>("/root/MainScene/UIContainer/QuestUI");
 		questUI.Show();
+	}
+
+	private void OnStatsPressed()
+	{
+		PlayClickSound();
+		var statsUI = GetNode<StatsUI>("/root/MainScene/UIContainer/StatsUI");
+		statsUI.Show();
 	}
 
 	public void ShowQuestNotification(string taskText)

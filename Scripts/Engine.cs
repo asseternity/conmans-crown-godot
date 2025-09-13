@@ -118,4 +118,26 @@ public partial class Engine : Node
 		if (fade != null)
 			await fade.FadeIn();
 	}
+
+	public void ProgressDay()
+	{
+		if (GS == null)
+			return;
+
+		// Advance the day
+		GS.CurrentDay++;
+
+		// Check if month should advance
+		if (GS.CurrentDay > 30)
+		{
+			GS.CurrentDay = 1;
+			GS.CurrentSeasonIndex++;
+
+			// Wrap around at the end of the year
+			if (GS.CurrentSeasonIndex >= 4)
+				GS.CurrentSeasonIndex = 0;
+		}
+
+		GD.Print($"[Engine] New Date: {GS.CurrentDay} {GS.Seasons[GS.CurrentSeasonIndex]}");
+	}
 }

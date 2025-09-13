@@ -8,7 +8,7 @@ public partial class GameState
 	public Duel? CurrentDuel { get; set; }
 	public string PostDuelTimelinePath { get; set; }
 
-	// If you want to persist where Dialogic was, store timeline path + event index:
+	// To persist where Dialogic was, store timeline path + event index:
 	public string? CurrentTimelinePath { get; set; }
 	public int CurrentEventIndex { get; set; } = 0;
 
@@ -17,6 +17,9 @@ public partial class GameState
 	public List<string> RoundLog { get; set; }
 	public List<Item> Inventory { get; set; }
 	public List<Quest> ActiveQuests { get; set; }
+	public int CurrentDay { get; set; }
+	public List<string> Seasons = new List<string> { "Spring", "Summer", "Fall", "Winter", };
+	public int CurrentSeasonIndex { get; set; }
 
 	public GameState(Combatant player)
 	{
@@ -27,5 +30,7 @@ public partial class GameState
 		PlayerObject = player;
 		Flags = new List<string>();
 		RoundLog = new List<string>();
+		CurrentDay = 1;
+		CurrentSeasonIndex = 1;
 	}
 }

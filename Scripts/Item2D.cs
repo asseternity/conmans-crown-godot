@@ -84,7 +84,15 @@ public partial class Item2D : CharacterBody2D
     {
         if (_playerInRange && Input.IsActionJustPressed("interact"))
         {
-            PickUp();
+            if (ItemName != "bed")
+            {
+                PickUp();
+            }
+            else
+            {
+                var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
+                popup.ShowQuestion("Sleep for a day?", this.Sleep);
+            }
         }
     }
 
@@ -93,6 +101,18 @@ public partial class Item2D : CharacterBody2D
         var inventoryUI = GetNode<InventoryUI>("/root/MainScene/UIContainer/InventoryUI");
         inventoryUI.AddItem(ItemData);
         QueueFree();
+    }
+
+    public async void Sleep()
+    {
+        var fade = (FadeOverlay)GetNode("/root/FadeOverlay");
+        await fade.FadeOut();
+        Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+        _engine.ProgressDay();
+        var gameUI = GetNode<GameUI>("/root/MainScene/UIContainer/GameUI");
+        gameUI._calendarTextLabel.Text =
+            $"{_engine.GS.Seasons[_engine.GS.CurrentSeasonIndex]}, {_engine.GS.CurrentDay.ToString()}";
+        await fade.FadeIn();
     }
 
     private void ApplyTextureAndResize(Sprite2D sprite, Texture2D texture, float targetWidth)

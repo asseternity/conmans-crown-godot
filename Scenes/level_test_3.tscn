@@ -1227,6 +1227,12 @@ Description = "This thing is cool"
 IconPath = "res://Images/character-circus-clown-svgrepo-com.svg"
 Effect = "quest:1"
 
+[node name="Bed" parent="." instance=ExtResource("9_rfacr")]
+position = Vector2(-108, 140)
+Id = 10
+ItemName = "bed"
+IconPath = "res://Images/1yhw0o258o1z.png"
+
 [node name="Clown Head 2" parent="." instance=ExtResource("9_rfacr")]
 position = Vector2(135, 171)
 Id = 10

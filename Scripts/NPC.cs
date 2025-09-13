@@ -11,6 +11,7 @@ public partial class NPC : CharacterBody2D
 	private Engine _engine;
 
 	private bool _playerInRange = false;
+	private Sprite2D _indicator = null!;
 
 	public override void _Ready()
 	{
@@ -21,18 +22,27 @@ public partial class NPC : CharacterBody2D
 		area.BodyEntered += OnBodyEntered;
 		area.BodyExited += OnBodyExited;
 
-		// 🔹 Set the sprite if a path was given
+		// Set the sprite if a path was given
 		if (!string.IsNullOrEmpty(SpritePath))
 		{
 			var texture = GD.Load<Texture2D>(SpritePath);
 			if (texture != null)
 			{
-				// Assuming your NPC scene has a child node named "Sprite2D"
 				var sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 				if (sprite != null)
 				{
 					float targetWidth = 16f; // always make NPCs 32px wide
 					ApplyTextureAndResize(sprite, texture, targetWidth);
+
+					// Create a simple indicator sprite above the item
+					_indicator = new Sprite2D();
+					Texture2D _indicatorTexture = GD.Load<Texture2D>(
+						"res://Images/arrow-down-svgrepo-com.svg"
+					);
+					ApplyTextureAndResize(_indicator, _indicatorTexture, 10f);
+					_indicator.Position = new Vector2(0, -20); // above the item
+					_indicator.Visible = false;
+					AddChild(_indicator);
 				}
 				else
 				{
@@ -50,6 +60,7 @@ public partial class NPC : CharacterBody2D
 	{
 		if (body.IsInGroup("Player"))
 		{
+			_indicator.Visible = true;
 			_playerInRange = true;
 		}
 	}
@@ -58,6 +69,7 @@ public partial class NPC : CharacterBody2D
 	{
 		if (body.IsInGroup("Player"))
 		{
+			_indicator.Visible = false;
 			_playerInRange = false;
 		}
 	}

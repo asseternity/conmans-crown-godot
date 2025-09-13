@@ -48,6 +48,40 @@ theme_override_font_sizes/font_size = 19
 text = "This is some kind of a tutorial message or something!"
 autowrap_mode = 2
 
+[node name="CancelButton" type="Button" parent="PopupPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 90.0
+offset_top = -70.0
+offset_right = 210.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_64ho8")
+theme_override_font_sizes/font_size = 25
+text = "CANCEL"
+
+[node name="ConfirmButton" type="Button" parent="PopupPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -199.0
+offset_top = -69.0
+offset_right = -79.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_64ho8")
+theme_override_font_sizes/font_size = 25
+text = "CONFIRM"
+
 [node name="OKButton" type="Button" parent="PopupPanel"]
 layout_mode = 1
 anchors_preset = 7
@@ -55,10 +89,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -63.0
-offset_right = 60.0
-offset_bottom = -8.0
+offset_left = -56.0
+offset_top = -69.0
+offset_right = 64.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_64ho8")

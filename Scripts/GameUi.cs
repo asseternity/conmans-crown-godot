@@ -10,6 +10,7 @@ public partial class GameUI : Control
 	private Button _inventoryButton;
 	private Button _questsButton;
 	private Label _taskCompletedLabel;
+	public Label _calendarTextLabel;
 
 	public override void _Ready()
 	{
@@ -20,6 +21,7 @@ public partial class GameUI : Control
 		_inventoryButton = GetNode<Button>("InventoryButton");
 		_questsButton = GetNode<Button>("QuestsButton");
 		_taskCompletedLabel = GetNode<Label>("Panel/TaskCompletedLabel");
+		_calendarTextLabel = GetNode<Label>("Calendar/Panel/CalendarText");
 		_mapButton.Pressed += OnMapPressed;
 		_settingsButton.Pressed += OnSettingsPressed;
 		_inventoryButton.Pressed += OnInventoryPressed;

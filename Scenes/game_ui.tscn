@@ -1,25 +1,72 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds6faydq5h3de"]
+[gd_scene load_steps=12 format=3 uid="uid://ds6faydq5h3de"]
 
 [ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUI.cs" id="1_xjnnq"]
+[ext_resource type="Texture2D" uid="uid://c1to6475xw15w" path="res://Images/calendar-day-february-svgrepo-com.svg" id="2_1pjl6"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_gjn1n"]
 [ext_resource type="Texture2D" uid="uid://bqneojsgcldg8" path="res://Images/settings1-svgrepo-com.svg" id="3_1t2s1"]
+[ext_resource type="FontFile" uid="uid://pg1is1ne60rk" path="res://Fonts/breamcatcher rg.otf" id="3_dvsk4"]
 [ext_resource type="Texture2D" uid="uid://by3wfplwonu5s" path="res://Images/map-svgrepo-com.svg" id="3_gjn1n"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="3_x63ue"]
 [ext_resource type="Texture2D" uid="uid://bvsqh0vcmxcm5" path="res://Images/bag-svgrepo-com.svg" id="5_1t2s1"]
 [ext_resource type="Texture2D" uid="uid://bamhp5v8mteot" path="res://Images/journal-svgrepo-com.svg" id="6_3t1kc"]
 [ext_resource type="AudioStream" uid="uid://bmbanmeme08t6" path="res://Audio/SoupTonic UI1 SFX Pack 1 - mp3/SFX_UI_Saved.mp3" id="8_rxsu6"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74ohg"]
+bg_color = Color(0.886275, 0.619608, 0.603922, 1)
+
 [node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1005.0
-offset_bottom = -568.0
+offset_bottom = -564.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_xjnnq")
+
+[node name="Calendar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -36.0
+offset_right = -10.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_1pjl6")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="Calendar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -16.0
+offset_right = 43.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_74ohg")
+
+[node name="CalendarText" type="Label" parent="Calendar/Panel"]
+layout_mode = 0
+offset_right = 87.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0.322329, 0.222485, 0.0966164, 1)
+theme_override_fonts/font = ExtResource("3_dvsk4")
+theme_override_font_sizes/font_size = 26
+text = "SPRING, 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0

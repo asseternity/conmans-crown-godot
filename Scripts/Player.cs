@@ -6,6 +6,10 @@ public partial class Player : CharacterBody2D
 	public float MovementSpeed = 200f;
 
 	private AnimationPlayer _anim;
+	private AudioStreamPlayer _footstepsPlayer;
+	private float _footstepCooldown = 0.3f; // 0.3 seconds between footsteps
+	private float _footstepTimer = 0f; // tracks cooldown
+
 	private string _facing = "down";
 
 	private enum Axis
@@ -20,6 +24,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		_anim = GetNode<AnimationPlayer>("AnimationPlayer");
+		_footstepsPlayer = GetNode<AudioStreamPlayer>("FootstepsPlayer");
 	}
 
 	// Read input, but allow only ONE axis at a time
@@ -68,6 +73,24 @@ public partial class Player : CharacterBody2D
 
 		if (!dialogActive && !menuOpen)
 			MoveAndSlide();
+
+		// Footstep timer
+		if (dir != Vector2.Zero)
+		{
+			_footstepTimer -= (float)delta;
+			if (_footstepTimer <= 0f)
+			{
+				// Randomize pitch slightly (1.4 - 1.9)
+				_footstepsPlayer.PitchScale = 1.4f + (float)GD.Randf() * 0.5f;
+				_footstepsPlayer.Play();
+				_footstepTimer = _footstepCooldown;
+			}
+		}
+		else
+		{
+			_footstepTimer = 0f; // reset so footsteps start immediately when moving
+			_footstepsPlayer.Stop();
+		}
 
 		// Animations
 		string targetAnim;

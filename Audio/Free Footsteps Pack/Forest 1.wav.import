@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ci5joydk76i0k"
+path="res://.godot/imported/Forest 1.wav-ba3c3f39fa25073b0a4671cae6a73c04.sample"
+
+[deps]
+
+source_file="res://Audio/Free Footsteps Pack/Forest 1.wav"
+dest_files=["res://.godot/imported/Forest 1.wav-ba3c3f39fa25073b0a4671cae6a73c04.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

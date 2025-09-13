@@ -83,6 +83,16 @@ public partial class QuestUI : Control
         {
             if (currentQuests[i].ID == quest.ID)
             {
+                var gameUI = GetNode<GameUI>("/root/MainScene/UIContainer/GameUI");
+                if (gameUI != null)
+                {
+                    gameUI.ShowQuestNotification(
+                        "Task Completed:"
+                            + currentQuests[i]
+                                .QuestStages[currentQuests[i].CurrentStageID]
+                                .Description
+                    );
+                }
                 if (currentQuests[i].CurrentStageID == currentQuests[i].QuestStages.Count - 1)
                 {
                     currentQuests[i].FullyFinished = true;
@@ -102,6 +112,13 @@ public partial class QuestUI : Control
         {
             if (allQuests[j].ID == quest.ID)
             {
+                var gameUI = GetNode<GameUI>("/root/MainScene/UIContainer/GameUI");
+                if (gameUI != null)
+                {
+                    gameUI.ShowQuestNotification(
+                        "Task Acquired:" + allQuests[j].QuestStages[0].Description
+                    );
+                }
                 currentQuests.Add(allQuests[j]);
                 UpdateQuestUI();
                 // [_] some UI feedback

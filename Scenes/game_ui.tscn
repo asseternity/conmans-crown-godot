@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds6faydq5h3de"]
+[gd_scene load_steps=9 format=3 uid="uid://ds6faydq5h3de"]
 
 [ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUI.cs" id="1_xjnnq"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_gjn1n"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="3_x63ue"]
 [ext_resource type="Texture2D" uid="uid://bvsqh0vcmxcm5" path="res://Images/bag-svgrepo-com.svg" id="5_1t2s1"]
 [ext_resource type="Texture2D" uid="uid://bamhp5v8mteot" path="res://Images/journal-svgrepo-com.svg" id="6_3t1kc"]
+[ext_resource type="AudioStream" uid="uid://bmbanmeme08t6" path="res://Audio/SoupTonic UI1 SFX Pack 1 - mp3/SFX_UI_Saved.mp3" id="8_rxsu6"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -27,6 +28,24 @@ offset_top = 7.0
 offset_right = 273.0
 offset_bottom = 71.0
 theme = ExtResource("2_gjn1n")
+
+[node name="TaskCompletedLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -18.0
+offset_right = 840.0
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 40
+text = "Task  completed: find a thing"
 
 [node name="PauseButton" type="Button" parent="."]
 layout_mode = 0
@@ -102,3 +121,6 @@ expand_icon = true
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_x63ue")
+
+[node name="TaskPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rxsu6")

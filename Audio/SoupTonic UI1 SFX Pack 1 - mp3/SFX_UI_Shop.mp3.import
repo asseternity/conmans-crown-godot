@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cj53lj0aykfij"
+path="res://.godot/imported/SFX_UI_Shop.mp3-197ed0d90dd8606fb697064c5c9c13b4.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoupTonic UI1 SFX Pack 1 - mp3/SFX_UI_Shop.mp3"
+dest_files=["res://.godot/imported/SFX_UI_Shop.mp3-197ed0d90dd8606fb697064c5c9c13b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

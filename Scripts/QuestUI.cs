@@ -28,10 +28,10 @@ public partial class QuestUI : Control
         // --- quest 1 ---
         var quest1Stages = new List<QuestStage>
         {
-            new QuestStage(0, "Find the magic sword"),
-            new QuestStage(1, "Return to the village elder")
+            new QuestStage(0, "Find the clown head"),
+            new QuestStage(1, "Return to the guy")
         };
-        var quest1 = new Quest(1, "Hero’s Journey", quest1Stages);
+        var quest1 = new Quest(1, "Clown Head Fetching", quest1Stages);
         allQuests.Add(quest1);
 
         // --- quest 2 ---
@@ -76,8 +76,6 @@ public partial class QuestUI : Control
 
     public void ProgressQuest(Quest quest)
     {
-        // [_] hook up progress quest when picking up items
-
         // if the quest is already active => progress one stage or complete it if the stage is final
         for (int i = 0; i < currentQuests.Count; i++)
         {
@@ -96,6 +94,7 @@ public partial class QuestUI : Control
                 if (currentQuests[i].CurrentStageID == currentQuests[i].QuestStages.Count - 1)
                 {
                     currentQuests[i].FullyFinished = true;
+                    currentQuests.RemoveAt(i);
                 }
                 else
                 {

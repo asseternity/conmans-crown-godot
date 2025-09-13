@@ -32,6 +32,17 @@ public partial class InventoryUI : Control
 		FillInventory();
 		Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		_engine.GS.Inventory = inventoryItems;
+
+		if (item.Effect.StartsWith("quest"))
+		{
+			string questID = item.Effect.Substring(6);
+			var questUI = GetNode<QuestUI>("/root/MainScene/UIContainer/QuestUI");
+			Quest foundQuest = questUI.FindQuest(questID.ToInt());
+			if (foundQuest != null)
+			{
+				questUI.ProgressQuest(foundQuest);
+			}
+		}
 	}
 
 	private void FillInventory()

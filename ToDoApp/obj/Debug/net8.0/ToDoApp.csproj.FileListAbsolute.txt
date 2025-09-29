@@ -1,0 +1,15 @@
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\bin\Debug\net8.0\ToDoApp.exe
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\bin\Debug\net8.0\ToDoApp.deps.json
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\bin\Debug\net8.0\ToDoApp.runtimeconfig.json
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\bin\Debug\net8.0\ToDoApp.dll
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\bin\Debug\net8.0\ToDoApp.pdb
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.AssemblyInfoInputs.cache
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.AssemblyInfo.cs
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.csproj.CoreCompileInputs.cache
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.sourcelink.json
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.dll
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\refint\ToDoApp.dll
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.pdb
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ToDoApp.genruntimeconfig.cache
+D:\Coding\godot-projects\the-conman's-crown---godot\ToDoApp\obj\Debug\net8.0\ref\ToDoApp.dll

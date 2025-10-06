@@ -65,6 +65,7 @@ color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
 [node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider"]
 custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
 [node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider"]
@@ -98,6 +99,7 @@ color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
 [node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider2"]
 custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
 [node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider2"]
@@ -131,6 +133,7 @@ color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
 [node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider3"]
 custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
 [node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider3"]
@@ -164,6 +167,7 @@ color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
 [node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider4"]
 custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
 [node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider4"]
@@ -197,6 +201,7 @@ color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
 [node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider5"]
 custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
 [node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider5"]

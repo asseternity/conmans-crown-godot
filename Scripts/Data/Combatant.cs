@@ -10,15 +10,15 @@ public class Combatant
 	public int MaxHealth { get; set; }
 	public int Subterfuge { get; set; }
 	public int Charisma { get; set; }
-	public string DuelSpritePath { get; set; }
+	public string QuarrelSpritePath { get; set; }
 
 	// About "{ get; set; }":
 	// Behind the scenes, it looks like this:
-	// private string _duelSpritePath;
-	// public string DuelSpritePath
+	// private string _quarrelSpritePath;
+	// public string QuarrelSpritePath
 	// {
-	// get { return _duelSpritePath; }
-	// set { _duelSpritePath = value; }
+	// get { return _quarrelSpritePath; }
+	// set { _quarrelSpritePath = value; }
 	// }
 	// So the benefit of this over just a field is that we can edit the getter and setter later.
 
@@ -30,7 +30,7 @@ public class Combatant
 		int maxHealth,
 		int subterfuge,
 		int charisma,
-		string duelSpritePath
+		string quarrelSpritePath
 	)
 	{
 		Name = name;
@@ -40,7 +40,7 @@ public class Combatant
 		MaxHealth = maxHealth;
 		Subterfuge = subterfuge;
 		Charisma = charisma;
-		DuelSpritePath = duelSpritePath;
+		QuarrelSpritePath = quarrelSpritePath;
 	}
 
 	public static Combatant FromString(string s)
@@ -54,7 +54,7 @@ public class Combatant
 			int.Parse(parts[4].Trim()), // maxHealth
 			int.Parse(parts[5].Trim()), // subterfuge
 			int.Parse(parts[6].Trim()), // charisma
-			parts[7].Trim() // duelSpritePath
+			parts[7].Trim() // quarrelSpritePath
 		);
 	}
 

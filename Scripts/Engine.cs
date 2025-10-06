@@ -26,35 +26,35 @@ public partial class Engine : Node
 			GS.PlayerObject = player;
 	}
 
-	public void DuelRound(double playerAction)
+	public void QuarrelRound(double playerAction)
 	{
 		GS.RoundLog = new List<string>();
 
-		if (GS.CurrentDuel is not Duel duel)
+		if (GS.CurrentQuarrel is not Quarrel quarrel)
 			return;
 
-		double enemyAction = duel.ChooseEnemyAction();
-		GS.RoundLog.Add(duel.DamagePhase(GS.PlayerObject, playerAction, enemyAction));
+		double enemyAction = quarrel.ChooseEnemyAction();
+		GS.RoundLog.Add(quarrel.DamagePhase(GS.PlayerObject, playerAction, enemyAction));
 		GS.RoundLog.Add($"You spent {playerAction}, enemy spent {enemyAction:F1}.");
 
 		if (!GS.PlayerObject.IsAlive())
 		{
 			GS.RoundLog.Add("You lost the fight.");
-			GS.PostDuelTimelinePath = GS.CurrentDuel.LoseTimelinePath;
-			GS.CurrentDuel = null;
+			GS.PostQuarrelTimelinePath = GS.CurrentQuarrel.LoseTimelinePath;
+			GS.CurrentQuarrel = null;
 			return;
 		}
-		else if (!duel.Enemy.IsAlive())
+		else if (!quarrel.Enemy.IsAlive())
 		{
 			GS.RoundLog.Add("You won the fight.");
-			GS.PostDuelTimelinePath = GS.CurrentDuel.WinTimelinePath;
-			GS.CurrentDuel = null;
+			GS.PostQuarrelTimelinePath = GS.CurrentQuarrel.WinTimelinePath;
+			GS.CurrentQuarrel = null;
 			return;
 		}
 
-		GS.PostDuelTimelinePath = null;
-		GS.RoundLog.Add(duel.TacticHint(duel.Enemy));
-		duel.RestoreAfter(GS.PlayerObject, playerAction, enemyAction);
+		GS.PostQuarrelTimelinePath = null;
+		GS.RoundLog.Add(quarrel.TacticHint(quarrel.Enemy));
+		quarrel.RestoreAfter(GS.PlayerObject, playerAction, enemyAction);
 	}
 
 	public async Task LoadLevelInMain(string levelScenePath)

@@ -83,6 +83,23 @@ public partial class Item2D : CharacterBody2D
         }
     }
 
+    private void ApplyTextureAndResize(Sprite2D sprite, Texture2D texture, float targetWidth)
+    {
+        sprite.RegionEnabled = false;
+        sprite.Hframes = 1;
+        sprite.Vframes = 1;
+        sprite.Frame = 0;
+
+        sprite.Texture = texture;
+
+        var texSize = texture?.GetSize() ?? Vector2.Zero;
+        if (texSize.X <= 0)
+            return;
+
+        float scaleFactor = targetWidth / texSize.X;
+        sprite.Scale = new Vector2(scaleFactor, scaleFactor);
+    }
+
     public override void _Process(double delta)
     {
         if (_playerInRange && Input.IsActionJustPressed("interact"))
@@ -166,22 +183,5 @@ public partial class Item2D : CharacterBody2D
     {
         Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
         await _engine.LoadLevelInMain(levelPath);
-    }
-
-    private void ApplyTextureAndResize(Sprite2D sprite, Texture2D texture, float targetWidth)
-    {
-        sprite.RegionEnabled = false;
-        sprite.Hframes = 1;
-        sprite.Vframes = 1;
-        sprite.Frame = 0;
-
-        sprite.Texture = texture;
-
-        var texSize = texture?.GetSize() ?? Vector2.Zero;
-        if (texSize.X <= 0)
-            return;
-
-        float scaleFactor = targetWidth / texSize.X;
-        sprite.Scale = new Vector2(scaleFactor, scaleFactor);
     }
 }

@@ -108,10 +108,10 @@ public partial class NPC : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
-		if (duelUI != null)
+		var quarrelUI = GetNode<QuarrelUI>("/root/MainScene/UIContainer/QuarrelUI");
+		if (quarrelUI != null)
 		{
-			if (!duelUI.Visible)
+			if (!quarrelUI.Visible)
 			{
 				if (_playerInRange && Input.IsActionJustPressed("interact"))
 				{

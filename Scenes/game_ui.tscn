@@ -1,19 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://ds6faydq5h3de"]
+[gd_scene load_steps=8 format=3 uid="uid://ds6faydq5h3de"]
 
 [ext_resource type="Script" uid="uid://c1jhcifldvbua" path="res://Scripts/GameUI.cs" id="1_xjnnq"]
-[ext_resource type="Texture2D" uid="uid://c1to6475xw15w" path="res://Images/calendar-day-february-svgrepo-com.svg" id="2_1pjl6"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_gjn1n"]
-[ext_resource type="Texture2D" uid="uid://bqneojsgcldg8" path="res://Images/settings1-svgrepo-com.svg" id="3_1t2s1"]
 [ext_resource type="FontFile" uid="uid://pg1is1ne60rk" path="res://Fonts/breamcatcher rg.otf" id="3_dvsk4"]
-[ext_resource type="Texture2D" uid="uid://by3wfplwonu5s" path="res://Images/map-svgrepo-com.svg" id="3_gjn1n"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="3_x63ue"]
-[ext_resource type="Texture2D" uid="uid://bvsqh0vcmxcm5" path="res://Images/bag-svgrepo-com.svg" id="5_1t2s1"]
-[ext_resource type="Texture2D" uid="uid://bamhp5v8mteot" path="res://Images/journal-svgrepo-com.svg" id="6_3t1kc"]
+[ext_resource type="Texture2D" uid="uid://bi0jp4sda5iem" path="res://UI/Humble Gift - Paper UI System v1.1/SpriteSheet/Folding & Cutout Paper UI SpriteSheet.png" id="4_1t2s1"]
 [ext_resource type="AudioStream" uid="uid://bmbanmeme08t6" path="res://Audio/SoupTonic UI1 SFX Pack 1 - mp3/SFX_UI_Saved.mp3" id="8_rxsu6"]
-[ext_resource type="Texture2D" uid="uid://c1bn5x7gtuyli" path="res://Images/ladder-svgrepo-com.svg" id="9_dvsk4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74ohg"]
-bg_color = Color(0.886275, 0.619608, 0.603922, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3t1kc"]
+texture = ExtResource("4_1t2s1")
+texture_margin_top = 33.1864
+texture_margin_bottom = 37.0907
+region_rect = Rect2(116.734, 544, 275.252, 175)
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -26,43 +24,23 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_xjnnq")
 
-[node name="Calendar" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = -36.0
-offset_right = -10.0
-offset_bottom = 100.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("2_1pjl6")
-expand_mode = 1
+[node name="Calendar" type="Node" parent="."]
 
 [node name="Panel" type="Panel" parent="Calendar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -16.0
-offset_right = 43.5
-offset_bottom = 41.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_74ohg")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -97.0
+offset_top = 18.0
+offset_right = -10.0
+offset_bottom = 75.0
+grow_horizontal = 0
+theme = ExtResource("2_gjn1n")
 
 [node name="CalendarText" type="Label" parent="Calendar/Panel"]
 layout_mode = 0
 offset_right = 87.0
 offset_bottom = 56.0
-theme_override_colors/font_color = Color(0.322329, 0.222485, 0.0966164, 1)
 theme_override_fonts/font = ExtResource("3_dvsk4")
 theme_override_font_sizes/font_size = 26
 text = "SPRING, 1"
@@ -72,10 +50,11 @@ vertical_alignment = 1
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 7.0
-offset_right = 321.0
-offset_bottom = 71.0
+offset_top = 5.0
+offset_right = 327.135
+offset_bottom = 73.815
 theme = ExtResource("2_gjn1n")
+theme_override_styles/panel = SubResource("StyleBoxTexture_3t1kc")
 
 [node name="TaskCompletedLabel" type="Label" parent="Panel"]
 layout_mode = 1
@@ -84,102 +63,85 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 14.0
-offset_top = -23.0
-offset_right = 721.0
-offset_bottom = 26.0
+offset_left = 11.865
+offset_top = -18.4075
+offset_right = 718.865
+offset_bottom = 30.5925
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 40
 text = "Task  completed: find a thing"
+vertical_alignment = 1
 
 [node name="PauseButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 12.0
 offset_top = 18.0
-offset_right = 848.0
+offset_right = 1101.0
 offset_bottom = 826.0
 scale = Vector2(0.055, 0.055)
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_color = Color(0.537255, 0.407843, 0.121569, 1)
-theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
-theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-icon = ExtResource("3_1t2s1")
+theme = ExtResource("2_gjn1n")
+theme_override_font_sizes/font_size = 250
+text = "Settings"
 flat = true
+alignment = 0
 icon_alignment = 1
 expand_icon = true
 
 [node name="MapButton" type="Button" parent="."]
 layout_mode = 1
-offset_left = 98.0
-offset_top = 18.0
-offset_right = 906.0
-offset_bottom = 826.0
+offset_left = 74.0
+offset_top = 19.0
+offset_right = 882.0
+offset_bottom = 827.0
 scale = Vector2(0.053, 0.053)
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
-theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
-theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-icon = ExtResource("3_gjn1n")
+theme = ExtResource("2_gjn1n")
+theme_override_font_sizes/font_size = 250
+text = "Map"
 flat = true
 icon_alignment = 1
 expand_icon = true
 
 [node name="InventoryButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 145.0
-offset_top = 14.0
-offset_right = 1126.0
-offset_bottom = 954.0
+offset_left = 119.0
+offset_top = 16.0
+offset_right = 1456.0
+offset_bottom = 956.0
 scale = Vector2(0.053, 0.053)
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
-theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
-theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-icon = ExtResource("5_1t2s1")
+theme = ExtResource("2_gjn1n")
+theme_override_font_sizes/font_size = 250
+text = "Inventory"
 flat = true
 icon_alignment = 1
 expand_icon = true
 
 [node name="QuestsButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 198.0
-offset_top = 19.0
-offset_right = 1028.0
-offset_bottom = 789.0
+offset_left = 194.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 790.0
 scale = Vector2(0.053, 0.053)
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
-theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
-theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-icon = ExtResource("6_3t1kc")
+theme = ExtResource("2_gjn1n")
+theme_override_font_sizes/font_size = 250
+text = "Journal"
 flat = true
 icon_alignment = 1
 expand_icon = true
 
 [node name="StatsButton" type="Button" parent="."]
-offset_left = 247.0
-offset_top = 19.0
-offset_right = 1077.0
-offset_bottom = 789.0
+layout_mode = 0
+offset_left = 252.0
+offset_top = 21.0
+offset_right = 1645.0
+offset_bottom = 791.0
 scale = Vector2(0.053, 0.053)
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-theme_override_colors/icon_hover_color = Color(0.538597, 0.408974, 0.122147, 1)
-theme_override_colors/icon_pressed_color = Color(0.933279, 0.607537, 0.540178, 1)
-theme_override_colors/font_pressed_color = Color(0.933333, 0.607843, 0.541176, 1)
-icon = ExtResource("9_dvsk4")
+theme = ExtResource("2_gjn1n")
+theme_override_font_sizes/font_size = 250
+text = "Character"
 flat = true
 icon_alignment = 1
 expand_icon = true

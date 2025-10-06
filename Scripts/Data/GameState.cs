@@ -4,9 +4,9 @@ using Godot;
 
 public partial class GameState
 {
-	// the currently running Duel (null when not in a duel)
-	public Duel? CurrentDuel { get; set; }
-	public string PostDuelTimelinePath { get; set; }
+	// the currently running Quarrel (null when not in a quarrel)
+	public Quarrel? CurrentQuarrel { get; set; }
+	public string PostQuarrelTimelinePath { get; set; }
 
 	// To persist where Dialogic was, store timeline path + event index:
 	public string? CurrentTimelinePath { get; set; }
@@ -27,8 +27,8 @@ public partial class GameState
 
 	public GameState(Combatant player)
 	{
-		CurrentDuel = null;
-		PostDuelTimelinePath = null;
+		CurrentQuarrel = null;
+		PostQuarrelTimelinePath = null;
 		CurrentTimelinePath = null;
 		CurrentLevelPath = null;
 		CurrentEventIndex = 0;

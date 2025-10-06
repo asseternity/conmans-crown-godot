@@ -43,20 +43,20 @@ public partial class MainContainer : Node
 			if (dict.ContainsKey("type"))
 			{
 				var typeVar = dict["type"];
-				if (typeVar.VariantType != Variant.Type.Nil && typeVar.ToString() == "duel")
+				if (typeVar.VariantType != Variant.Type.Nil && typeVar.ToString() == "quarrel")
 				{
 					var enemyString = dict.ContainsKey("enemy") ? dict["enemy"].ToString() : "";
 					var winTimeline = dict.ContainsKey("win") ? dict["win"].ToString() : "";
 					var loseTimeline = dict.ContainsKey("lose") ? dict["lose"].ToString() : "";
 
 					var enemy = Combatant.FromString(enemyString);
-					var duel = new Duel("duel_auto", winTimeline, loseTimeline, enemy);
+					var quarrel = new Quarrel("quarrel_auto", winTimeline, loseTimeline, enemy);
 
-					// Put duel in GameState and route to the Duel UI
-					_engine.GS.CurrentDuel = duel;
-					var duelUI = GetNodeOrNull<DuelUI>("UIContainer/DuelUI");
-					if (duelUI != null)
-						duelUI.StartDuel(duel);
+					// Put quarrel in GameState and route to the Quarrel UI
+					_engine.GS.CurrentQuarrel = quarrel;
+					var quarrelUI = GetNodeOrNull<QuarrelUI>("UIContainer/QuarrelUI");
+					if (quarrelUI != null)
+						quarrelUI.StartQuarrel(quarrel);
 					return;
 				}
 			}

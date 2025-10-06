@@ -1,70 +1,24 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bs0qmbqnejykc"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bs0qmbqnejykc"]
 
-[ext_resource type="FontFile" uid="uid://cf2ffof2j1pxp" path="res://Fonts/Borisna.ttf" id="1_51034"]
-[ext_resource type="FontFile" uid="uid://pg1is1ne60rk" path="res://Fonts/breamcatcher rg.otf" id="2_51034"]
+[ext_resource type="FontFile" uid="uid://bk3viu100nxm7" path="res://Fonts/Leordis fonts/handwriting-draft_free-version.ttf" id="1_ju0yn"]
+[ext_resource type="Texture2D" uid="uid://bi0jp4sda5iem" path="res://UI/Humble Gift - Paper UI System v1.1/SpriteSheet/Folding & Cutout Paper UI SpriteSheet.png" id="2_2tloi"]
+[ext_resource type="Texture2D" uid="uid://cqejjsix6n22x" path="res://UI/Custom Border and Panels Menu All Part/Border All 1.png" id="2_51034"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ju0yn"]
-bg_color = Color(0.489621, 0.489623, 0.489622, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_66pm1"]
+texture = ExtResource("2_2tloi")
+region_rect = Rect2(64, 2288, 768, 560)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51034"]
-bg_color = Color(0.839216, 0.729412, 0.372549, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.898039, 0.796078, 0.490196, 0.352941)
-shadow_size = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tloi"]
-bg_color = Color(0.839216, 0.729412, 0.372549, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.898039, 0.796078, 0.490196, 0.333333)
-shadow_size = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66pm1"]
-bg_color = Color(0.0540138, 0.0115554, 0.0741932, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.898039, 0.796078, 0.490196, 0.360784)
-shadow_size = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6k6b"]
-bg_color = Color(0.933333, 0.929412, 0.933333, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.152941, 0.121569, 0.0313726, 0.568627)
-shadow_size = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om0jh"]
-bg_color = Color(0.0540138, 0.0115554, 0.0741932, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-shadow_color = Color(0.898039, 0.796078, 0.490196, 0.396078)
-shadow_size = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjy1l"]
-bg_color = Color(0.137255, 0.137255, 0.137255, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.447059, 0.411765, 0.262745, 1)
-border_blend = true
-corner_radius_top_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tloi"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+texture = ExtResource("2_51034")
+texture_margin_left = 47.4306
+texture_margin_top = 48.3553
+texture_margin_right = 48.0534
+texture_margin_bottom = 49.0337
+region_rect = Rect2(127.109, -0.101492, 65.3386, 63.97)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5csac"]
 bg_color = Color(0.137255, 0.137255, 0.137255, 1)
@@ -80,14 +34,11 @@ corner_radius_bottom_left = 40
 [resource]
 Button/colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
 Button/font_sizes/font_size = 14
-Button/fonts/font = ExtResource("1_51034")
-Button/styles/disabled = SubResource("StyleBoxFlat_ju0yn")
-Button/styles/focus = SubResource("StyleBoxFlat_51034")
-Button/styles/hover = SubResource("StyleBoxFlat_2tloi")
-Button/styles/hover_pressed = SubResource("StyleBoxFlat_66pm1")
-Button/styles/normal = SubResource("StyleBoxFlat_d6k6b")
-Button/styles/pressed = SubResource("StyleBoxFlat_om0jh")
+Button/fonts/font = ExtResource("1_ju0yn")
+Button/styles/hover = SubResource("StyleBoxTexture_66pm1")
+Button/styles/normal = SubResource("StyleBoxTexture_66pm1")
+Button/styles/pressed = SubResource("StyleBoxTexture_66pm1")
 Label/font_sizes/font_size = 32
-Label/fonts/font = ExtResource("2_51034")
-Panel/styles/panel = SubResource("StyleBoxFlat_qjy1l")
+Label/fonts/font = ExtResource("1_ju0yn")
+Panel/styles/panel = SubResource("StyleBoxTexture_2tloi")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_5csac")

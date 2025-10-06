@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccfqhb6yxsioj"]
 
-[ext_resource type="Texture2D" uid="uid://dxu32shrqhq23" path="res://Images/twilight_hill.png" id="1_3cc57"]
 [ext_resource type="Script" uid="uid://cqteqx6fgqv5b" path="res://Scripts/MapScreen.cs" id="1_56x5n"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_pnf0b"]
+[ext_resource type="Texture2D" uid="uid://bmketcvgd2wvd" path="res://Images/YunitysamamapDONE FINAL BORDERS - Copy.png" id="3_56x5n"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_pnf0b"]
 
 [node name="MapContainer" type="Control"]
@@ -25,76 +25,83 @@ theme = ExtResource("1_pnf0b")
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 z_index = 3
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 709.0
-offset_top = 407.0
-offset_right = 759.0
-offset_bottom = 432.0
+offset_left = 244.0
+offset_top = 12.0
+offset_right = 314.0
+offset_bottom = 82.0
+scale = Vector2(1.36, 1)
 theme = ExtResource("1_pnf0b")
 text = "Office"
 
 [node name="OfficeButton" type="Button" parent="TextureRect/OfficeButtonShadow"]
 top_level = true
 z_index = 5
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 711.0
-offset_top = 405.0
-offset_right = 761.0
-offset_bottom = 430.0
+offset_left = 249.0
+offset_top = 11.0
+offset_right = 338.0
+offset_bottom = 81.0
 theme = ExtResource("1_pnf0b")
-text = "Office"
+text = "Devipani"
 
 [node name="HomeButtonShadow" type="Button" parent="TextureRect"]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 z_index = 2
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 942.0
-offset_top = 252.0
-offset_right = 987.0
-offset_bottom = 277.0
+offset_left = 865.0
+offset_top = 232.0
+offset_right = 931.0
+offset_bottom = 302.0
+scale = Vector2(1.64034, 1.0006)
 theme = ExtResource("1_pnf0b")
 text = "Home"
 
 [node name="HomeButton" type="Button" parent="TextureRect/HomeButtonShadow"]
 top_level = true
 z_index = 5
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 945.0
-offset_top = 251.0
-offset_right = 990.0
-offset_bottom = 276.0
+offset_left = 870.0
+offset_top = 228.0
+offset_right = 936.0
+offset_bottom = 298.0
 theme = ExtResource("1_pnf0b")
-text = "Home"
+text = "Trowulan"
 
 [node name="BeachButtonShadow" type="Button" parent="TextureRect"]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 z_index = 2
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 641.0
-offset_top = 554.0
-offset_right = 692.0
-offset_bottom = 579.0
+offset_left = 454.0
+offset_top = 746.0
+offset_right = 522.0
+offset_bottom = 816.0
 theme = ExtResource("1_pnf0b")
 text = "Beach"
 
 [node name="BeachButton" type="Button" parent="TextureRect/BeachButtonShadow"]
 top_level = true
 z_index = 5
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 0
-offset_left = 643.0
-offset_top = 552.0
-offset_right = 694.0
-offset_bottom = 577.0
+offset_left = 458.0
+offset_top = 745.0
+offset_right = 526.0
+offset_bottom = 815.0
 theme = ExtResource("1_pnf0b")
-text = "Beach"
+text = "Ozia"
 
 [node name="TwilightHill" type="Sprite2D" parent="."]
-position = Vector2(545, 153)
-rotation = -1.5708
-scale = Vector2(0.28, 0.28)
-texture = ExtResource("1_3cc57")
+position = Vector2(599, 400)
+scale = Vector2(0.515, 0.515)
+texture = ExtResource("3_56x5n")
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pnf0b")

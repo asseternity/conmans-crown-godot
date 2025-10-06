@@ -73,13 +73,13 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Can't move if dialogic or duelUI or pauseUI is open
+		// Can't move if dialogic or quarrelUI or pauseUI is open
 		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
 		bool dialogActive =
 			dialogic != null && dialogic.Get("current_timeline").VariantType != Variant.Type.Nil;
-		var duelUI = GetNode<DuelUI>("/root/MainScene/UIContainer/DuelUI");
+		var quarrelUI = GetNode<QuarrelUI>("/root/MainScene/UIContainer/QuarrelUI");
 		var pauseUI = GetNode<PauseMenu>("/root/MainScene/UIContainer/PauseMenu");
-		bool menuOpen = duelUI.Visible || pauseUI.Visible;
+		bool menuOpen = quarrelUI.Visible || pauseUI.Visible;
 
 		// Movement (no diagonals)
 		var dir = GetBlockedInput();

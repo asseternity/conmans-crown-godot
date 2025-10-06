@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp8wwk3bi3hhx"]
+[gd_scene load_steps=5 format=3 uid="uid://cp8wwk3bi3hhx"]
 
 [ext_resource type="Script" uid="uid://crsgrx6fisvgu" path="res://Scripts/PauseMenu.cs" id="1_1och7"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_1och7"]
+[ext_resource type="Theme" uid="uid://ck0bjekm3sljs" path="res://Themes/new_theme_2.tres" id="3_bpi0q"]
 [ext_resource type="AudioStream" uid="uid://cq11g007v8agw" path="res://Audio/ui sound effects/African1.wav" id="4_bpi0q"]
 
 [node name="PauseMenu" type="Control"]
@@ -62,33 +63,33 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -71.0
-offset_top = -247.0
-offset_right = 71.0
-offset_bottom = -53.0
+offset_left = -129.0
+offset_top = -388.0
+offset_right = 129.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_1och7")
-theme_override_constants/separation = 25
+theme_override_constants/separation = 5
 
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-theme = ExtResource("2_1och7")
+theme = ExtResource("3_bpi0q")
 theme_override_font_sizes/font_size = 30
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-theme = ExtResource("2_1och7")
+theme = ExtResource("3_bpi0q")
 theme_override_font_sizes/font_size = 30
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-theme = ExtResource("2_1och7")
+theme = ExtResource("3_bpi0q")
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 

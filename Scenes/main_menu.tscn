@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfd5e5kw310b3"]
+[gd_scene load_steps=6 format=3 uid="uid://dfd5e5kw310b3"]
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://cs6hclo3twme3" path="res://Images/luella-wong-9CyTsG4GpjU-unsplash.jpg" id="3_ce3w2"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_ce3w2"]
+[ext_resource type="Theme" uid="uid://ck0bjekm3sljs" path="res://Themes/new_theme_2.tres" id="4_n45e2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -30,7 +31,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.243137)
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(500, 300)
+custom_minimum_size = Vector2(500, 550)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,26 +61,26 @@ offset_bottom = -23.301
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_ce3w2")
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 
 [node name="PlayButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
-theme = ExtResource("1_ce3w2")
+theme = ExtResource("4_n45e2")
 theme_override_font_sizes/font_size = 35
 text = "Start Game"
 
 [node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
-theme = ExtResource("1_ce3w2")
+theme = ExtResource("4_n45e2")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
-theme = ExtResource("1_ce3w2")
+theme = ExtResource("4_n45e2")
 theme_override_font_sizes/font_size = 35
 text = "Quit"
 
@@ -89,9 +90,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -386.0
-offset_top = 19.4175
+offset_top = 29.1262
 offset_right = 386.0
-offset_bottom = 104.417
+offset_bottom = 114.126
 grow_horizontal = 2
 theme = ExtResource("1_ce3w2")
 theme_override_font_sizes/font_size = 80

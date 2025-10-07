@@ -8,7 +8,7 @@ public partial class QuarrelUI : Control
     private Label _powerLabel;
     private HSlider _powerSlider;
     private Panel _powerAvailable;
-    private Button _attackButton;
+    private Button _continueButton;
     private Button _persuadeButton;
     private Button _insultButton;
     private Button _performButton;
@@ -33,7 +33,7 @@ public partial class QuarrelUI : Control
         _powerLabel = GetNode<Label>("ActionPanel/PowerLabel");
         _powerSlider = GetNode<HSlider>("ActionPanel/PowerSlider");
         _powerAvailable = GetNode<Panel>("ActionPanel/PowerSlider/PowerAvailable");
-        _attackButton = GetNode<Button>("ActionPanel/AttackButton");
+        _continueButton = GetNode<Button>("ActionPanel/ContinueButton");
         _persuadeButton = GetNode<Button>("ActionPanel/ActionsContainer/AttackButton");
         _insultButton = GetNode<Button>("ActionPanel/ActionsContainer/AttackButton2");
         _performButton = GetNode<Button>("ActionPanel/ActionsContainer/AttackButton3");
@@ -54,7 +54,11 @@ public partial class QuarrelUI : Control
         _powerSlider.MinValue = 0.0;
 
         // subscribe to events
-        _attackButton.Pressed += OnAttackButtonPressed;
+        _persuadeButton.Pressed += OnPersuadeButtonPressed;
+        _performButton.Pressed += OnPerformButtonPressed;
+        _lieButton.Pressed += OnLieButtonPressed;
+        _insultButton.Pressed += OnInsultButtonPressed;
+        _continueButton.Pressed += RouteAfterQuarrel;
         _powerSlider.ValueChanged += OnPowerSliderChanged;
         _powerSlider.Editable = true;
 
@@ -97,6 +101,11 @@ public partial class QuarrelUI : Control
         _powerAvailable.Visible = true;
         _powerSlider.Visible = true;
         _powerLabel.Visible = true;
+        _performButton.Visible = true;
+        _persuadeButton.Visible = true;
+        _insultButton.Visible = true;
+        _lieButton.Visible = true;
+        _continueButton.Visible = false;
 
         UpdateLog();
         UpdateHealthBars();
@@ -112,7 +121,10 @@ public partial class QuarrelUI : Control
         // Disable "Attack" unless selected power is valid
         double currentPower = _engine.GS.PlayerObject.Power;
         bool valid = value <= currentPower;
-        _attackButton.Disabled = !valid;
+        _performButton.Disabled = !valid;
+        _persuadeButton.Disabled = !valid;
+        _lieButton.Disabled = !valid;
+        _insultButton.Disabled = !valid;
 
         // Clamp value to currentPower if above it
         if (value > currentPower)
@@ -125,19 +137,45 @@ public partial class QuarrelUI : Control
         _powerLabel.Text = $"Power: {value:F1} {(valid ? "" : "(Not enough!)")}";
     }
 
-    private void OnAttackButtonPressed()
+    private void OnPersuadeButtonPressed()
+    {
+        CommenceRound(Combatant.Approach.Persuade);
+    }
+
+    private void OnPerformButtonPressed()
+    {
+        CommenceRound(Combatant.Approach.Perform);
+    }
+
+    private void OnLieButtonPressed()
+    {
+        CommenceRound(Combatant.Approach.Lie);
+    }
+
+    private void OnInsultButtonPressed()
+    {
+        CommenceRound(Combatant.Approach.Insult);
+    }
+
+    private void CommenceRound(Combatant.Approach playerApproach)
     {
         ShakeUI();
-        _attackButton.Disabled = true;
+        _performButton.Disabled = true;
+        _persuadeButton.Disabled = true;
+        _lieButton.Disabled = true;
+        _insultButton.Disabled = true;
         double powerUsed = Math.Round(_powerSlider.Value, 1);
-        _engine.QuarrelRound(powerUsed);
+        _engine.QuarrelRound(powerUsed, playerApproach);
 
         UpdateLog();
         UpdateHealthBars();
 
         double currentPower = _engine.GS.PlayerObject.Power;
         bool valid = _powerSlider.Value <= currentPower;
-        _attackButton.Disabled = !valid;
+        _performButton.Disabled = !valid;
+        _persuadeButton.Disabled = !valid;
+        _lieButton.Disabled = !valid;
+        _insultButton.Disabled = !valid;
         _powerLabel.Text = $"Power: {_powerSlider.Value:F1} {(valid ? "" : "(Not enough!)")}";
 
         // if the battle is over, rebind buttons and disable the slider
@@ -146,15 +184,21 @@ public partial class QuarrelUI : Control
             _powerAvailable.Visible = false;
             _powerSlider.Visible = false;
             _powerLabel.Visible = false;
-            _attackButton.Pressed -= OnAttackButtonPressed;
-            _attackButton.Pressed += RouteAfterQuarrel;
+            _persuadeButton.Visible = false;
+            _performButton.Visible = false;
+            _lieButton.Visible = false;
+            _insultButton.Visible = false;
+            _continueButton.Visible = true;
         }
 
         _powerSlider.MaxValue = _engine.GS.PlayerObject.MaxPower;
         _powerSlider.Value = Math.Min(1.0, _powerSlider.MaxValue);
         UpdatePowerAvailable();
 
-        _attackButton.Disabled = false;
+        _performButton.Disabled = false;
+        _persuadeButton.Disabled = false;
+        _lieButton.Disabled = false;
+        _insultButton.Disabled = false;
 
         var popup = GetNode<PopupUI>("/root/MainScene/UIContainer/PopupUI");
         if (!popup.HasShown("quarrel_intro_2"))
@@ -209,9 +253,6 @@ public partial class QuarrelUI : Control
     private void RouteAfterQuarrel()
     {
         Hide();
-        var main = GetTree().Root.GetNode<MainContainer>("MainScene");
-        _attackButton.Pressed -= RouteAfterQuarrel;
-
         var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
         if (dialogic != null)
             dialogic.Call("start", _engine.GS.PostQuarrelTimelinePath);

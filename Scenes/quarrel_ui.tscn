@@ -188,6 +188,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = ExtResource("1_u31ci")
+theme_override_font_sizes/font_size = 20
 text = "This is the combat log. It might get very long. Who knows? Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum. Here is the continuation."
 autowrap_mode = 2
 
@@ -214,13 +215,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -315.5
-offset_top = -88.0
-offset_right = 316.5
-offset_bottom = -61.0
+offset_left = -313.5
+offset_top = -97.0
+offset_right = -131.5
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_u31ci")
+theme_override_font_sizes/font_size = 15
 text = "Power"
 
 [node name="PowerSlider" type="HSlider" parent="ActionPanel"]
@@ -314,7 +316,7 @@ theme = ExtResource("1_u31ci")
 theme_override_font_sizes/font_size = 18
 text = "Lie"
 
-[node name="AttackButton" type="Button" parent="ActionPanel"]
+[node name="ContinueButton" type="Button" parent="ActionPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -322,10 +324,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 203.5
-offset_top = -93.0
-offset_right = 315.5
-offset_bottom = -57.0
+offset_left = 205.5
+offset_top = -96.0
+offset_right = 317.5
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_u31ci")

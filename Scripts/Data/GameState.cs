@@ -4,39 +4,39 @@ using Godot;
 
 public partial class GameState
 {
-    // the currently running Quarrel (null when not in a quarrel)
-    public Quarrel? CurrentQuarrel { get; set; }
-    public string PostQuarrelTimelinePath { get; set; }
+	// the currently running Quarrel (null when not in a quarrel)
+	public Quarrel? CurrentQuarrel { get; set; }
+	public string PostQuarrelTimelinePath { get; set; }
 
-    // To persist where Dialogic was, store timeline path + event index:
-    public string? CurrentTimelinePath { get; set; }
-    public int CurrentEventIndex { get; set; } = 0;
+	// To persist where Dialogic was, store timeline path + event index:
+	public string? CurrentTimelinePath { get; set; }
+	public int CurrentEventIndex { get; set; } = 0;
 
-    // To persist player's world position, store loaded level path
-    public string CurrentLevelPath { get; set; }
+	// To persist player's world position, store loaded level path
+	public string CurrentLevelPath { get; set; }
 
-    public Combatant PlayerObject { get; set; }
-    public List<string> Flags { get; set; }
-    public List<string> RoundLog { get; set; }
-    public List<Item> Inventory { get; set; }
-    public List<Quest> ActiveQuests { get; set; }
-    public int CurrentDay { get; set; }
-    public List<string> Seasons = new List<string> { "Spring", "Summer", "Fall", "Winter", };
-    public int CurrentSeasonIndex { get; set; }
-    public bool ActivityDoneToday { get; set; }
+	public Combatant PlayerObject { get; set; }
+	public List<string> Flags { get; set; }
+	public List<string> RoundLog { get; set; }
+	public List<Item> Inventory { get; set; }
+	public List<Quest> ActiveQuests { get; set; }
+	public int CurrentDay { get; set; }
+	public List<string> Seasons = new List<string> { "Spring", "Summer", "Fall", "Winter", };
+	public int CurrentSeasonIndex { get; set; }
+	public bool ActivityDoneToday { get; set; }
 
-    public GameState(Combatant player)
-    {
-        CurrentQuarrel = null;
-        PostQuarrelTimelinePath = null;
-        CurrentTimelinePath = null;
-        CurrentLevelPath = null;
-        CurrentEventIndex = 0;
-        PlayerObject = player;
-        Flags = new List<string>();
-        RoundLog = new List<string>();
-        CurrentDay = 1;
-        CurrentSeasonIndex = 1;
-        ActivityDoneToday = false;
-    }
+	public GameState(Combatant player)
+	{
+		CurrentQuarrel = null;
+		PostQuarrelTimelinePath = null;
+		CurrentTimelinePath = null;
+		CurrentLevelPath = null;
+		CurrentEventIndex = 0;
+		PlayerObject = player;
+		Flags = new List<string>();
+		RoundLog = new List<string>();
+		CurrentDay = 1;
+		CurrentSeasonIndex = 1;
+		ActivityDoneToday = false;
+	}
 }

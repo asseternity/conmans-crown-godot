@@ -9,13 +9,17 @@ public class Quarrel
     public Combatant Enemy { get; set; }
     private static Random rng = new Random();
     public Combatant.Approach WinnersApproach;
+    public double PlayerPowerRestorationBonus = 0;
+    public double EnemyPowerRestorationBonus = 0;
+    public int PlayerCharismaPenalty = 0;
+    public int EnemyCharismaPenalty = 0;
 
     // 1. Attack Archetypes
     // Type	    Stat Focus	        Theme	                                Strengths	                                    Weaknesses	                                        Extra Effect
-    // Persuade	Charisma	        Soothing rhetoric, calm logic	        Beats Insult (diffuses anger)	                Weak to Lie (manipulation outsmarts sincerity)	    If you win, restore +1 Power next turn (confidence boost)
-    // Lie	    Subterfuge	        Deception, trickery, false narrative	Beats Persuade (truth-seekers get tangled)	    Weak to Perform (audience sees through you)	        On success, 25% chance enemy loses 1 Power (mental confusion)
-    // Perform	Charisma + Power	Dramatic flair, crowd control	        Beats Lie (spotlight breaks deception)	        Weak to Insult (heckled off stage)	                On success, small “momentum” bonus: +0.5 Power restoration every turn
-    // Insult	Subterfuge + Power	Verbal aggression, raw taunt	        Beats Perform (breaks composure)	            Weak to Persuade (cool-headed rebuttal)	            On success, 25% chance to reduce enemy Charisma by 1 for this quarrel
+    // Persuade	Charisma	        Soothing rhetoric, calm logic	        Beats Insult (diffuses anger)	                Weak to Lie (manipulation outsmarts sincerity)	    On a win, restore +1 Power next turn (confidence boost)
+    // Lie	    Subterfuge	        Deception, trickery, false narrative	Beats Persuade (truth-seekers get tangled)	    Weak to Perform (audience sees through you)	        On a win, 25% chance enemy loses 1 Power (mental confusion)
+    // Perform	Charisma + Power	Dramatic flair, crowd control	        Beats Lie (spotlight breaks deception)	        Weak to Insult (heckled off stage)	                On a win, small “momentum” bonus: +0.5 Power restoration every turn
+    // Insult	Subterfuge + Power	Verbal aggression, raw taunt	        Beats Perform (breaks composure)	            Weak to Persuade (cool-headed rebuttal)	            On a win, 25% chance to reduce enemy Charisma by 1 for this quarrel
 
     // This forms a rotating cycle (4-way rock-paper-scissors):
     // Persuade > Insult > Perform > Lie > Persuade
@@ -51,37 +55,46 @@ public class Quarrel
 
         if (pSpent == 0 && eSpent == 0)
         {
-            return "Both warriors circle one another cautiously, eyes locked — but neither dares strike. The tension grows; no blood is spilled this turn.";
+            return "Both hold their tongues, the silence louder than any argument.";
         }
         else if (pSpent == 0)
         {
-            player.TakeDamage(1);
-            return $"{player.Name} braces for the blow, steel raised in defense — yet {Enemy.Name}'s strike slips through, leaving a shallow wound!";
+            WinnersApproach = Enemy.CurrentApproach;
+            int damage = CalculateDamage(0, Enemy);
+            player.TakeDamage(damage);
+            return $"{Enemy.Name} strikes with {Enemy.CurrentApproach}, while {player.Name} stays silent. The retort lands clean — {Enemy.CurrentApproach} overwhelms passivity.";
         }
         else if (eSpent == 0)
         {
-            Enemy.TakeDamage(1);
-            return $"{Enemy.Name} retreats behind a guarded stance, but {player.Name}'s cunning feint lands true — a minor cut, but a message sent.";
+            WinnersApproach = player.CurrentApproach;
+            int damage = CalculateDamage(0, player);
+            Enemy.TakeDamage(damage);
+            return $"{player.Name} launches a {player.CurrentApproach} while {Enemy.Name} falters. Words cut sharper than hesitation.";
         }
         else
         {
-            if (pSpent > eSpent)
+            double playerPowerModifier = CompareApproaches(player, Enemy);
+            string advantageText = AdvantageText(player.CurrentApproach, Enemy.CurrentApproach);
+
+            if (pSpent * playerPowerModifier > eSpent)
             {
-                int damage = CalculateDamage(eSpent);
+                WinnersApproach = player.CurrentApproach;
+                int damage = CalculateDamage(eSpent, player);
                 Enemy.TakeDamage(damage);
-                return $"{player.Name} unleashes a furious assault, overpowering {Enemy.Name}'s efforts. The blow lands hard — {damage} damage dealt!";
+                return $"{player.Name} uses {player.CurrentApproach}, {advantageText} {Enemy.Name}'s {Enemy.CurrentApproach}. The crowd turns — {damage} resolve lost!";
             }
-            else if (eSpent > pSpent)
+            else if (eSpent > pSpent * playerPowerModifier)
             {
-                int damage = CalculateDamage(pSpent);
+                WinnersApproach = Enemy.CurrentApproach;
+                int damage = CalculateDamage(pSpent, Enemy);
                 player.TakeDamage(damage);
-                return $"{Enemy.Name} finds an opening and strikes like lightning! {player.Name} reels back, taking {damage} damage.";
+                return $"{Enemy.Name} answers with {Enemy.CurrentApproach}, {advantageText} {player.Name}'s {player.CurrentApproach}. Confidence cracks — {damage} resolve lost!";
             }
             else
             {
                 player.TakeDamage(1);
                 Enemy.TakeDamage(1);
-                return "Steel clashes against steel in perfect synchronicity — both combatants land glancing hits. Blood is drawn on both sides.";
+                return $"{player.Name}'s {player.CurrentApproach} and {Enemy.Name}'s {Enemy.CurrentApproach} clash in perfect symmetry. Both arguments sting, neither concedes.";
             }
         }
     }
@@ -119,16 +132,15 @@ public class Quarrel
         }
     }
 
-    public Combatant.Approach ChooseEnemyApproach(Combatant enemy)
+    public Combatant.Approach ChooseEnemyApproach(double playerAction)
     {
-        // [_] do this
         double randomNumber = NextDoubleInRange(rng, 0, 101);
-        if (enemy.Charisma > enemy.Subterfuge)
+        if (Enemy.Charisma > Enemy.Subterfuge)
         {
             if (randomNumber < 75)
             {
                 // 75% chance to use perform or persuade (persuade if low on power, otherwise perform)
-                if (enemy.Power < 5)
+                if (Enemy.Power < 5)
                     return Combatant.Approach.Persuade;
                 else
                     return Combatant.Approach.Perform;
@@ -143,11 +155,15 @@ public class Quarrel
                     return Combatant.Approach.Lie;
             }
         }
-        else if (enemy.Charisma < enemy.Subterfuge)
+        else if (Enemy.Charisma < Enemy.Subterfuge)
         {
             if (randomNumber < 75)
             {
                 // 75% chance to use insult or lie (lie if player just used little power, insult otherwise)
+                if (playerAction < 2)
+                    return Combatant.Approach.Lie;
+                else
+                    return Combatant.Approach.Insult;
             }
             else
             {
@@ -164,17 +180,20 @@ public class Quarrel
             if (randomNumber < 50)
             {
                 // 50% chance to use insult or lie (lie if player just used little power, insult otherwise)
+                if (playerAction < 2)
+                    return Combatant.Approach.Lie;
+                else
+                    return Combatant.Approach.Insult;
             }
             else
             {
                 // 50% chance to use perform or persuade (persuade if low on power, otherwise perform)
-                if (enemy.Power < 5)
+                if (Enemy.Power < 5)
                     return Combatant.Approach.Persuade;
                 else
                     return Combatant.Approach.Perform;
             }
         }
-        return Combatant.Approach.Persuade;
     }
 
     public double CompareApproaches(Combatant player, Combatant enemy)
@@ -230,16 +249,94 @@ public class Quarrel
         }
     }
 
-    public int CalculateDamage(double loserSpent)
+    public int CalculateDamage(double loserSpent, Combatant roundWinner)
     {
-        // [_] add winners approach modifier here
-        // [_] add round winner to parameters to get their charisma or subterfuge
-        if (loserSpent == 0)
-            return 1;
-        else if (loserSpent <= 5)
-            return 2;
+        double statToUse;
+        if (
+            WinnersApproach == Combatant.Approach.Persuade
+            || WinnersApproach == Combatant.Approach.Perform
+        )
+        {
+            statToUse = roundWinner.Charisma;
+        }
         else
-            return 4;
+        {
+            statToUse = roundWinner.Subterfuge;
+        }
+        double baseDamage;
+        if (loserSpent == 0)
+            baseDamage = 1;
+        else if (loserSpent <= 5)
+            baseDamage = 2;
+        else
+            baseDamage = 4;
+
+        // scaling: +50% per every even stat point (no baseline)
+        int evenCount = (int)Math.Floor(statToUse / 2.0); // how many even thresholds reached
+        double multiplier = 1 + (0.5 * evenCount); // +50% each
+        double scaledDamage = baseDamage * multiplier;
+
+        return (int)Math.Ceiling(scaledDamage);
+    }
+
+    public string ApplyEffects(Combatant roundWinner, Combatant roundLoser)
+    {
+        // needs to return a log quote as to what happened for QuarrelRound to add to th elogs
+        switch (WinnersApproach)
+        {
+            case Combatant.Approach.Persuade:
+                // On a win, restore +1 Power next turn (confidence boost)
+                double missingPower = roundWinner.MaxPower - roundWinner.Power;
+                if (missingPower > 0)
+                    roundWinner.RestorePower(1);
+                return $"{roundWinner.Name} has a confidence boost from the persuasion, restoring 1 power!";
+            case Combatant.Approach.Lie:
+                // On a win, 25% chance enemy loses 1 Power (mental confusion)
+                double randomNumber = NextDoubleInRange(rng, 0, 101);
+                if (randomNumber < 25)
+                {
+                    if (roundLoser.Power > 1)
+                        roundLoser.Power = roundLoser.Power - 1;
+                    else
+                        roundLoser.Power = 0;
+                    return $"{roundWinner.Name}'s words sting deep, causing {roundLoser.Name}'s mind to falter, losing 1 power!";
+                }
+                else
+                {
+                    return $"{roundLoser.Name} shrugs off {roundWinner.Name}'s words.";
+                }
+            case Combatant.Approach.Perform:
+                // On a win, small “momentum” bonus: +0.5 Power restoration every turn
+                if (roundWinner == Enemy)
+                    EnemyPowerRestorationBonus = EnemyPowerRestorationBonus + 0.5;
+                else
+                    PlayerPowerRestorationBonus = PlayerPowerRestorationBonus + 0.5;
+                return $"{roundWinner.Name}'s performance boosts their momentum, increasing their total power restoration bonus to {(roundWinner == Enemy ? EnemyPowerRestorationBonus : PlayerPowerRestorationBonus)}";
+            case Combatant.Approach.Insult:
+                // On a win, 25% chance to reduce enemy Charisma by 1 for this quarrel
+                double randomNumber2 = NextDoubleInRange(rng, 0, 101);
+                if (randomNumber2 < 25)
+                {
+                    if (roundLoser == Enemy)
+                    {
+                        if (Enemy.Charisma > 0)
+                            Enemy.Charisma = Enemy.Charisma - 1;
+                        EnemyCharismaPenalty = EnemyCharismaPenalty + 1;
+                    }
+                    else
+                    {
+                        if (roundLoser.Charisma > 0)
+                            roundLoser.Charisma = roundLoser.Charisma - 1;
+                        PlayerCharismaPenalty = PlayerCharismaPenalty + 1;
+                    }
+                    return $"The insult sticks! {roundLoser.Name}'s confidence falters, decreasing their charisma by 1 for this quarrel!";
+                }
+                else
+                {
+                    return $"{roundLoser.Name} shrugs off the insult!";
+                }
+        }
+        return "";
     }
 
     public void RestoreAfter(Combatant player, double playerAction, double enemyAction)
@@ -259,5 +356,51 @@ public class Quarrel
             if (missingPower > 0)
                 Enemy.RestorePower(NextDoubleInRange(rng, 1, Math.Min(amount, missingPower) + 1));
         }
+        if (PlayerPowerRestorationBonus > 0)
+            player.RestorePower(PlayerPowerRestorationBonus);
+        if (EnemyPowerRestorationBonus > 0)
+            Enemy.RestorePower(EnemyPowerRestorationBonus);
+    }
+
+    private string AdvantageText(
+        Combatant.Approach playerApproach,
+        Combatant.Approach enemyApproach
+    )
+    {
+        if (
+            playerApproach == Combatant.Approach.Persuade
+            && enemyApproach == Combatant.Approach.Insult
+        )
+            return "calm reason defuses";
+        if (
+            playerApproach == Combatant.Approach.Lie
+            && enemyApproach == Combatant.Approach.Persuade
+        )
+            return "cunning twists";
+        if (playerApproach == Combatant.Approach.Perform && enemyApproach == Combatant.Approach.Lie)
+            return "showmanship exposes";
+        if (
+            playerApproach == Combatant.Approach.Insult
+            && enemyApproach == Combatant.Approach.Perform
+        )
+            return "mockery shatters";
+        if (
+            enemyApproach == Combatant.Approach.Persuade
+            && playerApproach == Combatant.Approach.Insult
+        )
+            return "calm reason defuses";
+        if (
+            enemyApproach == Combatant.Approach.Lie
+            && playerApproach == Combatant.Approach.Persuade
+        )
+            return "cunning twists";
+        if (enemyApproach == Combatant.Approach.Perform && playerApproach == Combatant.Approach.Lie)
+            return "showmanship exposes";
+        if (
+            enemyApproach == Combatant.Approach.Insult
+            && playerApproach == Combatant.Approach.Perform
+        )
+            return "mockery shatters";
+        return "outmaneuvers";
     }
 }

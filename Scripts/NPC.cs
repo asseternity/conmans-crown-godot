@@ -171,6 +171,6 @@ public partial class NPC : CharacterBody2D
 
 		// Hide indicator
 		if (_indicator != null)
-			_indicator.Visible = active;
+			_indicator.Visible = false;
 	}
 }

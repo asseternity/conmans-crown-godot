@@ -87,3 +87,9 @@ position = Vector2(-304, 114)
 Id = 10
 ItemName = "activity:dancing"
 IconPath = "res://downloaded_assets/door.png"
+
+[node name="NPC2" parent="." instance=ExtResource("10_7lsp5")]
+position = Vector2(211, 181)
+TimelinePath = "res://dialogic/Timelines/test_timeline.dtl"
+SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
+daysAvailable = "1,2,4,5"

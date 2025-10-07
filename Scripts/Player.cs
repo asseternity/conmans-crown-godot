@@ -21,6 +21,16 @@ public partial class Player : CharacterBody2D
 
 	private Axis _lastAxis = Axis.Vertical; // tie-breaker when both pressed
 
+	// real-time combat vars
+	// Attack
+	[Export]
+	public float AttackCooldown = 0.5f;
+	private float _attackTimer = 0f;
+	private Area2D? _attackArea;
+
+	[Export]
+	public float AttackActiveSeconds = 0.12f; // how long hitbox is active
+
 	public override async void _Ready()
 	{
 		_anim = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -39,6 +49,14 @@ public partial class Player : CharacterBody2D
 		}
 		_engine.GS.CurrentLevelPath = holder.GetChild(0).SceneFilePath;
 		GD.Print($"[Engine] _engine.GS.CurrentLevelPath is {_engine.GS.CurrentLevelPath}");
+
+		// optional attack area pre-existing on the player scene
+		_attackArea = GetNodeOrNull<Area2D>("AttackArea");
+		if (_attackArea != null)
+		{
+			_attackArea.Monitoring = false;
+			_attackArea.BodyEntered += OnAttackBodyEntered;
+		}
 	}
 
 	// Read input, but allow only ONE axis at a time
@@ -106,6 +124,14 @@ public partial class Player : CharacterBody2D
 			_footstepsPlayer.Stop();
 		}
 
+		// Attack timer
+		_attackTimer -= (float)delta;
+		if (Input.IsActionJustPressed("attack") && _attackTimer <= 0f && !dialogActive && !menuOpen)
+		{
+			_attackTimer = AttackCooldown;
+			StartAttack();
+		}
+
 		// Animations
 		string targetAnim;
 		if (dir != Vector2.Zero)
@@ -124,5 +150,90 @@ public partial class Player : CharacterBody2D
 
 		if (_anim.CurrentAnimation != targetAnim)
 			_anim.Play(targetAnim);
+	}
+
+	private async void StartAttack()
+	{
+		// prefer an animation; fallback to idle-facing attack name
+		string attackAnim = $"attack_{_facing}";
+		if (_anim.HasAnimation(attackAnim))
+			_anim.Play(attackAnim);
+
+		// Ensure we have an Area2D attack hitbox
+		if (_attackArea == null)
+			CreateTemporaryAttackArea();
+
+		if (_attackArea == null)
+			return;
+
+		// Position the hitbox in front of the player based on facing
+		Vector2 offset = _facing switch
+		{
+			"up" => new Vector2(0, -16),
+			"down" => new Vector2(0, 16),
+			"left" => new Vector2(-16, 0),
+			"right" => new Vector2(16, 0),
+			_ => new Vector2(0, 16)
+		};
+		_attackArea.Position = offset;
+		_attackArea.Monitoring = true;
+		_attackArea.Visible = true;
+
+		// Active for a short window
+		int frames = (int)System.Math.Max(1, AttackActiveSeconds * 60); // approximate frames
+		for (int i = 0; i < frames; i++)
+			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+
+		_attackArea.Monitoring = false;
+		_attackArea.Visible = false;
+	}
+
+	private void OnAttackBodyEntered(Node body)
+	{
+		if (body == null)
+			return;
+
+		// Prefer strong-typed Enemy call if present
+		if (body is Enemy enemy)
+		{
+			int damage = GetPlayerBrawn();
+			enemy.TakeDamage(damage);
+
+			// optional: small knockback
+			Vector2 kb = (enemy.GlobalPosition - GlobalPosition).Normalized() * 40f;
+			enemy.ApplyKnockback(kb);
+		}
+		else if (body.IsInGroup("Enemy"))
+		{
+			// try to call TakeDamage dynamically
+			int damage = GetPlayerBrawn();
+			body.Call("TakeDamage", damage);
+		}
+	}
+
+	private void CreateTemporaryAttackArea()
+	{
+		// Create a lightweight Area2D as child if not present.
+		_attackArea = new Area2D();
+		_attackArea.Name = "AttackArea";
+		_attackArea.Monitoring = false;
+		_attackArea.Visible = false;
+
+		var shape = new CollisionShape2D();
+		var rect = new RectangleShape2D();
+		rect.Size = new Vector2(16, 16);
+		shape.Shape = rect;
+		_attackArea.AddChild(shape);
+
+		AddChild(_attackArea);
+		_attackArea.BodyEntered += OnAttackBodyEntered;
+	}
+
+	private int GetPlayerBrawn()
+	{
+		var engine = GetTree().Root.GetNodeOrNull<Engine>("GlobalEngine");
+		if (engine != null && engine.GS != null && engine.GS.PlayerObject?.Brawn != null)
+			return engine.GS.PlayerObject.Brawn.Value;
+		return 1;
 	}
 }

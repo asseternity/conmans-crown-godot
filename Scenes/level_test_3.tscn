@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://c5g4rshth8ujc"]
+[gd_scene load_steps=9 format=4 uid="uid://c5g4rshth8ujc"]
 
 [ext_resource type="Shader" uid="uid://g14do54fqsad" path="res://Shaders/colors.gdshader" id="2_gvsrr"]
 [ext_resource type="TileSet" uid="uid://ih03bic53451" path="res://TileSets/leordis_tile_set.tres" id="2_vrmut"]
 [ext_resource type="PackedScene" uid="uid://csnkp77ksl05p" path="res://Scenes/Player.tscn" id="3_gvsrr"]
+[ext_resource type="PackedScene" uid="uid://dtmcuhcnc0flb" path="res://Scenes/enemy.tscn" id="6_gvsrr"]
 [ext_resource type="PackedScene" uid="uid://06lewse3cqhs" path="res://Scenes/item.tscn" id="9_rfacr"]
 [ext_resource type="PackedScene" uid="uid://cxmpys81qvmhn" path="res://Scenes/NPC.tscn" id="10_7lsp5"]
 
@@ -93,3 +94,6 @@ position = Vector2(211, 181)
 TimelinePath = "res://dialogic/Timelines/test_timeline.dtl"
 SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
 daysAvailable = "1,2,4,5"
+
+[node name="Enemy" parent="." instance=ExtResource("6_gvsrr")]
+position = Vector2(-172, 251)

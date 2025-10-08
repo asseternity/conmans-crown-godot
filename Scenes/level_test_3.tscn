@@ -97,3 +97,4 @@ daysAvailable = "1,2,4,5"
 
 [node name="Enemy" parent="." instance=ExtResource("6_gvsrr")]
 position = Vector2(-54, 73)
+MaxHealth = 2

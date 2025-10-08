@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtmcuhcnc0flb"]
+[gd_scene load_steps=8 format=3 uid="uid://dtmcuhcnc0flb"]
 
 [ext_resource type="Script" uid="uid://df6wg7ywvwrhe" path="res://Scripts/Enemy.cs" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://ch5umuyci5qjo" path="res://downloaded_assets/10chars/spritesheets/1 idle.png" id="2_afpow"]
+[ext_resource type="AudioStream" uid="uid://b20s1ui6dnqr7" path="res://Audio/Minifantasy_Dungeon_SFX/21_orc_damage_2.wav" id="3_afpow"]
+[ext_resource type="AudioStream" uid="uid://c855wgvg3msys" path="res://Audio/Minifantasy_Dungeon_SFX/21_orc_damage_3.wav" id="4_287tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
 
@@ -66,3 +68,9 @@ offset_bottom = 1.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_afpow")
+
+[node name="DamagePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_afpow")
+
+[node name="DiePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_287tu")

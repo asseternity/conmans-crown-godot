@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://csnkp77ksl05p"]
+[gd_scene load_steps=16 format=3 uid="uid://csnkp77ksl05p"]
 
 [ext_resource type="Script" uid="uid://deciqrie7tsin" path="res://Scripts/Player.cs" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://cuhqdqr6uh4cj" path="res://Images/Prototype_Character/prototype_character.png" id="2_kyqiw"]
 [ext_resource type="AudioStream" uid="uid://dmcxmc21ohsrw" path="res://Audio/Free Footsteps Pack/Concrete 2.wav" id="3_gntrk"]
+[ext_resource type="AudioStream" uid="uid://dyanac4d8aero" path="res://Audio/Minifantasy_Dungeon_SFX/27_sword_miss_1.wav" id="4_5ixxa"]
+[ext_resource type="AudioStream" uid="uid://0mp4igu5j1m" path="res://Audio/Minifantasy_Dungeon_SFX/10_human_special_atk_2.wav" id="5_nn08x"]
 
 [sub_resource type="Animation" id="Animation_5ixxa"]
 length = 0.001
@@ -272,3 +274,9 @@ polygon = PackedVector2Array(-6, -7, -6, -1, -7.3, 8, 7.3, 8, 6, -1.3, 6, -7)
 stream = ExtResource("3_gntrk")
 volume_db = -13.843
 pitch_scale = 1.75
+
+[node name="DamagePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5ixxa")
+
+[node name="ShootPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nn08x")

@@ -19,9 +19,14 @@ public partial class Enemy : CharacterBody2D
 	private Vector2 _knockback = Vector2.Zero;
 	private Panel HPAvailable;
 	private Panel HPUnavailable;
+	private AudioStreamPlayer _hurtPlayer;
+	private AudioStreamPlayer _diePlayer;
+	public bool _isDying = false;
 
 	public override void _Ready()
 	{
+		_hurtPlayer = GetNode<AudioStreamPlayer>("DamagePlayer");
+		_diePlayer = GetNode<AudioStreamPlayer>("DiePlayer");
 		Health = MaxHealth;
 		AddToGroup("Enemy");
 		HPAvailable = GetNode<Panel>("Control/HPAvailable");
@@ -39,6 +44,10 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// disable if dying
+		if (_isDying)
+			return;
+
 		// Invulnerability and knockback decay
 		if (_invulTimer > 0f)
 			_invulTimer -= (float)delta;
@@ -93,8 +102,19 @@ public partial class Enemy : CharacterBody2D
 
 		if (Health <= 0)
 		{
+			_isDying = true;
+			// Hide
+			Hide();
+			// disable collision
+			var collisionShape = GetNodeOrNull<CollisionShape2D>("CollisionShape2D");
+			if (collisionShape != null)
+				collisionShape.CallDeferred("set_disabled", true);
 			Die();
 			return;
+		}
+		else
+		{
+			_hurtPlayer.Play();
 		}
 
 		// Optional feedback: flash tween or play sound (require nodes)
@@ -108,20 +128,14 @@ public partial class Enemy : CharacterBody2D
 		_knockback = kb;
 	}
 
-	private void Die()
+	private async void Die()
 	{
-		// Drop loot, play death animation, then free
-		var deathAnim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
-		if (deathAnim != null && deathAnim.HasAnimation("die"))
-		{
-			deathAnim.Play("die");
-			// Schedule free after animation length
-			float wait = (float)deathAnim.CurrentAnimationLength;
-			CallDeferred(nameof(QueueFree));
-		}
-		else
-		{
-			QueueFree();
-		}
+		// Play death sound
+		_diePlayer.Play();
+		// wait asynchronously without blocking physics
+		double soundLength = _diePlayer.Stream?.GetLength() ?? 0f;
+		await ToSignal(GetTree().CreateTimer(soundLength), SceneTreeTimer.SignalName.Timeout);
+		// Now free the node
+		QueueFree();
 	}
 }

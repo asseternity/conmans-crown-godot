@@ -12,6 +12,7 @@ public partial class GameUI : Control
 	private Button _statsButton;
 	private Label _taskCompletedLabel;
 	public Label _calendarTextLabel;
+	public Label _HPTextLabel;
 
 	public override void _Ready()
 	{
@@ -22,8 +23,9 @@ public partial class GameUI : Control
 		_inventoryButton = GetNode<Button>("InventoryButton");
 		_questsButton = GetNode<Button>("QuestsButton");
 		_statsButton = GetNode<Button>("StatsButton");
-		_taskCompletedLabel = GetNode<Label>("Panel/TaskCompletedLabel");
+		_taskCompletedLabel = GetNode<Label>("TaskCompletedLabel");
 		_calendarTextLabel = GetNode<Label>("Calendar/Panel/CalendarText");
+		_HPTextLabel = GetNode<Label>("HPPanel/HPText");
 		_mapButton.Pressed += OnMapPressed;
 		_settingsButton.Pressed += OnSettingsPressed;
 		_inventoryButton.Pressed += OnInventoryPressed;
@@ -32,6 +34,15 @@ public partial class GameUI : Control
 
 		// hide quest notification by default
 		_taskCompletedLabel.Visible = false;
+	}
+
+	public override void _Process(double delta)
+	{
+		var engine = GetTree().Root.GetNodeOrNull<Engine>("GlobalEngine");
+		_HPTextLabel.Text =
+			engine.GS.PlayerObject.Health.ToString()
+			+ "/"
+			+ engine.GS.PlayerObject.MaxHealth.ToString();
 	}
 
 	private void PlayClickSound()

@@ -24,17 +24,45 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_xjnnq")
 
+[node name="TaskCompletedLabel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 713.0
+offset_bottom = 123.0
+theme = ExtResource("2_gjn1n")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "Task  completed: find a thing"
+vertical_alignment = 1
+
+[node name="HPPanel" type="Panel" parent="."]
+z_index = -1
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 90.0
+offset_bottom = 62.0
+theme = ExtResource("2_gjn1n")
+
+[node name="HPText" type="Label" parent="HPPanel"]
+layout_mode = 0
+offset_right = 87.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("3_dvsk4")
+theme_override_font_sizes/font_size = 26
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Calendar" type="Node" parent="."]
 
 [node name="Panel" type="Panel" parent="Calendar"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -97.0
-offset_top = 18.0
-offset_right = -10.0
-offset_bottom = 75.0
-grow_horizontal = 0
+z_index = -1
+offset_left = 94.0
+offset_top = 5.0
+offset_right = 181.0
+offset_bottom = 62.0
 theme = ExtResource("2_gjn1n")
 
 [node name="CalendarText" type="Label" parent="Calendar/Panel"]
@@ -49,41 +77,21 @@ vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 5.0
-offset_right = 327.135
-offset_bottom = 73.815
+offset_left = 183.0
+offset_right = 580.0
+offset_bottom = 75.0
 theme = ExtResource("2_gjn1n")
 theme_override_styles/panel = SubResource("StyleBoxTexture_3t1kc")
 
-[node name="TaskCompletedLabel" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 11.865
-offset_top = -18.4075
-offset_right = 718.865
-offset_bottom = 30.5925
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 40
-text = "Task  completed: find a thing"
-vertical_alignment = 1
-
 [node name="PauseButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 18.0
-offset_right = 1101.0
-offset_bottom = 826.0
+offset_left = 185.0
+offset_top = 14.0
+offset_right = 1681.0
+offset_bottom = 822.0
 scale = Vector2(0.055, 0.055)
 theme = ExtResource("2_gjn1n")
-theme_override_font_sizes/font_size = 250
+theme_override_font_sizes/font_size = 350
 text = "Settings"
 flat = true
 alignment = 0
@@ -92,13 +100,13 @@ expand_icon = true
 
 [node name="MapButton" type="Button" parent="."]
 layout_mode = 1
-offset_left = 74.0
-offset_top = 19.0
-offset_right = 882.0
-offset_bottom = 827.0
+offset_left = 274.0
+offset_top = 16.0
+offset_right = 1177.0
+offset_bottom = 824.0
 scale = Vector2(0.053, 0.053)
 theme = ExtResource("2_gjn1n")
-theme_override_font_sizes/font_size = 250
+theme_override_font_sizes/font_size = 350
 text = "Map"
 flat = true
 icon_alignment = 1
@@ -106,13 +114,13 @@ expand_icon = true
 
 [node name="InventoryButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 119.0
-offset_top = 16.0
-offset_right = 1456.0
-offset_bottom = 956.0
+offset_left = 330.0
+offset_top = 13.0
+offset_right = 2174.0
+offset_bottom = 953.0
 scale = Vector2(0.053, 0.053)
 theme = ExtResource("2_gjn1n")
-theme_override_font_sizes/font_size = 250
+theme_override_font_sizes/font_size = 350
 text = "Inventory"
 flat = true
 icon_alignment = 1
@@ -120,13 +128,13 @@ expand_icon = true
 
 [node name="QuestsButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 194.0
-offset_top = 20.0
-offset_right = 1260.0
-offset_bottom = 790.0
+offset_left = 436.0
+offset_top = 18.0
+offset_right = 1900.0
+offset_bottom = 788.0
 scale = Vector2(0.053, 0.053)
 theme = ExtResource("2_gjn1n")
-theme_override_font_sizes/font_size = 250
+theme_override_font_sizes/font_size = 350
 text = "Journal"
 flat = true
 icon_alignment = 1
@@ -134,14 +142,14 @@ expand_icon = true
 
 [node name="StatsButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 252.0
-offset_top = 21.0
-offset_right = 1645.0
-offset_bottom = 791.0
+offset_left = 502.0
+offset_top = 18.0
+offset_right = 2150.0
+offset_bottom = 788.0
 scale = Vector2(0.053, 0.053)
 theme = ExtResource("2_gjn1n")
-theme_override_font_sizes/font_size = 250
-text = "Character"
+theme_override_font_sizes/font_size = 350
+text = "Stats"
 flat = true
 icon_alignment = 1
 expand_icon = true

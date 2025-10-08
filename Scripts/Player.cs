@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Player : CharacterBody2D
@@ -7,8 +8,10 @@ public partial class Player : CharacterBody2D
 
 	private AnimationPlayer _anim;
 	private AudioStreamPlayer _footstepsPlayer;
-	private float _footstepCooldown = 0.3f; // 0.3 seconds between footsteps
-	private float _footstepTimer = 0f; // tracks cooldown
+	private AudioStreamPlayer _hurtPlayer;
+	private AudioStreamPlayer _shootPlayer;
+	private float _footstepCooldown = 0.3f;
+	private float _footstepTimer = 0f;
 
 	private string _facing = "down";
 
@@ -19,43 +22,61 @@ public partial class Player : CharacterBody2D
 		Vertical
 	}
 
-	private Axis _lastAxis = Axis.Vertical; // tie-breaker when both pressed
+	private Axis _lastAxis = Axis.Vertical;
 
-	// real-time combat vars
-	// Attack
+	// Projectile combat vars
 	[Export]
-	public float AttackCooldown = 0.5f;
+	public PackedScene ProjectileScene = null; // optional: can preload a PackedScene for Projectile
+
+	[Export]
+	public float ProjectileSpeed = 800f;
+
+	[Export]
+	public float ProjectileMaxDistance = 1000f;
+
+	[Export]
+	public float ProjectileRadius = 2f;
+
+	[Export]
+	public float AttackCooldown = 0.25f; // quicker since it's ranged
 	private float _attackTimer = 0f;
-	private Area2D? _attackArea;
+
+	// Hurt / invulnerability
+	[Export]
+	public float InvulnerableSeconds = 0.2f;
+	private Vector2 _knockback = Vector2.Zero;
 
 	[Export]
-	public float AttackActiveSeconds = 0.12f; // how long hitbox is active
+	public float HurtboxRadius = 14f; // slightly bigger than player's collision
+	private bool _invulnerable = false;
 
 	public override async void _Ready()
 	{
 		_anim = GetNode<AnimationPlayer>("AnimationPlayer");
 		_footstepsPlayer = GetNode<AudioStreamPlayer>("FootstepsPlayer");
+		_hurtPlayer = GetNode<AudioStreamPlayer>("DamagePlayer");
+		_shootPlayer = GetNode<AudioStreamPlayer>("ShootPlayer");
 
-		// Wait a few frames to ensure Engine + GS are fully initialized
+		// small frame delay
 		for (int i = 0; i < 5; i++)
 			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
-		// store level path
+		// global engine logic
 		Engine _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
 		var holder = GetNodeOrNull<Node>("/root/MainScene/LevelHolder");
 		if (holder == null)
-		{
 			GD.PushError($"[Engine] LevelHolder not found");
-		}
-		_engine.GS.CurrentLevelPath = holder.GetChild(0).SceneFilePath;
-		GD.Print($"[Engine] _engine.GS.CurrentLevelPath is {_engine.GS.CurrentLevelPath}");
+		else
+			_engine.GS.CurrentLevelPath = holder.GetChild(0).SceneFilePath;
 
-		// optional attack area pre-existing on the player scene
-		_attackArea = GetNodeOrNull<Area2D>("AttackArea");
-		if (_attackArea != null)
+		// Ensure Hurtbox exists (bigger than collision)
+		var hurtbox = GetNodeOrNull<Area2D>("Hurtbox");
+		if (hurtbox == null)
+			CreateHurtbox();
+		else
 		{
-			_attackArea.Monitoring = false;
-			_attackArea.BodyEntered += OnAttackBodyEntered;
+			hurtbox.Monitoring = true;
+			hurtbox.BodyEntered += OnHurtboxBodyEntered;
 		}
 	}
 
@@ -79,7 +100,6 @@ public partial class Player : CharacterBody2D
 			}
 			else
 			{
-				// Equal strength (diagonal) → prefer the last axis we used
 				if (_lastAxis == Axis.Horizontal)
 					y = 0;
 				else
@@ -91,7 +111,20 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Can't move if dialogic or quarrelUI or pauseUI is open
+		var engine = GetTree().Root.GetNodeOrNull<Engine>("GlobalEngine");
+		if (engine.GS.PlayerObject.Health <= 0)
+		{
+			Die();
+		}
+
+		if (_knockback.Length() > 1f)
+		{
+			Velocity = _knockback;
+			MoveAndSlide();
+			_knockback *= 0.9f; // smooth decay toward zero
+			return;
+		}
+
 		var dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
 		bool dialogActive =
 			dialogic != null && dialogic.Get("current_timeline").VariantType != Variant.Type.Nil;
@@ -112,7 +145,6 @@ public partial class Player : CharacterBody2D
 			_footstepTimer -= (float)delta;
 			if (_footstepTimer <= 0f)
 			{
-				// Randomize pitch slightly (1.4 - 1.9)
 				_footstepsPlayer.PitchScale = 1.4f + (float)GD.Randf() * 0.5f;
 				_footstepsPlayer.Play();
 				_footstepTimer = _footstepCooldown;
@@ -120,19 +152,19 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			_footstepTimer = 0f; // reset so footsteps start immediately when moving
+			_footstepTimer = 0f;
 			_footstepsPlayer.Stop();
 		}
 
-		// Attack timer
+		// Attack input -> SHOOT projectile
 		_attackTimer -= (float)delta;
 		if (Input.IsActionJustPressed("attack") && _attackTimer <= 0f && !dialogActive && !menuOpen)
 		{
 			_attackTimer = AttackCooldown;
-			StartAttack();
+			ShootProjectile();
 		}
 
-		// Animations
+		// Animations + facing
 		string targetAnim;
 		if (dir != Vector2.Zero)
 		{
@@ -152,81 +184,126 @@ public partial class Player : CharacterBody2D
 			_anim.Play(targetAnim);
 	}
 
-	private async void StartAttack()
+	private void ShootProjectile()
 	{
-		// prefer an animation; fallback to idle-facing attack name
+		// optional animation
 		string attackAnim = $"attack_{_facing}";
 		if (_anim.HasAnimation(attackAnim))
 			_anim.Play(attackAnim);
 
-		// Ensure we have an Area2D attack hitbox
-		if (_attackArea == null)
-			CreateTemporaryAttackArea();
-
-		if (_attackArea == null)
-			return;
-
-		// Position the hitbox in front of the player based on facing
-		Vector2 offset = _facing switch
+		// instantiate Projectile either from PackedScene or create programmatically
+		Projectile proj = null;
+		if (ProjectileScene != null)
 		{
-			"up" => new Vector2(0, -16),
-			"down" => new Vector2(0, 16),
-			"left" => new Vector2(-16, 0),
-			"right" => new Vector2(16, 0),
-			_ => new Vector2(0, 16)
+			_shootPlayer.Play();
+			var inst = ProjectileScene.Instantiate();
+			if (inst is Projectile p)
+				proj = p;
+			else
+			{
+				// if scene is generic Node, try to cast
+				proj = inst as Projectile;
+			}
+		}
+		else
+		{
+			// create new Projectile instance programmatically
+			proj = new Projectile();
+		}
+
+		if (proj == null)
+		{
+			GD.PrintErr(
+				"Failed to create projectile (ensure ProjectileScene is a Projectile or class exists)"
+			);
+			return;
+		}
+
+		// set projectile params
+		proj.Speed = ProjectileSpeed;
+		proj.MaxDistance = ProjectileMaxDistance;
+		proj.Radius = ProjectileRadius;
+		int dmg = GetPlayerBrawn();
+		Vector2 dirVec = _facing switch
+		{
+			"up" => new Vector2(0, -1),
+			"down" => new Vector2(0, 1),
+			"left" => new Vector2(-1, 0),
+			"right" => new Vector2(1, 0),
+			_ => new Vector2(0, 1)
 		};
-		_attackArea.Position = offset;
-		_attackArea.Monitoring = true;
-		_attackArea.Visible = true;
 
-		// Active for a short window
-		int frames = (int)System.Math.Max(1, AttackActiveSeconds * 60); // approximate frames
-		for (int i = 0; i < frames; i++)
-			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		proj.Position = GlobalPosition; // spawn at player center; tweak offset if needed
+		proj.Initialize(dirVec, dmg);
 
-		_attackArea.Monitoring = false;
-		_attackArea.Visible = false;
+		// add projectile to the player's parent (so it exists in the same canvas layer)
+		GetParent().AddChild(proj);
 	}
 
-	private void OnAttackBodyEntered(Node body)
+	private void CreateHurtbox()
+	{
+		var hb = new Area2D();
+		hb.Name = "Hurtbox";
+		hb.Monitoring = true;
+		hb.Visible = false;
+
+		var cs = new CollisionShape2D();
+		cs.Name = "CollisionShape2D";
+		var circle = new CircleShape2D();
+		circle.Radius = HurtboxRadius;
+		cs.Shape = circle;
+		hb.AddChild(cs);
+
+		AddChild(hb);
+		hb.BodyEntered += OnHurtboxBodyEntered;
+	}
+
+	private void OnHurtboxBodyEntered(Node body)
 	{
 		if (body == null)
 			return;
 
-		// Prefer strong-typed Enemy call if present
-		if (body is Enemy enemy)
-		{
-			int damage = GetPlayerBrawn();
-			enemy.TakeDamage(damage);
+		if (_invulnerable)
+			return;
 
-			// optional: small knockback
-			Vector2 kb = (enemy.GlobalPosition - GlobalPosition).Normalized() * 40f;
-			enemy.ApplyKnockback(kb);
-		}
-		else if (body.IsInGroup("Enemy"))
+		// Example: enemy collision
+		if (body is Enemy enemy && !enemy._isDying)
 		{
-			// try to call TakeDamage dynamically
-			int damage = GetPlayerBrawn();
-			body.Call("TakeDamage", damage);
+			enemy.ApplyKnockback((enemy.GlobalPosition - GlobalPosition).Normalized() * 40f);
+			ApplyKnockback((GlobalPosition - enemy.GlobalPosition).Normalized() * 40f);
+			ReceiveHit(enemy.Brawn);
+			return;
 		}
 	}
 
-	private void CreateTemporaryAttackArea()
+	public void ApplyKnockback(Vector2 kb)
 	{
-		// Create a lightweight Area2D as child if not present.
-		_attackArea = new Area2D();
-		_attackArea.Name = "AttackArea";
-		_attackArea.Monitoring = false;
-		_attackArea.Visible = false;
+		_knockback = kb;
+	}
 
-		var shape = new CollisionShape2D();
-		var rect = new RectangleShape2D();
-		rect.Size = new Vector2(16, 16);
-		shape.Shape = rect;
-		_attackArea.AddChild(shape);
+	private void ReceiveHit(int damage)
+	{
+		_hurtPlayer.Play();
+		var engine = GetTree().Root.GetNodeOrNull<Engine>("GlobalEngine");
+		engine.GS.PlayerObject.Health = engine.GS.PlayerObject.Health - damage;
+		StartInvulnerability(InvulnerableSeconds);
+	}
 
-		AddChild(_attackArea);
-		_attackArea.BodyEntered += OnAttackBodyEntered;
+	private async void StartInvulnerability(float seconds)
+	{
+		_invulnerable = true;
+
+		float blinkInterval = 0.05f;
+		int loops = Math.Max(1, (int)Math.Ceiling(seconds / blinkInterval));
+		for (int i = 0; i < loops; i++)
+		{
+			// alternate modulate between red and normal
+			Modulate = (i % 2 == 0) ? new Color(1f, 0.5f, 0.5f) : new Color(1f, 1f, 1f);
+			await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		}
+
+		Modulate = new Color(1f, 1f, 1f);
+		_invulnerable = false;
 	}
 
 	private int GetPlayerBrawn()
@@ -235,5 +312,22 @@ public partial class Player : CharacterBody2D
 		if (engine != null && engine.GS != null && engine.GS.PlayerObject?.Brawn != null)
 			return engine.GS.PlayerObject.Brawn.Value;
 		return 1;
+	}
+
+	private void Die()
+	{
+		// Drop loot, play death animation, then free
+		var deathAnim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+		if (deathAnim != null && deathAnim.HasAnimation("die"))
+		{
+			deathAnim.Play("die");
+			// Schedule free after animation length
+			float wait = (float)deathAnim.CurrentAnimationLength;
+			CallDeferred(nameof(QueueFree));
+		}
+		else
+		{
+			QueueFree();
+		}
 	}
 }

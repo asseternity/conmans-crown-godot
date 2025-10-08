@@ -17,14 +17,24 @@ public partial class Enemy : CharacterBody2D
 
 	private float _invulTimer = 0f;
 	private Vector2 _knockback = Vector2.Zero;
-	private Label HPLabel;
+	private Panel HPAvailable;
+	private Panel HPUnavailable;
 
 	public override void _Ready()
 	{
-		HPLabel = GetNode<Label>("HPLabel");
 		Health = MaxHealth;
-		HPLabel.Text = Health.ToString() + "/" + MaxHealth.ToString();
 		AddToGroup("Enemy");
+		HPAvailable = GetNode<Panel>("Control/HPAvailable");
+		HPUnavailable = GetNode<Panel>("Control/HPUnavailable");
+		Vector2 newSize = new Vector2(MaxHealth, HPUnavailable.Size.Y);
+		HPUnavailable.Size = newSize;
+		HPAvailable.Size = newSize;
+
+		// Recenter HP bars relative to Control
+		var controlNode = GetNode<Control>("Control");
+		Vector2 controlCenter = controlNode.Size / 2f;
+		HPUnavailable.Position = controlCenter - (HPUnavailable.Size / 2f);
+		HPAvailable.Position = HPUnavailable.Position; // align left edges
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -70,8 +80,16 @@ public partial class Enemy : CharacterBody2D
 
 		_invulTimer = 0.2f;
 		Health -= amount;
-		HPLabel.Text = Health.ToString() + "/" + MaxHealth.ToString();
-		GD.Print($"[Enemy] Took {amount} dmg. HP now {Health}/{MaxHealth}");
+		float newWidth = ((float)Health / MaxHealth) * HPUnavailable.Size.X;
+		Vector2 newSize = HPAvailable.Size;
+		newSize.X = newWidth;
+		HPAvailable.Size = newSize;
+
+		// Recenter HP bars relative to Control
+		var controlNode = GetNode<Control>("Control");
+		Vector2 controlCenter = controlNode.Size / 2f;
+		HPUnavailable.Position = controlCenter - (HPUnavailable.Size / 2f);
+		HPAvailable.Position = HPUnavailable.Position; // align left edges
 
 		if (Health <= 0)
 		{

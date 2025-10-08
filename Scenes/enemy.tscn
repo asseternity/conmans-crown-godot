@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtmcuhcnc0flb"]
+[gd_scene load_steps=6 format=3 uid="uid://dtmcuhcnc0flb"]
 
 [ext_resource type="Script" uid="uid://df6wg7ywvwrhe" path="res://Scripts/Enemy.cs" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://ch5umuyci5qjo" path="res://downloaded_assets/10chars/spritesheets/1 idle.png" id="2_afpow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f0kj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afpow"]
+bg_color = Color(2.45467e-06, 0.575053, 0.269591, 1)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_1f0kj")
@@ -18,9 +23,46 @@ vframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_287tu")
 
-[node name="HPLabel" type="Label" parent="."]
-offset_left = -21.0
-offset_top = -31.0
-offset_right = 22.0
-offset_bottom = -8.0
-text = "10/10"
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HPUnavailable" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -1.5
+offset_right = 2.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1f0kj")
+
+[node name="HPAvailable" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -1.5
+offset_right = 0.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_afpow")

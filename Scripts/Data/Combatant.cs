@@ -13,7 +13,7 @@ public class Combatant
 	public int? Brawn { get; set; }
 	public int? Lore { get; set; }
 	public int? Honest_Manipulative { get; set; }
-	public int? Domineering_Accommodating { get; set; }
+	public int? Accommodating_Domineering { get; set; }
 	public int? Humanist_Deist { get; set; }
 	public int? XP { get; set; }
 	public int? Level { get; set; }

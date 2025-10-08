@@ -88,7 +88,7 @@ public partial class GameUI : Control
 	{
 		PlayClickSound();
 		var statsUI = GetNode<StatsUI>("/root/MainScene/UIContainer/StatsUI");
-		statsUI.Show();
+		statsUI.OnShowStats();
 	}
 
 	public void ShowQuestNotification(string taskText)

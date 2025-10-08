@@ -15,7 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_yqqf3")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(600, 400)
+custom_minimum_size = Vector2(600, 600)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -32,18 +32,18 @@ theme = ExtResource("2_yvg2w")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -23.0
-offset_top = 10.0
-offset_right = 23.0
-offset_bottom = 49.0
-grow_horizontal = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -187.0
+offset_top = 15.0
+offset_right = -47.0
+offset_bottom = 54.0
+grow_horizontal = 0
 text = "STATS"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(500, 300)
+custom_minimum_size = Vector2(500, 550)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,29 +56,143 @@ offset_right = 250.0
 offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 
-[node name="NegativeSlider" type="ColorRect" parent="Panel/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Name: Joey"
+
+[node name="MaxHealth" type="ColorRect" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
-[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider"]
+[node name="CurrentHealth" type="ColorRect" parent="Panel/VBoxContainer/MaxHealth"]
 custom_minimum_size = Vector2(250, 30)
 layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
-[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider"]
+[node name="HealthLabel" type="Label" parent="Panel/VBoxContainer/MaxHealth"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 118.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Health: 10/10"
+vertical_alignment = 2
+
+[node name="MaxPower" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="CurrentPower" type="ColorRect" parent="Panel/VBoxContainer/MaxPower"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="PowerLabel" type="Label" parent="Panel/VBoxContainer/MaxPower"]
 layout_mode = 0
 offset_left = 5.0
 offset_right = 67.0
 offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("3_wvi1r")
 theme_override_font_sizes/font_size = 25
-text = "Stat 1: 50%"
+text = "Power: 10/10"
 vertical_alignment = 2
 
-[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider"]
+[node name="Abilities" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Abilities"
+
+[node name="MaxCharisma" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="CurrentCharisma" type="ColorRect" parent="Panel/VBoxContainer/MaxCharisma"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="CharismaLabel" type="Label" parent="Panel/VBoxContainer/MaxCharisma"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Charisma: 5"
+vertical_alignment = 2
+
+[node name="MaxSubterfuge" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="CurrentSubterfuge" type="ColorRect" parent="Panel/VBoxContainer/MaxSubterfuge"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="SubterfugeLabel" type="Label" parent="Panel/VBoxContainer/MaxSubterfuge"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Subterfuge: 5"
+vertical_alignment = 2
+
+[node name="MaxBrawn" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="CurrentBrawn" type="ColorRect" parent="Panel/VBoxContainer/MaxBrawn"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="BrawnLabel" type="Label" parent="Panel/VBoxContainer/MaxBrawn"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Brawn: 5"
+vertical_alignment = 2
+
+[node name="Personality" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Personality"
+
+[node name="ManipulativeBar" type="ColorRect" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.968627, 0.152941, 0.564706, 0.505882)
+
+[node name="HonestBar" type="ColorRect" parent="Panel/VBoxContainer/ManipulativeBar"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 0
+color = Color(0.40595, 0.633676, 0.163329, 0.505882)
+
+[node name="HonestLabel" type="Label" parent="Panel/VBoxContainer/ManipulativeBar"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 67.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("3_wvi1r")
+theme_override_font_sizes/font_size = 25
+text = "Honest"
+vertical_alignment = 2
+
+[node name="ManipulativeLabel" type="Label" parent="Panel/VBoxContainer/ManipulativeBar"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -89,30 +203,30 @@ offset_bottom = 30.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_wvi1r")
 theme_override_font_sizes/font_size = 25
-text = "Stat 2: 50%"
+text = "Manipulative"
 vertical_alignment = 2
 
-[node name="NegativeSlider2" type="ColorRect" parent="Panel/VBoxContainer"]
+[node name="DomineeringBar" type="ColorRect" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
-[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider2"]
+[node name="AccomodatingBar" type="ColorRect" parent="Panel/VBoxContainer/DomineeringBar"]
 custom_minimum_size = Vector2(250, 30)
 layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
-[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider2"]
+[node name="AccomodatingLabel" type="Label" parent="Panel/VBoxContainer/DomineeringBar"]
 layout_mode = 0
 offset_left = 5.0
 offset_right = 67.0
 offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("3_wvi1r")
 theme_override_font_sizes/font_size = 25
-text = "Stat 1: 50%"
+text = "Accomodating"
 vertical_alignment = 2
 
-[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider2"]
+[node name="DomineeringLabel" type="Label" parent="Panel/VBoxContainer/DomineeringBar"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -123,30 +237,30 @@ offset_bottom = 30.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_wvi1r")
 theme_override_font_sizes/font_size = 25
-text = "Stat 2: 50%"
+text = "Domineering"
 vertical_alignment = 2
 
-[node name="NegativeSlider3" type="ColorRect" parent="Panel/VBoxContainer"]
+[node name="DeistBar" type="ColorRect" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 color = Color(0.968627, 0.152941, 0.564706, 0.505882)
 
-[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider3"]
+[node name="HumanistBar" type="ColorRect" parent="Panel/VBoxContainer/DeistBar"]
 custom_minimum_size = Vector2(250, 30)
 layout_mode = 0
 color = Color(0.40595, 0.633676, 0.163329, 0.505882)
 
-[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider3"]
+[node name="HumanistLabel" type="Label" parent="Panel/VBoxContainer/DeistBar"]
 layout_mode = 0
 offset_left = 5.0
 offset_right = 67.0
 offset_bottom = 30.0
 theme_override_fonts/font = ExtResource("3_wvi1r")
 theme_override_font_sizes/font_size = 25
-text = "Stat 1: 50%"
+text = "Humanist"
 vertical_alignment = 2
 
-[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider3"]
+[node name="DeistLabel" type="Label" parent="Panel/VBoxContainer/DeistBar"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -157,75 +271,7 @@ offset_bottom = 30.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_wvi1r")
 theme_override_font_sizes/font_size = 25
-text = "Stat 2: 50%"
-vertical_alignment = 2
-
-[node name="NegativeSlider4" type="ColorRect" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-color = Color(0.968627, 0.152941, 0.564706, 0.505882)
-
-[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider4"]
-custom_minimum_size = Vector2(250, 30)
-layout_mode = 0
-color = Color(0.40595, 0.633676, 0.163329, 0.505882)
-
-[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider4"]
-layout_mode = 0
-offset_left = 5.0
-offset_right = 67.0
-offset_bottom = 30.0
-theme_override_fonts/font = ExtResource("3_wvi1r")
-theme_override_font_sizes/font_size = 25
-text = "Stat 1: 50%"
-vertical_alignment = 2
-
-[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider4"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -72.0
-offset_right = -5.0
-offset_bottom = 30.0
-grow_horizontal = 0
-theme_override_fonts/font = ExtResource("3_wvi1r")
-theme_override_font_sizes/font_size = 25
-text = "Stat 2: 50%"
-vertical_alignment = 2
-
-[node name="NegativeSlider5" type="ColorRect" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-color = Color(0.968627, 0.152941, 0.564706, 0.505882)
-
-[node name="PositiveSlider" type="ColorRect" parent="Panel/VBoxContainer/NegativeSlider5"]
-custom_minimum_size = Vector2(250, 30)
-layout_mode = 0
-color = Color(0.40595, 0.633676, 0.163329, 0.505882)
-
-[node name="LeftStatLabe" type="Label" parent="Panel/VBoxContainer/NegativeSlider5"]
-layout_mode = 0
-offset_left = 5.0
-offset_right = 67.0
-offset_bottom = 30.0
-theme_override_fonts/font = ExtResource("3_wvi1r")
-theme_override_font_sizes/font_size = 25
-text = "Stat 1: 50%"
-vertical_alignment = 2
-
-[node name="RightStatLabel" type="Label" parent="Panel/VBoxContainer/NegativeSlider5"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -72.0
-offset_right = -5.0
-offset_bottom = 30.0
-grow_horizontal = 0
-theme_override_fonts/font = ExtResource("3_wvi1r")
-theme_override_font_sizes/font_size = 25
-text = "Stat 2: 50%"
+text = "Deist"
 vertical_alignment = 2
 
 [node name="CloseButton" type="Button" parent="Panel"]

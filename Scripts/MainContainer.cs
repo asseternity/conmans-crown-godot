@@ -25,7 +25,7 @@ public partial class MainContainer : Node
 		player.Brawn = 1;
 		player.Lore = 1;
 		player.Honest_Manipulative = 50;
-		player.Domineering_Accommodating = 50;
+		player.Accommodating_Domineering = 50;
 		player.Humanist_Deist = 50;
 		player.XP = 0;
 		player.Level = 1;

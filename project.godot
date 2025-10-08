@@ -42,6 +42,9 @@ variables={
 },
 "Items": {
 "10": false
+},
+"Quests": {
+"taskedWithFindingClownHead": false
 }
 }
 layout/style_list=["res://Themes/style_speaker.tres"]

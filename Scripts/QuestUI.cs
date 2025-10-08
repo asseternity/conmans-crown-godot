@@ -85,7 +85,7 @@ public partial class QuestUI : Control
                 if (gameUI != null)
                 {
                     gameUI.ShowQuestNotification(
-                        "Task Completed:"
+                        "Task Completed: "
                             + currentQuests[i]
                                 .QuestStages[currentQuests[i].CurrentStageID]
                                 .Description

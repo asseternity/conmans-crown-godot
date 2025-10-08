@@ -1,5 +1,21 @@
-test_character: Hi.
-player: Yo.
-test_character: Here is a quest.
-[signal arg="quest:1"]
-player: Fine.
+if {Quests.taskedWithFindingClownHead} == false:
+	test_character: Hi.
+	player: Yo.
+	test_character: Here is a quest.
+	[signal arg="quest:1"]
+	player: Fine.
+	set {Quests.taskedWithFindingClownHead} = true
+else:
+	test_character: Hey again.
+	player: Hi...
+	test_character: Have you brought... the stuff?
+	[signal arg="item:10"]
+	player: Let me see...
+	if {Items.10} == true:
+		test_character: I do have it.
+		test_character: Nice, thanks.
+		[signal arg="quest:1"]
+	else:
+		player: No...
+		test_character: Well, go and find it!
+		player: Okay, okay!

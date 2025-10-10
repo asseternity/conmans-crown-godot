@@ -15,8 +15,6 @@ public class Combatant
 	public int? Honest_Manipulative { get; set; }
 	public int? Accommodating_Domineering { get; set; }
 	public int? Humanist_Deist { get; set; }
-	public int? XP { get; set; }
-	public int? Level { get; set; }
 	public string QuarrelSpritePath { get; set; }
 
 	public enum Approach

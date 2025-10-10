@@ -166,4 +166,76 @@ public partial class Engine : Node
 
 		GD.Print($"[Engine] New Date: {GS.CurrentDay} {GS.Seasons[GS.CurrentSeasonIndex]}");
 	}
+
+	public void UpdateDialogicPlayerStats()
+	{
+		SetDialogicVar("PlayerStats.brawn", GS.PlayerObject.Brawn ?? 0);
+		SetDialogicVar("PlayerStats.charisma", GS.PlayerObject.Charisma);
+		SetDialogicVar("PlayerStats.subterfuge", GS.PlayerObject.Subterfuge);
+		SetDialogicVar("PlayerStats.honest-manipulative", GS.PlayerObject.Honest_Manipulative ?? 0);
+		SetDialogicVar(
+			"PlayerStats.accommodating-domineering",
+			GS.PlayerObject.Accommodating_Domineering ?? 0
+		);
+		SetDialogicVar("PlayerStats.humanist-deist", GS.PlayerObject.Humanist_Deist ?? 0);
+	}
+
+	public void SetDialogicVar(string path, Variant value)
+	{
+		Node? _dialogic = GetTree().Root.GetNodeOrNull("Dialogic");
+		if (_dialogic == null)
+			return;
+
+		var varStoreV = _dialogic.Get("VAR");
+		if (varStoreV.VariantType != Variant.Type.Object)
+			return;
+
+		var varStore = varStoreV.AsGodotObject();
+		if (varStore is null)
+			return;
+
+		// Dialogic 2 exposes `set_variable(name, value)`
+		varStore.Call("set_variable", path, value);
+	}
+
+	// Update one stat in both PlayerObject and Dialogic
+	public void ModifyBrawn(int delta)
+	{
+		GS.PlayerObject.Brawn = (GS.PlayerObject.Brawn ?? 0) + delta;
+		SetDialogicVar("PlayerStats.brawn", GS.PlayerObject.Brawn ?? 0);
+	}
+
+	public void ModifyCharisma(int delta)
+	{
+		GS.PlayerObject.Charisma = GS.PlayerObject.Charisma + delta;
+		SetDialogicVar("PlayerStats.charisma", GS.PlayerObject.Charisma);
+	}
+
+	public void ModifySubterfuge(int delta)
+	{
+		GS.PlayerObject.Subterfuge = GS.PlayerObject.Subterfuge + delta;
+		SetDialogicVar("PlayerStats.subterfuge", GS.PlayerObject.Subterfuge);
+	}
+
+	public void ModifyHonestManipulative(int delta)
+	{
+		GS.PlayerObject.Honest_Manipulative = (GS.PlayerObject.Honest_Manipulative ?? 0) + delta;
+		SetDialogicVar("PlayerStats.honest-manipulative", GS.PlayerObject.Honest_Manipulative ?? 0);
+	}
+
+	public void ModifyAccommodatingDomineering(int delta)
+	{
+		GS.PlayerObject.Accommodating_Domineering =
+			(GS.PlayerObject.Accommodating_Domineering ?? 0) + delta;
+		SetDialogicVar(
+			"PlayerStats.accommodating-domineering",
+			GS.PlayerObject.Accommodating_Domineering ?? 0
+		);
+	}
+
+	public void ModifyHumanistDeist(int delta)
+	{
+		GS.PlayerObject.Humanist_Deist = (GS.PlayerObject.Humanist_Deist ?? 0) + delta;
+		SetDialogicVar("PlayerStats.humanist-deist", GS.PlayerObject.Humanist_Deist ?? 0);
+	}
 }

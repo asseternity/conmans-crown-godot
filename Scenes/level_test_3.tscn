@@ -98,3 +98,9 @@ daysAvailable = "1,2,4,5"
 [node name="Enemy" parent="." instance=ExtResource("6_gvsrr")]
 position = Vector2(-54, 73)
 MaxHealth = 2
+
+[node name="NPC3" parent="." instance=ExtResource("10_7lsp5")]
+position = Vector2(280, -107)
+TimelinePath = "res://dialogic/Timelines/test_abilities.dtl"
+SpritePath = "res://Images/Prototype_Character/prototype_NPC.png"
+daysAvailable = "1"

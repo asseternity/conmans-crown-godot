@@ -27,8 +27,6 @@ public partial class MainContainer : Node
 		player.Honest_Manipulative = 50;
 		player.Accommodating_Domineering = 50;
 		player.Humanist_Deist = 50;
-		player.XP = 0;
-		player.Level = 1;
 		_engine.SetPlayer(player);
 
 		// Connect Dialogic events

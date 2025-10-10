@@ -30,6 +30,7 @@ directories/dch_directory={
 directories/dtl_directory={
 "intro": "res://dialogic/Timelines/intro.dtl",
 "lose_timeline": "res://dialogic/Timelines/lose_timeline.dtl",
+"test_abilities": "res://dialogic/Timelines/test_abilities.dtl",
 "test_items": "res://dialogic/Timelines/test_items.dtl",
 "test_quests": "res://dialogic/Timelines/test_quests.dtl",
 "test_timeline": "res://dialogic/Timelines/test_timeline.dtl",
@@ -42,6 +43,14 @@ variables={
 },
 "Items": {
 "10": false
+},
+"PlayerStats": {
+"accommodating-domineering": 50,
+"brawn": 0,
+"charisma": 0,
+"honest-manipulative": 50,
+"humanist-deist": 50,
+"subterfuge": 0
 },
 "Quests": {
 "taskedWithFindingClownHead": false

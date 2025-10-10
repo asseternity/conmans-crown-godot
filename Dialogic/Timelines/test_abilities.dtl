@@ -1,0 +1,10 @@
+test_character: How are you?
+- Fuck off.
+	do GlobalEngine.ModifyHonestManipulative(-25)
+- I love you.
+	do GlobalEngine.ModifyHonestManipulative(25)
+test_character: Okay...
+if {PlayerStats.honest-manipulative} > 50.0:
+	test_character: That was kind of too soon?
+else:
+	test_character: Fuck you too.

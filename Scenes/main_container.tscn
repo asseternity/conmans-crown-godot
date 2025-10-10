@@ -14,8 +14,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idnhn"]
 shader = ExtResource("10_xb5o6")
 shader_parameter/tint_color = Vector4(1, 0.95, 0.85, 1)
-shader_parameter/vignette_strength = 0.8
-shader_parameter/vignette_smoothness = 0.3
+shader_parameter/vignette_strength = 0.6
+shader_parameter/vignette_smoothness = 0.45
 shader_parameter/scanline_intensity = 0.15
 shader_parameter/time_speed = 0.5
 
@@ -25,6 +25,16 @@ script = ExtResource("1_6r8ts")
 [node name="LevelHolder" type="Node2D" parent="."]
 
 [node name="SoleiraInterior" parent="LevelHolder" instance=ExtResource("2_0lier")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_idnhn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UIContainer" type="CanvasLayer" parent="."]
 
@@ -41,13 +51,3 @@ script = ExtResource("1_6r8ts")
 [node name="QuestUI" parent="UIContainer" instance=ExtResource("8_iv4mq")]
 
 [node name="StatsUI" parent="UIContainer" instance=ExtResource("9_0lier")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_idnhn")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

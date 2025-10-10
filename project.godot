@@ -24,10 +24,14 @@ FadeOverlay="*res://Scenes/fade_overlay.tscn"
 [dialogic]
 
 directories/dch_directory={
+"angelina": "res://portraits/angelina.dch",
+"arturo": "res://dialogic/Characters/arturo.dch",
 "player": "res://dialogic/Characters/player.dch",
 "test_character": "res://dialogic/Characters/test_character.dch"
 }
 directories/dtl_directory={
+"angelina_test": "res://dialogic/Timelines/angelina_test.dtl",
+"arturo_test": "res://dialogic/Timelines/arturo_test.dtl",
 "intro": "res://dialogic/Timelines/intro.dtl",
 "lose_timeline": "res://dialogic/Timelines/lose_timeline.dtl",
 "test_abilities": "res://dialogic/Timelines/test_abilities.dtl",

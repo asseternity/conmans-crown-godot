@@ -6,14 +6,17 @@ public partial class MainMenu : Control
 	private Button _optionsButton;
 	private Button _quitButton;
 	private AudioStreamPlayer _clickPlayer;
+	private AudioStreamPlayer _musicPlayer;
 	private Vector2 buttonScales;
 
 	public override void _Ready()
 	{
-		_playButton = GetNode<Button>("Panel/VBoxContainer/PlayButton");
-		_optionsButton = GetNode<Button>("Panel/VBoxContainer/OptionsButton");
-		_quitButton = GetNode<Button>("Panel/VBoxContainer/QuitButton");
+		_playButton = GetNode<Button>("VBoxContainer/PlayButton");
+		_optionsButton = GetNode<Button>("VBoxContainer/OptionsButton");
+		_quitButton = GetNode<Button>("VBoxContainer/QuitButton");
 		_clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
+		_musicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
+		_musicPlayer.Play();
 		buttonScales = _playButton.Scale;
 		_playButton.PivotOffset = _playButton.Size / 2;
 		_optionsButton.PivotOffset = _optionsButton.Size / 2;

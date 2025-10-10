@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfd5e5kw310b3"]
+[gd_scene load_steps=7 format=3 uid="uid://dfd5e5kw310b3"]
 
 [ext_resource type="Script" uid="uid://vgf3aryo5fr7" path="res://Scripts/MainMenu.cs" id="1_1ehe0"]
 [ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="1_ce3w2"]
-[ext_resource type="Texture2D" uid="uid://cs6hclo3twme3" path="res://Images/luella-wong-9CyTsG4GpjU-unsplash.jpg" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://bq0p4u1gjvoqu" path="res://Images/pexels-donatellotrisolino-2355408.jpg" id="3_n45e2"]
 [ext_resource type="AudioStream" uid="uid://bkg5ls4687tgk" path="res://Audio/ui sound effects/Modern8.wav" id="4_ce3w2"]
 [ext_resource type="Theme" uid="uid://ck0bjekm3sljs" path="res://Themes/new_theme_2.tres" id="4_n45e2"]
+[ext_resource type="AudioStream" uid="uid://bthe55hxj8d7n" path="res://music/agrestia 2.mp3" id="6_opfnp"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,10 +17,10 @@ grow_vertical = 2
 theme = ExtResource("1_ce3w2")
 script = ExtResource("1_1ehe0")
 
-[node name="Luella-wong-9CyTsG4GpjU-unsplash" type="Sprite2D" parent="."]
-position = Vector2(583, 267)
-scale = Vector2(0.285, 0.285)
-texture = ExtResource("3_ce3w2")
+[node name="Pexels-donatellotrisolino-2355408" type="Sprite2D" parent="."]
+position = Vector2(563, 376)
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("3_n45e2")
 
 [node name="Dimmer" type="ColorRect" parent="."]
 layout_mode = 1
@@ -28,26 +29,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.243137)
+color = Color(0, 0, 0, 0.541176)
 
-[node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(500, 550)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -201.0
-offset_right = 250.0
-offset_bottom = 249.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.515, 0.515)
-pivot_offset = Vector2(250, 200)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -55,49 +39,55 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -200.0
-offset_top = -243.301
+offset_top = -369.0
 offset_right = 200.0
-offset_bottom = -23.301
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1, 0.904578)
 theme = ExtResource("1_ce3w2")
-theme_override_constants/separation = 5
+theme_override_constants/separation = 0
 
-[node name="PlayButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
 theme = ExtResource("4_n45e2")
 theme_override_font_sizes/font_size = 35
 text = "Start Game"
 
-[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
 theme = ExtResource("4_n45e2")
 theme_override_font_sizes/font_size = 35
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
 theme = ExtResource("4_n45e2")
 theme_override_font_sizes/font_size = 35
 text = "Quit"
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -386.0
-offset_top = 29.1262
-offset_right = 386.0
-offset_bottom = 114.126
+offset_left = -319.5
+offset_top = 51.0
+offset_right = 319.5
+offset_bottom = 312.0
 grow_horizontal = 2
 theme = ExtResource("1_ce3w2")
-theme_override_font_sizes/font_size = 80
-text = "Leordis"
+theme_override_font_sizes/font_size = 65
+text = "The 
+Calligrapher's
+Crown"
 horizontal_alignment = 1
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ce3w2")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_opfnp")
+parameters/looping = true

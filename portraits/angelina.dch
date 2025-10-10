@@ -1,0 +1,29 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0.643388, 0.0159302, 0.679688, 1),
+&"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": ""
+},
+&"default_portrait": "Default",
+&"description": "",
+&"display_name": "Cpt Angstmorne",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Default": {
+"export_overrides": {
+"image": "\"res://portraits/angelina-removebg-preview.png\""
+},
+"mirror": false,
+"offset": Vector2(21, 0),
+"scale": 1,
+"scene": ""
+}
+},
+&"scale": 1.0
+}

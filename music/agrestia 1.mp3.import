@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://clsb0cvliof7i"
+path="res://.godot/imported/agrestia 1.mp3-6784b9f99fed2dff0419feb0f8de5572.mp3str"
+
+[deps]
+
+source_file="res://music/agrestia 1.mp3"
+dest_files=["res://.godot/imported/agrestia 1.mp3-6784b9f99fed2dff0419feb0f8de5572.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

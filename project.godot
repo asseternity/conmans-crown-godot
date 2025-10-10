@@ -72,6 +72,8 @@ text/autopauses={}
 glossary/default_case_sensitive=true
 portraits/default_portrait=""
 choices/hotkey_behaviour=1
+animations/join_default="Zoom In"
+animations/leave_default="Zoom Out"
 
 [dotnet]
 

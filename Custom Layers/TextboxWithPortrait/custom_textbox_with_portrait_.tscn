@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dixp44aw1o2eu" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="1_4jxq7"]
 [ext_resource type="Script" uid="uid://d1p1mkim5xlxb" path="res://Custom Layers/TextboxWithPortrait/speaker_portrait_textbox_layer.gd" id="1_7jt4d"]
-[ext_resource type="Theme" uid="uid://bs0qmbqnejykc" path="res://Themes/new_theme.tres" id="2_axj75"]
+[ext_resource type="Theme" uid="uid://ck0bjekm3sljs" path="res://Themes/new_theme_2.tres" id="1_axj75"]
 [ext_resource type="Script" uid="uid://co53y484mijnf" path="res://addons/dialogic/Modules/Text/node_name_label.gd" id="2_y0h34"]
 [ext_resource type="Script" uid="uid://dcg2qw6rwkep2" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="3_11puy"]
-[ext_resource type="FontFile" uid="uid://pg1is1ne60rk" path="res://Fonts/breamcatcher rg.otf" id="5_j3bcn"]
+[ext_resource type="FontFile" uid="uid://dvxsr4to04wj" path="res://Fonts/Leordis fonts/OrangeAvenueDEMO-Regular.otf" id="5_j3bcn"]
 [ext_resource type="Script" uid="uid://bmluqxkqs0ni3" path="res://addons/dialogic/Modules/Text/node_type_sound.gd" id="5_sr2qw"]
 
 [node name="TextboxWithSpeakerPortrait" type="Control"]
@@ -20,11 +20,58 @@ offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+theme = ExtResource("1_axj75")
 script = ExtResource("1_7jt4d")
 
 [node name="Anchor" type="Control" parent="."]
 anchors_preset = 0
 mouse_filter = 2
+theme = ExtResource("1_axj75")
+
+[node name="PortraitPanel" type="Panel" parent="Anchor"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 2
+offset_left = -627.0
+offset_top = -412.0
+offset_right = -137.0
+offset_bottom = -272.0
+scale = Vector2(2.56, 2.56)
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+mouse_filter = 2
+theme = ExtResource("1_axj75")
+
+[node name="PortraitBackgroundColor" type="ColorRect" parent="Anchor/PortraitPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_axj75")
+color = Color(0, 0, 0, 0)
+
+[node name="DialogicNode_PortraitContainer" type="Control" parent="Anchor/PortraitPanel/PortraitBackgroundColor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_axj75")
+script = ExtResource("1_4jxq7")
+mode = 1
+container_ids = PackedStringArray("1")
+debug_character_portrait = "speaker"
 
 [node name="Panel" type="PanelContainer" parent="Anchor"]
 unique_name_in_owner = true
@@ -42,59 +89,24 @@ offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("2_axj75")
+theme = ExtResource("1_axj75")
 
 [node name="HBox" type="HBoxContainer" parent="Anchor/Panel"]
 layout_mode = 2
 mouse_filter = 2
+theme = ExtResource("1_axj75")
 theme_override_constants/separation = 15
-
-[node name="PortraitPanel" type="Panel" parent="Anchor/Panel/HBox"]
-unique_name_in_owner = true
-clip_children = 1
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
-mouse_filter = 2
-theme = ExtResource("2_axj75")
-
-[node name="PortraitBackgroundColor" type="ColorRect" parent="Anchor/Panel/HBox/PortraitPanel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -7.0
-offset_top = -3.0
-offset_right = 7.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.231373)
-
-[node name="DialogicNode_PortraitContainer" type="Control" parent="Anchor/Panel/HBox/PortraitPanel/PortraitBackgroundColor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("1_4jxq7")
-mode = 1
-container_ids = PackedStringArray("1")
-debug_character_portrait = "speaker"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Anchor/Panel/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme = ExtResource("1_axj75")
 
 [node name="DialogicNode_NameLabel" type="Label" parent="Anchor/Panel/HBox/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("1_axj75")
 theme_override_font_sizes/font_size = 30
 text = "Name"
 script = ExtResource("2_y0h34")
@@ -103,6 +115,7 @@ script = ExtResource("2_y0h34")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_axj75")
 theme_override_fonts/normal_font = ExtResource("5_j3bcn")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true

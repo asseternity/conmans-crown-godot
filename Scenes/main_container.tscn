@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsmq2tx6qdqnh"]
+[gd_scene load_steps=12 format=3 uid="uid://dsmq2tx6qdqnh"]
 
 [ext_resource type="Script" uid="uid://c3pqrdg336tjr" path="res://Scripts/MainContainer.cs" id="1_6r8ts"]
 [ext_resource type="PackedScene" uid="uid://duqmbfb4ttrt7" path="res://Scenes/NonTestLevels/SoleiraInterior.tscn" id="2_0lier"]
@@ -9,6 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://d4flcwhoq24mx" path="res://Scenes/inventory_ui.tscn" id="7_hdykr"]
 [ext_resource type="PackedScene" uid="uid://16c05mf44mk0" path="res://Scenes/quest_ui.tscn" id="8_iv4mq"]
 [ext_resource type="PackedScene" uid="uid://cwvf6hb0vngn5" path="res://Scenes/stats_ui.tscn" id="9_0lier"]
+[ext_resource type="Shader" uid="uid://ybg3gi2a5n5a" path="res://Shaders/2d_post_processing.gdshader" id="10_xb5o6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idnhn"]
+shader = ExtResource("10_xb5o6")
+shader_parameter/tint_color = Vector4(1, 0.95, 0.85, 1)
+shader_parameter/vignette_strength = 0.8
+shader_parameter/vignette_smoothness = 0.3
+shader_parameter/scanline_intensity = 0.15
+shader_parameter/time_speed = 0.5
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_6r8ts")
@@ -32,3 +41,13 @@ script = ExtResource("1_6r8ts")
 [node name="QuestUI" parent="UIContainer" instance=ExtResource("8_iv4mq")]
 
 [node name="StatsUI" parent="UIContainer" instance=ExtResource("9_0lier")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_idnhn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

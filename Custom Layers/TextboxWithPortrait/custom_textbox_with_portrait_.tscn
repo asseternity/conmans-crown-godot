@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5l6mpftotmsp"]
+[gd_scene load_steps=11 format=3 uid="uid://c5l6mpftotmsp"]
 
 [ext_resource type="Script" uid="uid://dixp44aw1o2eu" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="1_4jxq7"]
 [ext_resource type="Script" uid="uid://d1p1mkim5xlxb" path="res://Custom Layers/TextboxWithPortrait/speaker_portrait_textbox_layer.gd" id="1_7jt4d"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://dcg2qw6rwkep2" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="3_11puy"]
 [ext_resource type="FontFile" uid="uid://dvxsr4to04wj" path="res://Fonts/Leordis fonts/OrangeAvenueDEMO-Regular.otf" id="5_j3bcn"]
 [ext_resource type="Script" uid="uid://bmluqxkqs0ni3" path="res://addons/dialogic/Modules/Text/node_type_sound.gd" id="5_sr2qw"]
+[ext_resource type="Texture2D" uid="uid://bntigrwgppgp6" path="res://Images/candles_with_eyes.png" id="8_7242n"]
+[ext_resource type="Texture2D" uid="uid://bvy28d7qbufcm" path="res://LightTextures/generic_light.tres" id="8_j3bcn"]
+[ext_resource type="Texture2D" uid="uid://2ilgxhh016yt" path="res://LightTextures/green_light.tres" id="10_qibhu"]
 
 [node name="TextboxWithSpeakerPortrait" type="Control"]
 layout_mode = 3
@@ -24,6 +27,7 @@ theme = ExtResource("1_axj75")
 script = ExtResource("1_7jt4d")
 
 [node name="Anchor" type="Control" parent="."]
+z_index = 100
 anchors_preset = 0
 mouse_filter = 2
 theme = ExtResource("1_axj75")
@@ -31,6 +35,7 @@ theme = ExtResource("1_axj75")
 [node name="PortraitPanel" type="Panel" parent="Anchor"]
 unique_name_in_owner = true
 clip_children = 1
+z_index = 1
 layout_mode = 2
 offset_left = -627.0
 offset_top = -412.0
@@ -76,6 +81,7 @@ debug_character_portrait = "speaker"
 [node name="Panel" type="PanelContainer" parent="Anchor"]
 unique_name_in_owner = true
 self_modulate = Color(0.533333, 0.376471, 0.176471, 1)
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -91,39 +97,100 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 
-[node name="HBox" type="HBoxContainer" parent="Anchor/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Anchor/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="Anchor/Panel/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 theme_override_constants/separation = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/Panel/HBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/Panel/MarginContainer/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 
-[node name="DialogicNode_NameLabel" type="Label" parent="Anchor/Panel/HBox/VBoxContainer"]
+[node name="DialogicNode_NameLabel" type="Label" parent="Anchor/Panel/MarginContainer/HBox/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_axj75")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Name"
 script = ExtResource("2_y0h34")
 
-[node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/Panel/HBox/VBoxContainer" node_paths=PackedStringArray("textbox_root")]
+[node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/Panel/MarginContainer/HBox/VBoxContainer" node_paths=PackedStringArray("textbox_root")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_axj75")
 theme_override_fonts/normal_font = ExtResource("5_j3bcn")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 text = "Some text"
 scroll_following = true
 visible_characters_behavior = 1
 script = ExtResource("3_11puy")
-textbox_root = NodePath("../../..")
+textbox_root = NodePath("../../../..")
 
-[node name="DialogicNode_TypeSounds" type="AudioStreamPlayer" parent="Anchor/Panel/HBox/VBoxContainer/DialogicNode_DialogText"]
+[node name="DialogicNode_TypeSounds" type="AudioStreamPlayer" parent="Anchor/Panel/MarginContainer/HBox/VBoxContainer/DialogicNode_DialogText"]
 script = ExtResource("5_sr2qw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor"]
+position = Vector2(-214, -106)
+scale = Vector2(1.765, 1.765)
+texture = ExtResource("8_7242n")
+hframes = 9
+frame = 3
+
+[node name="Sprite2D3" type="Sprite2D" parent="Anchor"]
+position = Vector2(126, -470)
+rotation = 3.14159
+scale = Vector2(1.765, 1.765)
+texture = ExtResource("8_7242n")
+hframes = 9
+frame = 7
+
+[node name="Sprite2D2" type="Sprite2D" parent="Anchor"]
+position = Vector2(204, -105)
+scale = Vector2(1.765, 1.765)
+texture = ExtResource("8_7242n")
+hframes = 9
+frame = 3
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.25
+blend_mode = 1
+range_z_max = 50
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-212, -116)
+scale = Vector2(5, 5)
+energy = 2.0
+range_z_min = 100
+range_z_max = 200
+range_layer_max = 5
+texture = ExtResource("8_j3bcn")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(127, -461)
+scale = Vector2(7.905, 7.905)
+energy = 2.8
+range_z_min = 100
+range_z_max = 200
+range_layer_max = 5
+texture = ExtResource("10_qibhu")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(206, -109)
+scale = Vector2(5, 5)
+energy = 2.0
+range_z_min = 100
+range_z_max = 200
+range_layer_max = 5
+texture = ExtResource("8_j3bcn")

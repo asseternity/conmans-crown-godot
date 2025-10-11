@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://csnkp77ksl05p"]
+[gd_scene load_steps=17 format=3 uid="uid://csnkp77ksl05p"]
 
 [ext_resource type="Script" uid="uid://deciqrie7tsin" path="res://Scripts/Player.cs" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://cuhqdqr6uh4cj" path="res://Images/Prototype_Character/prototype_character.png" id="2_kyqiw"]
@@ -246,6 +246,9 @@ _data = {
 &"walk_up": SubResource("Animation_nn08x")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5ixxa"]
+polygon = PackedVector2Array(-8, -9, -8, -1, -9, 10, 9, 10, 8, -2, 8, -9)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_rpqav")
 
@@ -280,3 +283,6 @@ stream = ExtResource("4_5ixxa")
 
 [node name="ShootPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_nn08x")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_5ixxa")

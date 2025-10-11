@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxmpys81qvmhn"]
+[gd_scene load_steps=6 format=3 uid="uid://cxmpys81qvmhn"]
 
 [ext_resource type="Script" uid="uid://brr6w32uqoms0" path="res://Scripts/NPC.cs" id="1_tdvfm"]
 [ext_resource type="Texture2D" uid="uid://ch5umuyci5qjo" path="res://downloaded_assets/10chars/spritesheets/1 idle.png" id="2_fo5tq"]
@@ -6,6 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fo5tq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5tq"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fo5tq"]
+polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
 
 [node name="NPC" type="CharacterBody2D"]
 script = ExtResource("1_tdvfm")
@@ -25,3 +28,6 @@ shape = SubResource("CircleShape2D_fo5tq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fo5tq")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_fo5tq")

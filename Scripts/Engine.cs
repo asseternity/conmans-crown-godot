@@ -172,6 +172,7 @@ public partial class Engine : Node
         SetDialogicVar("PlayerStats.brawn", GS.PlayerObject.Brawn ?? 0);
         SetDialogicVar("PlayerStats.charisma", GS.PlayerObject.Charisma);
         SetDialogicVar("PlayerStats.subterfuge", GS.PlayerObject.Subterfuge);
+        SetDialogicVar("PlayerStats.lore", GS.PlayerObject.Lore ?? 0);
         SetDialogicVar("PlayerStats.honest-manipulative", GS.PlayerObject.Honest_Manipulative ?? 0);
         SetDialogicVar(
             "PlayerStats.accommodating-domineering",
@@ -215,6 +216,12 @@ public partial class Engine : Node
     {
         GS.PlayerObject.Subterfuge = GS.PlayerObject.Subterfuge + delta;
         SetDialogicVar("PlayerStats.subterfuge", GS.PlayerObject.Subterfuge);
+    }
+
+    public void ModifyLore(int delta)
+    {
+        GS.PlayerObject.Lore = GS.PlayerObject.Lore + delta;
+        SetDialogicVar("PlayerStats.lore", GS.PlayerObject.Lore ?? 0);
     }
 
     public void ModifyHonestManipulative(int delta)

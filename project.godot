@@ -54,6 +54,7 @@ variables={
 "charisma": 0,
 "honest-manipulative": 50,
 "humanist-deist": 50,
+"lore": 0,
 "subterfuge": 0
 },
 "Quests": {
@@ -95,6 +96,10 @@ project/assembly_name="The Conman-s Crown - Godot"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [global_group]
 

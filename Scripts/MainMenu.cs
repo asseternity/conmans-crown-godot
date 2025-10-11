@@ -16,7 +16,7 @@ public partial class MainMenu : Control
         _quitButton = GetNode<Button>("VBoxContainer/QuitButton");
         _clickPlayer = GetNode<AudioStreamPlayer>("ClickPlayer");
         _musicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
-        _musicPlayer.Play();
+        // _musicPlayer.Play();
         buttonScales = _playButton.Scale;
         _playButton.PivotOffset = _playButton.Size / 2;
         _optionsButton.PivotOffset = _optionsButton.Size / 2;

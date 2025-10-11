@@ -37,17 +37,23 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="UIContainer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="QuarrelUI" parent="UIContainer" instance=ExtResource("4_76x1s")]
+z_index = 1000
 
 [node name="PauseMenu" parent="UIContainer" instance=ExtResource("4_1yfqn")]
 
 [node name="GameUI" parent="UIContainer" instance=ExtResource("3_ctqoa")]
 
 [node name="PopupUI" parent="UIContainer" instance=ExtResource("6_cawxt")]
+z_index = 4000
 
 [node name="InventoryUI" parent="UIContainer" instance=ExtResource("7_hdykr")]
+z_index = 1000
 
 [node name="QuestUI" parent="UIContainer" instance=ExtResource("8_iv4mq")]
+z_index = 1000
 
 [node name="StatsUI" parent="UIContainer" instance=ExtResource("9_0lier")]
+z_index = 1000

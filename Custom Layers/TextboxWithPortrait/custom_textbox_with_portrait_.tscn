@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bmluqxkqs0ni3" path="res://addons/dialogic/Modules/Text/node_type_sound.gd" id="5_sr2qw"]
 [ext_resource type="Texture2D" uid="uid://bntigrwgppgp6" path="res://Images/candles_with_eyes.png" id="8_7242n"]
 [ext_resource type="Texture2D" uid="uid://bvy28d7qbufcm" path="res://LightTextures/generic_light.tres" id="8_j3bcn"]
-[ext_resource type="Texture2D" uid="uid://2ilgxhh016yt" path="res://LightTextures/green_light.tres" id="10_qibhu"]
+[ext_resource type="Texture2D" uid="uid://dowkqtrvod2ou" path="res://LightTextures/dim_purple_light.tres" id="10_qibhu"]
 
 [node name="TextboxWithSpeakerPortrait" type="Control"]
 layout_mode = 3
@@ -29,6 +29,8 @@ script = ExtResource("1_7jt4d")
 [node name="Anchor" type="Control" parent="."]
 z_index = 100
 anchors_preset = 0
+offset_top = 42.0
+offset_bottom = 42.0
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 
@@ -37,11 +39,13 @@ unique_name_in_owner = true
 clip_children = 1
 z_index = 1
 layout_mode = 2
-offset_left = -627.0
-offset_top = -412.0
-offset_right = -137.0
-offset_bottom = -272.0
-scale = Vector2(2.56, 2.56)
+offset_left = -717.0
+offset_top = -465.0
+offset_right = -227.0
+offset_bottom = -325.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.935, 2.935)
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 mouse_filter = 2
@@ -88,10 +92,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -77.0
-offset_right = 250.0
-offset_bottom = 73.0
+offset_left = -379.0
+offset_top = -75.0
+offset_right = 379.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -142,43 +146,52 @@ textbox_root = NodePath("../../../..")
 script = ExtResource("5_sr2qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Anchor"]
-position = Vector2(-214, -106)
-scale = Vector2(1.765, 1.765)
+position = Vector2(-356, -90)
 texture = ExtResource("8_7242n")
 hframes = 9
 frame = 3
 
-[node name="Sprite2D3" type="Sprite2D" parent="Anchor"]
-position = Vector2(126, -470)
-rotation = 3.14159
-scale = Vector2(1.765, 1.765)
-texture = ExtResource("8_7242n")
-hframes = 9
-frame = 7
-
 [node name="Sprite2D2" type="Sprite2D" parent="Anchor"]
-position = Vector2(204, -105)
-scale = Vector2(1.765, 1.765)
+position = Vector2(331, -89)
 texture = ExtResource("8_7242n")
 hframes = 9
 frame = 3
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.25
+position = Vector2(0, 42)
+energy = 0.5
 blend_mode = 1
 range_z_max = 50
+range_item_cull_mask = 3
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(0, 42)
+energy = 0.5
+blend_mode = 1
+range_z_max = 50
+range_layer_min = 2
+range_layer_max = 2
+range_item_cull_mask = 3
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-212, -116)
-scale = Vector2(5, 5)
-energy = 2.0
+position = Vector2(-336, -60)
+scale = Vector2(5.84, 5.84)
 range_z_min = 100
 range_z_max = 200
 range_layer_max = 5
 texture = ExtResource("8_j3bcn")
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(127, -461)
+position = Vector2(127, -419)
+scale = Vector2(7.905, 7.905)
+energy = 2.8
+range_z_min = 100
+range_z_max = 200
+range_layer_max = 5
+texture = ExtResource("8_j3bcn")
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(-254, -344)
 scale = Vector2(7.905, 7.905)
 energy = 2.8
 range_z_min = 100
@@ -187,8 +200,8 @@ range_layer_max = 5
 texture = ExtResource("10_qibhu")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(206, -109)
-scale = Vector2(5, 5)
+position = Vector2(310, -64)
+scale = Vector2(6.05, 6.05)
 energy = 2.0
 range_z_min = 100
 range_z_max = 200

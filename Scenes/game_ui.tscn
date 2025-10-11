@@ -26,15 +26,20 @@ script = ExtResource("1_xjnnq")
 
 [node name="TaskCompletedLabel" type="Label" parent="."]
 layout_mode = 1
-offset_left = 6.0
-offset_top = 68.0
-offset_right = 713.0
-offset_bottom = 123.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -559.0
+offset_top = 15.0
+offset_right = -11.0
+offset_bottom = 70.0
+grow_horizontal = 0
 theme = ExtResource("2_gjn1n")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
 text = "Task  completed: find a thing"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="HPPanel" type="Panel" parent="."]

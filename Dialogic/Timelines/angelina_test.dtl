@@ -1,2 +1,3 @@
 angelina: Hello.
 player: Hi.
+do GlobalEngine.MoveNPC("MainScene/LevelHolder/SoleiraPrestigia_v2/NPC2", 20, -10)

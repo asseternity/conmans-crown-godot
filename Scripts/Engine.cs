@@ -167,6 +167,28 @@ public partial class Engine : Node
 		GD.Print($"[Engine] New Date: {GS.CurrentDay} {GS.Seasons[GS.CurrentSeasonIndex]}");
 	}
 
+	public async void MoveNPC(string objectPath, int x, int y)
+	{
+		var fade = (FadeOverlay)GetNode("/root/FadeOverlay");
+		if (fade != null)
+			await fade.FadeOut();
+		CharacterBody2D NPCObject = GetNodeOrNull<CharacterBody2D>("/root/" + objectPath);
+		if (NPCObject == null)
+		{
+			GD.Print("[Engine] NPC not found to move");
+			if (fade != null)
+				await fade.FadeIn();
+			return;
+		}
+		Vector2 newPosition = new Vector2(
+			NPCObject.GlobalPosition.X + x,
+			NPCObject.GlobalPosition.Y + y
+		);
+		NPCObject.GlobalPosition = newPosition;
+		if (fade != null)
+			await fade.FadeIn();
+	}
+
 	public void UpdateDialogicPlayerStats()
 	{
 		SetDialogicVar("PlayerStats.brawn", GS.PlayerObject.Brawn ?? 0);

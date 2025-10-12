@@ -25,6 +25,10 @@ grow_vertical = 0
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 script = ExtResource("1_7jt4d")
+path_left = null
+path_right = null
+disabled = null
+apply_overrides_on_ready = null
 
 [node name="Anchor" type="Control" parent="."]
 z_index = 100
@@ -34,15 +38,38 @@ offset_bottom = 42.0
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 
+[node name="DialogicNode_NameLabel" type="Label" parent="Anchor"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -334.0
+offset_top = -471.0
+offset_right = 398.0
+offset_bottom = -418.0
+grow_horizontal = 2
+theme = ExtResource("1_axj75")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 50
+text = "Name"
+horizontal_alignment = 1
+script = ExtResource("2_y0h34")
+
 [node name="PortraitPanel" type="Panel" parent="Anchor"]
 unique_name_in_owner = true
 clip_children = 1
 z_index = 1
 layout_mode = 2
-offset_left = -717.0
-offset_top = -465.0
-offset_right = -227.0
-offset_bottom = -325.0
+offset_left = -871.0
+offset_top = -470.0
+offset_right = -381.0
+offset_bottom = -330.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2.935, 2.935)
@@ -78,8 +105,53 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 script = ExtResource("1_4jxq7")
-mode = 1
-container_ids = PackedStringArray("1")
+container_ids = PackedStringArray("left")
+debug_character_portrait = "speaker"
+
+[node name="PortraitPanel2" type="Panel" parent="Anchor"]
+unique_name_in_owner = true
+clip_children = 1
+z_index = 1
+layout_mode = 2
+offset_left = -547.0
+offset_top = -464.0
+offset_right = -57.0001
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.935, 2.935)
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+mouse_filter = 2
+theme = ExtResource("1_axj75")
+
+[node name="PortraitBackgroundColor" type="ColorRect" parent="Anchor/PortraitPanel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_axj75")
+color = Color(0, 0, 0, 0)
+
+[node name="DialogicNode_PortraitContainer" type="Control" parent="Anchor/PortraitPanel2/PortraitBackgroundColor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_axj75")
+script = ExtResource("1_4jxq7")
+container_ids = PackedStringArray("right")
 debug_character_portrait = "speaker"
 
 [node name="Panel" type="PanelContainer" parent="Anchor"]
@@ -120,14 +192,6 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 
-[node name="DialogicNode_NameLabel" type="Label" parent="Anchor/Panel/MarginContainer/HBox/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("1_axj75")
-theme_override_font_sizes/font_size = 25
-text = "Name"
-script = ExtResource("2_y0h34")
-
 [node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/Panel/MarginContainer/HBox/VBoxContainer" node_paths=PackedStringArray("textbox_root")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -146,12 +210,14 @@ textbox_root = NodePath("../../../..")
 script = ExtResource("5_sr2qw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Anchor"]
+z_index = 1
 position = Vector2(-356, -90)
 texture = ExtResource("8_7242n")
 hframes = 9
 frame = 3
 
 [node name="Sprite2D2" type="Sprite2D" parent="Anchor"]
+z_index = 1
 position = Vector2(331, -89)
 texture = ExtResource("8_7242n")
 hframes = 9

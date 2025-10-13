@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogicGlossary" load_steps=2 format=3 uid="uid://c1ejn3fihmht4"]
+
+[ext_resource type="Script" uid="uid://b007vyy716xpb" path="res://addons/dialogic/Modules/Glossary/glossary_resource.gd" id="1_0gnj1"]
+
+[resource]
+script = ExtResource("1_0gnj1")
+entries = {
+"Hello": {
+"case_sensitive": true,
+"color": Color(0.0536194, 0.877485, 0.980469, 1),
+"name": "Hello",
+"text": "Hello means wazzaap.",
+"title": "Greetings in Leordisa"
+}
+}
+enabled = true
+_translation_id = ""
+_translation_keys = {}

@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5l6mpftotmsp"]
+[gd_scene load_steps=8 format=3 uid="uid://c5l6mpftotmsp"]
 
-[ext_resource type="Script" uid="uid://dixp44aw1o2eu" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="1_4jxq7"]
 [ext_resource type="Script" uid="uid://d1p1mkim5xlxb" path="res://Custom Layers/TextboxWithPortrait/speaker_portrait_textbox_layer.gd" id="1_7jt4d"]
 [ext_resource type="Theme" uid="uid://ck0bjekm3sljs" path="res://Themes/new_theme_2.tres" id="1_axj75"]
 [ext_resource type="Script" uid="uid://co53y484mijnf" path="res://addons/dialogic/Modules/Text/node_name_label.gd" id="2_y0h34"]
@@ -8,8 +7,6 @@
 [ext_resource type="FontFile" uid="uid://dvxsr4to04wj" path="res://Fonts/Leordis fonts/OrangeAvenueDEMO-Regular.otf" id="5_j3bcn"]
 [ext_resource type="Script" uid="uid://bmluqxkqs0ni3" path="res://addons/dialogic/Modules/Text/node_type_sound.gd" id="5_sr2qw"]
 [ext_resource type="Texture2D" uid="uid://bntigrwgppgp6" path="res://Images/candles_with_eyes.png" id="8_7242n"]
-[ext_resource type="Texture2D" uid="uid://bvy28d7qbufcm" path="res://LightTextures/generic_light.tres" id="8_j3bcn"]
-[ext_resource type="Texture2D" uid="uid://dowkqtrvod2ou" path="res://LightTextures/dim_purple_light.tres" id="10_qibhu"]
 
 [node name="TextboxWithSpeakerPortrait" type="Control"]
 layout_mode = 3
@@ -25,13 +22,9 @@ grow_vertical = 0
 mouse_filter = 2
 theme = ExtResource("1_axj75")
 script = ExtResource("1_7jt4d")
-path_left = null
-path_right = null
-disabled = null
-apply_overrides_on_ready = null
 
 [node name="Anchor" type="Control" parent="."]
-z_index = 100
+z_index = 120
 anchors_preset = 0
 offset_top = 42.0
 offset_bottom = 42.0
@@ -61,103 +54,10 @@ text = "Name"
 horizontal_alignment = 1
 script = ExtResource("2_y0h34")
 
-[node name="PortraitPanel" type="Panel" parent="Anchor"]
-unique_name_in_owner = true
-clip_children = 1
-z_index = 1
-layout_mode = 2
-offset_left = -871.0
-offset_top = -470.0
-offset_right = -381.0
-offset_bottom = -330.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(2.935, 2.935)
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
-mouse_filter = 2
-theme = ExtResource("1_axj75")
-
-[node name="PortraitBackgroundColor" type="ColorRect" parent="Anchor/PortraitPanel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -7.0
-offset_top = -3.0
-offset_right = 7.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("1_axj75")
-color = Color(0, 0, 0, 0)
-
-[node name="DialogicNode_PortraitContainer" type="Control" parent="Anchor/PortraitPanel/PortraitBackgroundColor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("1_axj75")
-script = ExtResource("1_4jxq7")
-container_ids = PackedStringArray("left")
-debug_character_portrait = "speaker"
-
-[node name="PortraitPanel2" type="Panel" parent="Anchor"]
-unique_name_in_owner = true
-clip_children = 1
-z_index = 1
-layout_mode = 2
-offset_left = -547.0
-offset_top = -464.0
-offset_right = -57.0001
-offset_bottom = -324.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(2.935, 2.935)
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
-mouse_filter = 2
-theme = ExtResource("1_axj75")
-
-[node name="PortraitBackgroundColor" type="ColorRect" parent="Anchor/PortraitPanel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -7.0
-offset_top = -3.0
-offset_right = 7.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("1_axj75")
-color = Color(0, 0, 0, 0)
-
-[node name="DialogicNode_PortraitContainer" type="Control" parent="Anchor/PortraitPanel2/PortraitBackgroundColor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("1_axj75")
-script = ExtResource("1_4jxq7")
-container_ids = PackedStringArray("right")
-debug_character_portrait = "speaker"
-
 [node name="Panel" type="PanelContainer" parent="Anchor"]
 unique_name_in_owner = true
 self_modulate = Color(0.533333, 0.376471, 0.176471, 1)
-z_index = 1
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,54 +122,3 @@ position = Vector2(331, -89)
 texture = ExtResource("8_7242n")
 hframes = 9
 frame = 3
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-position = Vector2(0, 42)
-energy = 0.5
-blend_mode = 1
-range_z_max = 50
-range_item_cull_mask = 3
-
-[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
-position = Vector2(0, 42)
-energy = 0.5
-blend_mode = 1
-range_z_max = 50
-range_layer_min = 2
-range_layer_max = 2
-range_item_cull_mask = 3
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-336, -60)
-scale = Vector2(5.84, 5.84)
-range_z_min = 100
-range_z_max = 200
-range_layer_max = 5
-texture = ExtResource("8_j3bcn")
-
-[node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(127, -419)
-scale = Vector2(7.905, 7.905)
-energy = 2.8
-range_z_min = 100
-range_z_max = 200
-range_layer_max = 5
-texture = ExtResource("8_j3bcn")
-
-[node name="PointLight2D4" type="PointLight2D" parent="."]
-position = Vector2(-254, -344)
-scale = Vector2(7.905, 7.905)
-energy = 2.8
-range_z_min = 100
-range_z_max = 200
-range_layer_max = 5
-texture = ExtResource("10_qibhu")
-
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(310, -64)
-scale = Vector2(6.05, 6.05)
-energy = 2.0
-range_z_min = 100
-range_z_max = 200
-range_layer_max = 5
-texture = ExtResource("8_j3bcn")

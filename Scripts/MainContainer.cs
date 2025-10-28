@@ -7,6 +7,7 @@ public partial class MainContainer : Node
 {
     private Engine _engine;
     private Node? _dialogic;
+    private GodotObject? _dialogic_VAR_subsystem;
 
     public override void _Ready()
     {
@@ -29,11 +30,66 @@ public partial class MainContainer : Node
         player.Humanist_Deist = 50;
         _engine.SetPlayer(player);
 
-        // Connect Dialogic events
         if (_dialogic != null)
         {
+            // Connect Dialogic events
             _dialogic.Connect("signal_event", new Callable(this, nameof(OnDialogicSignal)));
             _dialogic.Connect("timeline_ended", new Callable(this, nameof(OnTimelineEnded)));
+
+            _dialogic_VAR_subsystem = (GodotObject)_dialogic.Get("VAR");
+
+            _dialogic_VAR_subsystem.Connect(
+                "variable_was_set",
+                new Callable(this, nameof(OnDialogicVariableWasSet))
+            );
+        }
+    }
+
+    private void OnDialogicVariableWasSet(Godot.Collections.Dictionary info)
+    {
+        _engine = GetTree().Root.GetNode<Engine>("GlobalEngine");
+        Combatant _player = _engine.GS.PlayerObject;
+        string path = info["variable"].AsString();
+        string[] path_parts = path.Split('.');
+        Variant oldValVar = info["orig_value"];
+        Variant newValVar = info["new_value"];
+        Variant appliedValVar = info["value"]; // can be the delta or the assigned value, depending on how it was set in the timeline. :contentReference[oaicite:3]{index=3}
+
+        // watch for changes of personality variables, and update player object if they change
+        if (path.StartsWith("PlayerStats"))
+        {
+            string stat_name = path_parts[1];
+            switch (stat_name)
+            {
+                case "Charisma":
+                    _player.Charisma = newValVar.AsInt16();
+                    break;
+                case "Brawn":
+                    _player.Brawn = newValVar.AsInt16();
+                    break;
+                case "Lore":
+                    _player.Lore = newValVar.AsInt16();
+                    break;
+                case "Subterfuge":
+                    _player.Subterfuge = newValVar.AsInt16();
+                    break;
+                case "Humanist_Deist":
+                    _player.Humanist_Deist = newValVar.AsInt16();
+                    break;
+                case "Accommodating_Domineering":
+                    _player.Accommodating_Domineering = newValVar.AsInt16();
+                    break;
+                case "Honest_Manipulative":
+                    _player.Honest_Manipulative = newValVar.AsInt16();
+                    break;
+            }
+        }
+        // watch for changes of relationship variables, and send quest notification on a change
+        else if (path.StartsWith("NPCs"))
+        {
+            string npc_name = path_parts[1];
+            var gameUI = GetNodeOrNull<QuarrelUI>("UIContainer/GameUI");
+            if (gameUI != null) { }
         }
     }
 

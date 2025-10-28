@@ -17,11 +17,12 @@
 &"portraits": {
 "Default": {
 "export_overrides": {
-"image": "\"res://portraits/angelina-removebg-preview.png\""
+"image": "\"res://portraits/Sprite-0005.png\""
 },
+"ignore_char_scale": false,
 "mirror": false,
 "offset": Vector2(0, 0),
-"scale": 1,
+"scale": 1.0,
 "scene": ""
 }
 },

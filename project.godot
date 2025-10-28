@@ -48,6 +48,9 @@ variables={
 "Items": {
 "10": false
 },
+"NPCs": {
+"angelina_approval": 0
+},
 "PlayerStats": {
 "accommodating-domineering": 50,
 "brawn": 0,
@@ -86,8 +89,8 @@ text/autopauses={}
 glossary/default_case_sensitive=true
 portraits/default_portrait=""
 choices/hotkey_behaviour=1
-animations/join_default="Fade In"
-animations/leave_default="Fade Out"
+animations/join_default="Instant In"
+animations/leave_default="Instant Out"
 glossary/glossary_files=["res://Custom Layers/Glossary.tres"]
 
 [dotnet]

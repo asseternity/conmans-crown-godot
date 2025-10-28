@@ -1,10 +1,2 @@
-join arturo center
 arturo: Hello.
-update arturo left
-join player right
 player: Hi.
-join angelina rightmost
-update arturo leftmost
-update player center
-angelina: Hi too.
-arturo: Hi.

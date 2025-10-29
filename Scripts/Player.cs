@@ -234,6 +234,7 @@ public partial class Player : CharacterBody2D
 		};
 
 		proj.Position = GlobalPosition; // spawn at player center; tweak offset if needed
+		proj.Rotation = dirVec.Angle();
 		proj.Initialize(dirVec, dmg);
 
 		// add projectile to the player's parent (so it exists in the same canvas layer)

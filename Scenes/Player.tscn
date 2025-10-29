@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://csnkp77ksl05p"]
+[gd_scene load_steps=18 format=3 uid="uid://csnkp77ksl05p"]
 
 [ext_resource type="Script" uid="uid://deciqrie7tsin" path="res://Scripts/Player.cs" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://cuhqdqr6uh4cj" path="res://Images/Prototype_Character/prototype_character.png" id="2_kyqiw"]
+[ext_resource type="PackedScene" uid="uid://bjt3vlqsv1ww0" path="res://Scenes/projectile.tscn" id="2_nn08x"]
 [ext_resource type="AudioStream" uid="uid://dmcxmc21ohsrw" path="res://Audio/Free Footsteps Pack/Concrete 2.wav" id="3_gntrk"]
 [ext_resource type="AudioStream" uid="uid://dyanac4d8aero" path="res://Audio/Minifantasy_Dungeon_SFX/27_sword_miss_1.wav" id="4_5ixxa"]
 [ext_resource type="AudioStream" uid="uid://0mp4igu5j1m" path="res://Audio/Minifantasy_Dungeon_SFX/10_human_special_atk_2.wav" id="5_nn08x"]
@@ -251,6 +252,7 @@ polygon = PackedVector2Array(-5, -6, -5, -6, -5, 1, -6, 1, -6, 2, -7, 3, -8, 3, 
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_rpqav")
+ProjectileScene = ExtResource("2_nn08x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

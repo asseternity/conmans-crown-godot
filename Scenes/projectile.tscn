@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjt3vlqsv1ww0"]
+
+[ext_resource type="Texture2D" uid="uid://cuni426u0ngte" path="res://Images/shuriken.png" id="1_f8cdk"]
+[ext_resource type="Script" uid="uid://ddd67qaogat3a" path="res://Scripts/Projectile.cs" id="1_yr2qt"]
+
+[node name="Projectile" type="Area2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_yr2qt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.305, 1.305)
+texture = ExtResource("1_f8cdk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.305, 1.305)
+polygon = PackedVector2Array(28, -2, 7, -7.5, 1, -7.5, 1, -6.8, -8.4, -2.5, -29, -2.5, -29, 3.5, -6.5, 3.5, 0.700001, 7.5, 11.2, 7.5, 28, 1.9)

@@ -49,16 +49,21 @@ variables={
 "10": false
 },
 "NPCs": {
-"angelina_approval": 0
+"Angelina": {
+"approval": 0
+},
+"Arturo": {
+"approval": 0
+}
 },
 "PlayerStats": {
-"accommodating-domineering": 50,
-"brawn": 0,
-"charisma": 0,
-"honest-manipulative": 50,
-"humanist-deist": 50,
-"lore": 0,
-"subterfuge": 0
+"Accommodating_Domineering": 50,
+"Brawn": 0,
+"Charisma": 0,
+"Honest_Manipulative": 50,
+"Humanist_Deist": 50,
+"Lore": 0,
+"Subterfuge": 0
 },
 "Quests": {
 "taskedWithFindingClownHead": false

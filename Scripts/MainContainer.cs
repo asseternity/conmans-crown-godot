@@ -53,43 +53,108 @@ public partial class MainContainer : Node
         string[] path_parts = path.Split('.');
         Variant oldValVar = info["orig_value"];
         Variant newValVar = info["new_value"];
-        Variant appliedValVar = info["value"]; // can be the delta or the assigned value, depending on how it was set in the timeline. :contentReference[oaicite:3]{index=3}
+        int delta = newValVar.AsInt16() - oldValVar.AsInt16();
 
         // watch for changes of personality variables, and update player object if they change
         if (path.StartsWith("PlayerStats"))
         {
-            string stat_name = path_parts[1];
-            switch (stat_name)
+            var gameUI = GetNodeOrNull<GameUI>("UIContainer/GameUI");
+            if (gameUI != null)
             {
-                case "Charisma":
-                    _player.Charisma = newValVar.AsInt16();
-                    break;
-                case "Brawn":
-                    _player.Brawn = newValVar.AsInt16();
-                    break;
-                case "Lore":
-                    _player.Lore = newValVar.AsInt16();
-                    break;
-                case "Subterfuge":
-                    _player.Subterfuge = newValVar.AsInt16();
-                    break;
-                case "Humanist_Deist":
-                    _player.Humanist_Deist = newValVar.AsInt16();
-                    break;
-                case "Accommodating_Domineering":
-                    _player.Accommodating_Domineering = newValVar.AsInt16();
-                    break;
-                case "Honest_Manipulative":
-                    _player.Honest_Manipulative = newValVar.AsInt16();
-                    break;
+                string stat_name = path_parts[1];
+                switch (stat_name)
+                {
+                    case "Charisma":
+                        _player.Charisma = newValVar.AsInt16();
+                        gameUI.ShowQuestNotification($"Charisma increased.");
+                        break;
+                    case "Brawn":
+                        _player.Brawn = newValVar.AsInt16();
+                        gameUI.ShowQuestNotification($"Brawn increased.");
+                        break;
+                    case "Lore":
+                        _player.Lore = newValVar.AsInt16();
+                        gameUI.ShowQuestNotification($"Lore increased.");
+                        break;
+                    case "Subterfuge":
+                        _player.Subterfuge = newValVar.AsInt16();
+                        gameUI.ShowQuestNotification($"Subterfuge increased.");
+                        break;
+                    case "Humanist_Deist":
+                        _player.Humanist_Deist = newValVar.AsInt16();
+                        if (delta > 0)
+                        {
+                            gameUI.ShowQuestNotification($"Deist increased.");
+                        }
+                        else
+                        {
+                            gameUI.ShowQuestNotification($"Humanist increased.");
+                        }
+                        break;
+                    case "Accommodating_Domineering":
+                        _player.Accommodating_Domineering = newValVar.AsInt16();
+                        if (delta > 0)
+                        {
+                            gameUI.ShowQuestNotification($"Domineering increased.");
+                        }
+                        else
+                        {
+                            gameUI.ShowQuestNotification($"Accommodating increased.");
+                        }
+                        break;
+                    case "Honest_Manipulative":
+                        _player.Honest_Manipulative = newValVar.AsInt16();
+                        if (delta > 0)
+                        {
+                            gameUI.ShowQuestNotification($"Manipulative increased.");
+                        }
+                        else
+                        {
+                            gameUI.ShowQuestNotification($"Honest increased.");
+                        }
+                        break;
+                }
             }
         }
         // watch for changes of relationship variables, and send quest notification on a change
         else if (path.StartsWith("NPCs"))
         {
             string npc_name = path_parts[1];
-            var gameUI = GetNodeOrNull<QuarrelUI>("UIContainer/GameUI");
-            if (gameUI != null) { }
+            string reaction = "approves";
+
+            switch (delta)
+            {
+                case 5:
+                    reaction = "approves";
+                    break;
+                case 10:
+                    reaction = "is impressed by that";
+                    break;
+                case 15:
+                    reaction = "is pleased by that";
+                    break;
+                case 20:
+                    reaction = "greatly approves";
+                    break;
+                case -5:
+                    reaction = "is annoyed at that";
+                    break;
+                case -10:
+                    reaction = "disapproves";
+                    break;
+                case -15:
+                    reaction = "is angry at that";
+                    break;
+                case -20:
+                    reaction = "greatly disapproves";
+                    break;
+            }
+            string finalString = $"{npc_name} {reaction}.";
+            var gameUI = GetNodeOrNull<GameUI>("UIContainer/GameUI");
+            if (gameUI != null)
+            {
+                gameUI.ShowQuestNotification(finalString);
+            }
         }
     }
 

@@ -1,2 +1,6 @@
 arturo: Hello.
 player: Hi.
+player: I like you.
+set {NPCs.Arturo.approval} += 10.0
+arturo: You are smart.
+set {PlayerStats.Lore} += 10.0

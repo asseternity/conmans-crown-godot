@@ -17,9 +17,8 @@
 &"portraits": {
 "Default": {
 "export_overrides": {
-"image": "\"res://portraits/arturo-removebg-preview.png\""
+"image": "\"res://portraits/photo_2025-10-28_23-31-43.png\""
 },
-"ignore_char_scale": false,
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
